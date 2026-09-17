@@ -30,7 +30,7 @@ const FAQS = [
 
 export function ResourcesFaq() {
   return (
-    <section className="relative overflow-hidden bg-ax-bg-soft py-24 lg:py-32">
+    <section id="faq" className="relative overflow-hidden bg-ax-bg-soft py-24 lg:py-32">
       <div className="absolute inset-0 opacity-[0.1]">
         <Image src="/hero/14_faq.jpg" alt="" fill sizes="100vw" className="object-cover" />
       </div>

@@ -2,7 +2,7 @@ import { Reveal } from "@/components/shared/Reveal";
 
 export function EngineeringNotes() {
   return (
-    <section className="relative bg-ax-bg-soft py-24 lg:py-32">
+    <section id="engineering-notes" className="relative bg-ax-bg-soft py-24 lg:py-32">
       <div className="container-ax">
         <Reveal>
           <p className="text-[12px] font-medium uppercase tracking-[0.14em] text-ax-mint/70">
