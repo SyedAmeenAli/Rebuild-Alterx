@@ -34,10 +34,10 @@ export const navigationData: NavMenu[] = [
     href: "/solutions",
     visualType: "solutions",
     links: [
-      { label: "Understand", href: "/solutions#understand" },
-      { label: "Plan", href: "/solutions#plan" },
-      { label: "Execute", href: "/solutions#execute" },
-      { label: "Verify", href: "/solutions#verify" },
+      { label: "The gap", href: "/solutions#gap" },
+      { label: "Where it fits", href: "/solutions#fits" },
+      { label: "How it works", href: "/solutions#process" },
+      { label: "Reliability", href: "/solutions#reliability" },
     ],
   },
   {

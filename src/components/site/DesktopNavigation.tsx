@@ -1,19 +1,21 @@
 "use client";
 
 import React, { useState, useRef, useEffect } from 'react';
+import { usePathname } from 'next/navigation';
 import { MegaMenu, MegaMenuId } from './MegaMenu';
 
-const triggers: { id: MegaMenuId, label: string }[] = [
-  { id: 'products', label: 'Products' },
-  { id: 'solutions', label: 'Solutions' },
-  { id: 'developers', label: 'Developers' },
-  { id: 'resources', label: 'Resources' },
-  { id: 'about', label: 'About' },
+const triggers: { id: MegaMenuId, label: string, href: string }[] = [
+  { id: 'products', label: 'Products', href: '/products' },
+  { id: 'solutions', label: 'Solutions', href: '/solutions' },
+  { id: 'developers', label: 'Developers', href: '/developers' },
+  { id: 'resources', label: 'Resources', href: '/resources' },
+  { id: 'about', label: 'About', href: '/about' },
 ];
 
 export function DesktopNavigation() {
   const [activeMenu, setActiveMenu] = useState<MegaMenuId>(null);
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const pathname = usePathname();
 
   useEffect(() => {
     // Notify hero to pause/resume
@@ -93,9 +95,12 @@ export function DesktopNavigation() {
       >
         {triggers.map((menu, i) => {
           const isActive = activeMenu === menu.id;
+          const isCurrentPage = pathname === menu.href || pathname.startsWith(`${menu.href}/`);
           const textColor = isActive
             ? 'text-ax-black'
-            : 'text-white/80 hover:text-white';
+            : isCurrentPage
+              ? 'text-ax-mint hover:text-ax-mint'
+              : 'text-white/80 hover:text-white';
 
           return (
             <button
@@ -105,12 +110,16 @@ export function DesktopNavigation() {
               onFocus={() => handleMouseEnter(menu.id)}
               onKeyDown={(e) => handleKeyDown(e, menu.id, i)}
               aria-expanded={isActive}
+              aria-current={isCurrentPage ? 'page' : undefined}
               aria-haspopup="true"
-              className={`px-4 py-2 text-[15px] font-medium leading-[1] rounded-[3px] transition-all duration-[150ms] ease-[cubic-bezier(0.25,1,0.5,1)] focus-visible:outline-ax-mint focus-visible:outline-2 focus-visible:outline-offset-2 ${
+              className={`relative px-4 py-2 text-[15px] font-medium leading-[1] rounded-[3px] transition-all duration-[150ms] ease-[cubic-bezier(0.25,1,0.5,1)] focus-visible:outline-ax-mint focus-visible:outline-2 focus-visible:outline-offset-2 ${
                 isActive ? 'bg-ax-mint text-ax-black' : `bg-transparent ${textColor}`
               }`}
             >
               {menu.label}
+              {isCurrentPage && !isActive && (
+                <span className="absolute inset-x-4 -bottom-[1px] h-[2px] rounded-full bg-ax-mint" />
+              )}
             </button>
           );
         })}

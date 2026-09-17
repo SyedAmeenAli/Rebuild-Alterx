@@ -127,13 +127,13 @@ function SolutionsMenu() {
       </Column>
       <Column>
         <SectionLabel>Process</SectionLabel>
-        <NavLink href="/solutions#understand" title="Understand" />
-        <NavLink href="/solutions#plan" title="Plan" />
+        <NavLink href="/solutions#gap" title="The gap" />
+        <NavLink href="/solutions#fits" title="Where it fits" />
       </Column>
       <Column>
         <SectionLabel>&nbsp;</SectionLabel>
-        <NavLink href="/solutions#execute" title="Execute" />
-        <NavLink href="/solutions#verify" title="Verify" />
+        <NavLink href="/solutions#process" title="How it works" />
+        <NavLink href="/solutions#reliability" title="Reliability" />
       </Column>
       <Column isLast>
         <SectionLabel>Access</SectionLabel>
