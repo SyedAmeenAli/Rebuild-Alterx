@@ -55,7 +55,7 @@ export function TheGap() {
           </p>
         </Reveal>
 
-        <div ref={trackRef} className="mt-24 lg:mt-32">
+        <div ref={trackRef} className="mt-16 rounded-[6px] border border-ax-mint/10 bg-ax-black/40 px-6 py-16 lg:mt-20 lg:px-10 lg:py-20">
           <div className="relative hidden md:block">
             <div className="grid grid-cols-5 items-center">
               {NODES.map((node, i) => {

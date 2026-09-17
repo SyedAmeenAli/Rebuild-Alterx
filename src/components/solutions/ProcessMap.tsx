@@ -1,4 +1,6 @@
+import { MediaFrame } from "@/components/frames/MediaFrame";
 import { Reveal } from "@/components/shared/Reveal";
+import { image } from "@/lib/media";
 
 const STEPS = [
   { n: "01", label: "Understand", copy: "Gets the intent and context." },
@@ -21,43 +23,41 @@ export function ProcessMap() {
           </h2>
         </Reveal>
 
-        <div className="relative mx-auto mt-20 max-w-[640px] lg:mt-24">
-          <div className="absolute left-[15px] top-2 bottom-2 w-px bg-ax-mint/12 sm:left-1/2" />
-
-          <div className="flex flex-col gap-12">
-            {STEPS.map((step, i) => {
-              const alignRight = i % 2 === 1;
-              return (
+        <div className="mt-20 grid grid-cols-1 gap-14 lg:mt-24 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
+          <div className="relative">
+            <div className="absolute left-[15px] top-2 bottom-2 w-px bg-ax-mint/12" />
+            <div className="flex flex-col gap-10">
+              {STEPS.map((step, i) => (
                 <Reveal key={step.n} delay={i * 70}>
-                  <div
-                    className={`relative flex items-start gap-6 sm:w-1/2 ${
-                      alignRight ? "sm:ml-auto sm:flex-row sm:pl-10 sm:text-left" : "sm:pr-10 sm:text-right sm:flex-row-reverse"
-                    }`}
-                  >
-                    <span
-                      className={`absolute left-0 top-1 z-10 h-[15px] w-[15px] flex-shrink-0 rounded-full border-2 border-ax-mint bg-ax-bg-soft ${
-                        alignRight ? "sm:-left-[8px]" : "sm:left-auto sm:-right-[8px]"
-                      }`}
-                    />
+                  <div className="relative flex items-start gap-6 pl-10">
+                    <span className="absolute left-0 top-1 z-10 h-[15px] w-[15px] flex-shrink-0 rounded-full border-2 border-ax-mint bg-ax-bg-soft" />
                     <div>
                       <span className="text-[13px] font-medium tracking-[0.06em] text-ax-mint">{step.n}</span>
-                      <div className="font-display mt-2 text-[22px] font-medium text-ax-white sm:text-[26px]">
+                      <div className="font-display mt-2 text-[20px] font-medium text-ax-white sm:text-[24px]">
                         {step.label}
                       </div>
-                      <div className="mt-2 text-[15px] leading-[1.5] text-ax-muted">{step.copy}</div>
+                      <div className="mt-2 text-[14px] leading-[1.5] text-ax-muted">{step.copy}</div>
                     </div>
                   </div>
                 </Reveal>
-              );
-            })}
+              ))}
+            </div>
+
+            <Reveal delay={STEPS.length * 70}>
+              <div className="mt-10 flex items-center gap-3 pl-10 text-[13px] text-ax-muted">
+                <span className="h-px w-10 bg-ax-mint/40" />
+                <span>Loops back to Understand</span>
+              </div>
+            </Reveal>
           </div>
 
-          <Reveal delay={STEPS.length * 70}>
-            <div className="mt-14 flex items-center justify-center gap-3 text-[13px] text-ax-muted">
-              <span className="h-px w-10 bg-ax-mint/40" />
-              <span>Loops back to Understand when the work continues</span>
-              <span className="h-px w-10 bg-ax-mint/40" />
-            </div>
+          <Reveal delay={120}>
+            <MediaFrame
+              media={image("/hero/11_how_it_works.jpg", "", "center 60%")}
+              aspect="aspect-[3/4] lg:aspect-auto lg:h-full"
+              className="min-h-[360px]"
+              drift
+            />
           </Reveal>
         </div>
       </div>

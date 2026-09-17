@@ -1,4 +1,6 @@
+import { MediaFrame } from "@/components/frames/MediaFrame";
 import { Reveal } from "@/components/shared/Reveal";
+import { image } from "@/lib/media";
 
 const PRINCIPLES = [
   { n: "01", label: "Nothing fails silently", copy: "Every run ends with an explicit result." },
@@ -20,7 +22,16 @@ export function WhyItHoldsTogether() {
           </h2>
         </Reveal>
 
-        <div className="mt-16 grid grid-cols-1 border-t border-ax-mint/10 sm:grid-cols-2 lg:mt-20 lg:grid-cols-4">
+        <Reveal delay={80}>
+          <MediaFrame
+            media={image("/hero/09_solutions_features.jpg", "", "center 65%")}
+            aspect="aspect-[16/5]"
+            className="mt-14 lg:mt-16"
+            drift
+          />
+        </Reveal>
+
+        <div className="mt-14 grid grid-cols-1 border-t border-ax-mint/10 sm:grid-cols-2 lg:mt-16 lg:grid-cols-4">
           {PRINCIPLES.map((p, i) => (
             <Reveal key={p.n} delay={i * 70}>
               <div

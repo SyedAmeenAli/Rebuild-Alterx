@@ -1,7 +1,9 @@
 "use client";
 
 import { useState } from "react";
+import { MediaFrame } from "@/components/frames/MediaFrame";
 import { Reveal } from "@/components/shared/Reveal";
+import { image } from "@/lib/media";
 
 const ITEMS = [
   { label: "Sales & Support", copy: "Keep handoffs moving from request to resolution." },
@@ -61,21 +63,28 @@ export function WhereItFits() {
               ))}
             </div>
 
-            <div className="relative flex min-h-[220px] flex-col justify-center border-l border-ax-mint/10 pl-8 lg:min-h-0">
-              <span className="text-[13px] font-medium tracking-[0.04em] text-ax-mint">
-                {String(active + 1).padStart(2, "0")}
-              </span>
-              <p className="font-display mt-3 max-w-[380px] text-[24px] leading-[1.3] text-ax-white sm:text-[28px]">
-                {ITEMS[active].label}
-              </p>
-              <p className="mt-4 max-w-[380px] text-[15px] leading-[1.6] text-ax-muted">
-                {ITEMS[active].copy}
-              </p>
+            <MediaFrame
+              media={image("/hero/02_solutions_hero.jpg", "", `${20 + active * 12}% 40%`)}
+              aspect="aspect-[4/3] lg:aspect-auto lg:h-full"
+              className="min-h-[260px]"
+              drift
+            >
               <div
-                className="mt-8 h-px w-24 bg-ax-mint transition-all duration-300"
-                style={{ width: `${40 + active * 14}px` }}
+                className="absolute inset-0"
+                style={{ background: "linear-gradient(0deg, rgba(2,5,4,0.85) 0%, rgba(2,5,4,0.1) 55%)" }}
               />
-            </div>
+              <div className="absolute inset-x-6 bottom-6 sm:inset-x-8 sm:bottom-8">
+                <span className="text-[13px] font-medium tracking-[0.04em] text-ax-mint">
+                  {String(active + 1).padStart(2, "0")}
+                </span>
+                <p className="font-display mt-2 text-[22px] leading-[1.25] text-ax-white sm:text-[26px]">
+                  {ITEMS[active].label}
+                </p>
+                <p className="mt-2 max-w-[340px] text-[14px] leading-[1.5] text-ax-text/85">
+                  {ITEMS[active].copy}
+                </p>
+              </div>
+            </MediaFrame>
           </div>
         </Reveal>
       </div>
