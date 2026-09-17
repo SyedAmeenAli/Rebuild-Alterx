@@ -1,8 +1,6 @@
 "use client";
 
-import React, { useRef, useState } from 'react';
-import { useGSAP } from '@gsap/react';
-import { gsap } from 'gsap';
+import React, { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { alterEngineDestination } from '@/content/navigation';
@@ -18,27 +16,10 @@ const PROCESS_STEPS = [
 ];
 
 export function Hero() {
-  const containerRef = useRef<HTMLDivElement>(null);
   const [prompt, setPrompt] = useState("");
-
-  useGSAP(() => {
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (prefersReducedMotion) return;
-
-    gsap.set('.hero-reveal', { autoAlpha: 0, y: 16 });
-    gsap.to('.hero-reveal', {
-      autoAlpha: 1,
-      y: 0,
-      duration: 0.9,
-      ease: 'power3.out',
-      stagger: 0.08,
-      delay: 0.15,
-    });
-  }, { scope: containerRef });
 
   return (
     <section
-      ref={containerRef}
       className="hero relative min-h-[100svh] flex flex-col overflow-clip bg-ax-black text-ax-white"
     >
       <div className="absolute inset-0 z-0">
@@ -79,14 +60,14 @@ export function Hero() {
 
             <div className="hero-reveal mt-9">
               <label htmlFor="hero-prompt" className="sr-only">What do you want to get done?</label>
-              <div className="flex items-center gap-3 rounded-[6px] border border-ax-mint/25 bg-ax-black/45 backdrop-blur-md px-5 py-4 focus-within:border-ax-mint/60 transition-colors">
+              <div className="flex items-center gap-2 sm:gap-3 rounded-[6px] border border-ax-mint/25 bg-ax-black/45 backdrop-blur-md px-4 sm:px-5 py-4 focus-within:border-ax-mint/60 transition-colors">
                 <input
                   id="hero-prompt"
                   type="text"
                   value={prompt}
                   onChange={(e) => setPrompt(e.target.value)}
                   placeholder="What do you want to get done?"
-                  className="flex-1 bg-transparent outline-none text-[16px] text-ax-white placeholder:text-ax-muted"
+                  className="min-w-0 flex-1 bg-transparent outline-none text-[15px] sm:text-[16px] text-ax-white placeholder:text-ax-muted"
                 />
                 <Link
                   href={alterEngineDestination}
