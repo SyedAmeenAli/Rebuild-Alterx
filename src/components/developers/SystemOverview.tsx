@@ -22,8 +22,8 @@ export function SystemOverview() {
           </Reveal>
 
           <Reveal delay={100}>
-            <div className="relative pl-1">
-              <div className="absolute left-[3px] top-1 bottom-1 w-px bg-ax-mint/15" />
+            <div className="relative rounded-[6px] border border-ax-mint/10 bg-ax-black/30 py-9 pl-8 pr-7 sm:py-11 sm:pl-10 sm:pr-9">
+              <div className="absolute left-8 top-9 bottom-9 w-px bg-ax-mint/15 sm:left-10 sm:top-11 sm:bottom-11" />
               <div className="flex flex-col gap-7">
                 {PATH.map((step, i) => {
                   const isDone = i === PATH.length - 1;

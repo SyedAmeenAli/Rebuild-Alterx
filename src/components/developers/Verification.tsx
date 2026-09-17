@@ -22,7 +22,7 @@ export function Verification() {
           </Reveal>
 
           <Reveal delay={100}>
-            <div className="flex flex-col items-start gap-4">
+            <div className="flex flex-col items-start gap-4 rounded-[6px] border border-ax-mint/10 bg-ax-bg-soft/40 px-7 py-9 sm:px-9 sm:py-11">
               <span className="rounded-full border border-ax-mint/20 px-4 py-1.5 text-[13px] font-medium text-ax-text/80">
                 Output
               </span>

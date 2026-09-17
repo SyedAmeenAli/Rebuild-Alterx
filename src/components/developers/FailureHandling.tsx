@@ -21,7 +21,7 @@ export function FailureHandling() {
         </Reveal>
 
         <Reveal delay={120}>
-          <div className="mt-16 flex flex-col items-center gap-8 lg:mt-20">
+          <div className="mt-16 flex flex-col items-center gap-8 rounded-[6px] border border-ax-mint/10 bg-ax-black/40 px-6 py-14 lg:mt-20 lg:px-10 lg:py-16">
             <div className="flex items-center gap-3">
               <span className="rounded-full border border-ax-mint/20 px-5 py-2 text-[14px] font-medium text-ax-text/80">
                 Failure
