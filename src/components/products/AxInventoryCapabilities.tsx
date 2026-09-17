@@ -1,7 +1,9 @@
 "use client";
 
 import { useState } from "react";
+import { MediaFrame } from "@/components/frames/MediaFrame";
 import { Reveal } from "@/components/shared/Reveal";
+import { image } from "@/lib/media";
 
 const AREAS = [
   { label: "Catalogue", copy: "Manage what the business sells." },
@@ -28,21 +30,17 @@ export function AxInventoryCapabilities() {
         </Reveal>
 
         <Reveal delay={100}>
-          <div
-            role="tablist"
-            aria-label="AxInventory areas"
-            className="mt-14 flex flex-col border-t border-ax-mint/10 lg:mt-16"
-          >
-            {AREAS.map((area, i) => (
-              <button
-                key={area.label}
-                role="tab"
-                aria-selected={active === i}
-                onMouseEnter={() => setActive(i)}
-                onFocus={() => setActive(i)}
-                className="group flex items-center justify-between gap-6 border-b border-ax-mint/10 py-6 text-left transition-colors"
-              >
-                <div className="flex items-baseline gap-5">
+          <div className="mt-14 grid grid-cols-1 gap-10 lg:mt-16 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
+            <div role="tablist" aria-label="AxInventory areas" className="flex flex-col border-t border-ax-mint/10">
+              {AREAS.map((area, i) => (
+                <button
+                  key={area.label}
+                  role="tab"
+                  aria-selected={active === i}
+                  onMouseEnter={() => setActive(i)}
+                  onFocus={() => setActive(i)}
+                  className="group flex items-baseline gap-5 border-b border-ax-mint/10 py-5 text-left transition-colors"
+                >
                   <span
                     className={`text-[13px] font-medium tracking-[0.04em] transition-colors ${
                       active === i ? "text-ax-mint" : "text-ax-muted"
@@ -51,26 +49,39 @@ export function AxInventoryCapabilities() {
                     {String(i + 1).padStart(2, "0")}
                   </span>
                   <span
-                    className={`font-display text-[22px] font-medium transition-colors sm:text-[28px] ${
+                    className={`font-display text-[20px] font-medium transition-colors sm:text-[24px] ${
                       active === i ? "text-ax-white" : "text-ax-muted group-hover:text-ax-white/80"
                     }`}
                   >
                     {area.label}
                   </span>
-                </div>
-                <span
-                  className={`hidden max-w-[320px] text-right text-[14px] leading-[1.5] transition-opacity duration-200 sm:block ${
-                    active === i ? "text-ax-muted opacity-100" : "opacity-0"
-                  }`}
-                >
-                  {area.copy}
+                </button>
+              ))}
+            </div>
+
+            <MediaFrame
+              media={image("/hero/10_products_showcase.jpg", "", `${active * 18}% ${20 + active * 8}%`)}
+              aspect="aspect-[4/3] lg:aspect-auto lg:h-full"
+              className="min-h-[280px]"
+              drift
+            >
+              <div
+                className="absolute inset-0"
+                style={{ background: "linear-gradient(0deg, rgba(2,5,4,0.85) 0%, rgba(2,5,4,0.1) 55%)" }}
+              />
+              <div className="absolute inset-x-6 bottom-6 sm:inset-x-8 sm:bottom-8">
+                <span className="text-[13px] font-medium tracking-[0.04em] text-ax-mint">
+                  {String(active + 1).padStart(2, "0")}
                 </span>
-              </button>
-            ))}
+                <p className="font-display mt-2 text-[22px] leading-[1.25] text-ax-white sm:text-[26px]">
+                  {AREAS[active].label}
+                </p>
+                <p className="mt-2 max-w-[340px] text-[14px] leading-[1.5] text-ax-text/85">
+                  {AREAS[active].copy}
+                </p>
+              </div>
+            </MediaFrame>
           </div>
-          <p className="mt-4 text-[14px] leading-[1.5] text-ax-muted sm:hidden">
-            {AREAS[active].copy}
-          </p>
         </Reveal>
       </div>
     </section>

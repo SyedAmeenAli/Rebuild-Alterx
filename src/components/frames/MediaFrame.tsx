@@ -30,7 +30,7 @@ export function MediaFrame({
 }: MediaFrameProps) {
   return (
     <div
-      className={`relative overflow-hidden ${aspect ?? "h-full"} ${
+      className={`relative w-full overflow-hidden ${aspect ?? "h-full"} ${
         border ? "border border-ax-mint/10" : ""
       } ${rounded ? "rounded-[6px]" : ""} ${className}`}
     >
