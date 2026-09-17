@@ -39,3 +39,8 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# test artifacts (regenerated locally)
+/playwright-report/
+/test-results/
+/next.config.ts.bak
