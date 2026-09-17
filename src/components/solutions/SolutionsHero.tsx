@@ -12,7 +12,7 @@ export function SolutionsHero() {
           fill
           priority
           sizes="100vw"
-          className="object-cover"
+          className="object-cover hero-image-drift"
         />
         <div
           className="absolute inset-0"

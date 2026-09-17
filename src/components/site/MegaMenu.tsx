@@ -58,7 +58,7 @@ export function MegaMenu({ activeMenu, onClose, onMouseEnter, onMouseLeave }: Me
       />
 
       <div
-        className={`mega-menu-portal-panel fixed left-1/2 -translate-x-1/2 z-[var(--z-mega-menu)] w-[min(1160px,calc(100vw-56px))] max-h-[calc(100svh-var(--header-height,72px)-36px)] overflow-y-auto bg-ax-surface/98 backdrop-blur-xl border border-ax-mint/10 rounded-lg shadow-2xl transition-all ease-[cubic-bezier(0.25,1,0.5,1)] ${isOpen ? 'opacity-100 translate-y-0 duration-[180ms]' : 'opacity-0 -translate-y-1 duration-[120ms]'}`}
+        className={`mega-menu-portal-panel fixed left-1/2 -translate-x-1/2 z-[var(--z-mega-menu)] w-[min(1160px,calc(100vw-56px))] max-h-[calc(100svh-var(--header-height,72px)-36px)] overflow-y-auto bg-ax-surface/98 backdrop-blur-xl border border-ax-mint/10 rounded-lg shadow-2xl transition-all ease-[cubic-bezier(0.25,1,0.5,1)] ${isOpen ? 'opacity-100 translate-y-0 duration-[180ms]' : 'opacity-0 -translate-y-2 duration-[120ms]'}`}
         style={{ top: 'calc(var(--header-height, 72px) + 10px)' }}
         onMouseEnter={onMouseEnter}
         onMouseLeave={onMouseLeave}
