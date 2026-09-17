@@ -1,224 +1,131 @@
 "use client";
 
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
+import { useGSAP } from '@gsap/react';
 import { gsap } from 'gsap';
-import { HeroMotionFilm } from './HeroMotionFilm';
-import { alterEngineDestination } from '@/content/navigation';
+import Image from 'next/image';
 import Link from 'next/link';
+import { alterEngineDestination } from '@/content/navigation';
 
-const phrases = [
-  "a clear plan.",
-  "work in motion.",
-  "the right approval.",
-  "a checked result."
+const EXAMPLE_PROMPTS = ["Automate invoices", "Onboard a new vendor", "Analyze sales data"];
+
+const PROCESS_STEPS = [
+  { n: "01", label: "Understand", copy: "You tell it the goal." },
+  { n: "02", label: "Plan", copy: "It figures out the best way." },
+  { n: "03", label: "Execute", copy: "It does the work." },
+  { n: "04", label: "Verify", copy: "It checks the results." },
+  { n: "05", label: "Keep running", copy: "So you don't have to." },
 ];
 
 export function Hero() {
   const containerRef = useRef<HTMLDivElement>(null);
-  const stackRef = useRef<HTMLDivElement>(null);
-  
-  const [currentIdx, setCurrentIdx] = useState(0);
-  const [isPaused, setIsPaused] = useState(false);
-  const [pointer, setPointer] = useState<{ x: number, y: number, active: boolean }>({ x: 0, y: 0, active: false });
-  const [isTouch, setIsTouch] = useState(false);
+  const [prompt, setPrompt] = useState("");
 
-  // Pause rotation
-  useEffect(() => {
-    const handleDropdown = (e: Event) => {
-      const customEvent = e as CustomEvent;
-      setIsPaused(customEvent.detail.isOpen);
-    };
-    const handleVisibility = () => {
-      setIsPaused(document.hidden);
-    };
-    window.addEventListener('navDropdownState', handleDropdown);
-    document.addEventListener('visibilitychange', handleVisibility);
-    
-    const observer = new IntersectionObserver(([entry]) => {
-      setIsPaused(!entry.isIntersecting);
-    });
-    if (containerRef.current) observer.observe(containerRef.current);
-
-    return () => {
-      window.removeEventListener('navDropdownState', handleDropdown);
-      document.removeEventListener('visibilitychange', handleVisibility);
-      observer.disconnect();
-    };
-  }, []);
-
-  // Phrase rotation
-  useEffect(() => {
+  useGSAP(() => {
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (prefersReducedMotion || isPaused) return;
+    if (prefersReducedMotion) return;
 
-    let timeoutId: NodeJS.Timeout;
-
-    const runCycle = () => {
-      timeoutId = setTimeout(() => {
-        // Exit
-        gsap.to('.hero-phrase-active', { y: -8, autoAlpha: 0, duration: 0.15, ease: "power2.in" });
-        
-        setTimeout(() => {
-          setCurrentIdx(prev => (prev + 1) % phrases.length);
-          gsap.set('.hero-phrase-active', { y: 8, autoAlpha: 0 });
-          // Enter
-          gsap.to('.hero-phrase-active', { y: 0, autoAlpha: 1, duration: 0.28, ease: "power2.out" });
-          
-          runCycle();
-        }, 150 + 50); // Exit + Gap
-      }, 5200); // Hold
-    };
-    
-    runCycle();
-    return () => clearTimeout(timeoutId);
-  }, [isPaused]);
-
-  // Pointer interaction
-  useEffect(() => {
-    const matchMedia = window.matchMedia('(hover: none) and (pointer: coarse)');
-    // eslint-disable-next-line
-    setIsTouch(matchMedia.matches);
-  }, []);
-
-  const handlePointerMove = (e: React.PointerEvent) => {
-    if (isTouch) return;
-    if (!stackRef.current) return;
-    const rect = stackRef.current.getBoundingClientRect();
-    setPointer({
-      x: e.clientX - rect.left,
-      y: e.clientY - rect.top,
-      active: true
+    gsap.set('.hero-reveal', { autoAlpha: 0, y: 16 });
+    gsap.to('.hero-reveal', {
+      autoAlpha: 1,
+      y: 0,
+      duration: 0.9,
+      ease: 'power3.out',
+      stagger: 0.08,
+      delay: 0.15,
     });
-  };
-
-  const handlePointerLeave = () => {
-    setPointer(prev => ({ ...prev, active: false }));
-  };
+  }, { scope: containerRef });
 
   return (
-    <section 
+    <section
       ref={containerRef}
-      className="hero relative min-h-[100svh] flex flex-col justify-center px-7 lg:px-10 overflow-clip z-[var(--z-page-content)] bg-ax-black text-ax-white"
-      style={{ isolation: 'isolate' }}
+      className="hero relative min-h-[100svh] flex flex-col overflow-clip bg-ax-black text-ax-white"
     >
       <div className="absolute inset-0 z-0">
-        <HeroMotionFilm />
+        <Image
+          src="/hero/home-hero.jpg"
+          alt=""
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover"
+        />
       </div>
 
-      <div className="absolute inset-0 z-[1] bg-black/40 pointer-events-none" />
-      
-      {/* Refinement 09: Restrained deep-orange glow near lower edges */}
-      <div 
-        className="absolute inset-x-0 bottom-0 h-64 z-[1] pointer-events-none"
-        style={{ background: 'var(--ax-gradient-dark)', transform: 'translateY(30%) scaleY(0.8)' }}
+      {/* Legibility scrim: darken toward the bottom so HTML content reads over either side of the image */}
+      <div
+        className="absolute inset-0 z-[1] pointer-events-none"
+        style={{
+          background:
+            'linear-gradient(180deg, rgba(2,5,4,0.35) 0%, rgba(2,5,4,0.15) 30%, rgba(2,5,4,0.55) 70%, rgba(2,5,4,0.86) 100%)',
+        }}
+      />
+      <div
+        className="absolute inset-x-0 bottom-0 h-72 z-[1] pointer-events-none"
+        style={{ background: 'var(--ax-gradient-glow)' }}
       />
 
-      <div className="heroCopy relative z-[2] w-full max-w-[1180px] mx-auto flex flex-col items-start justify-center pt-[140px] pb-[80px]">
-        
-        <div className="heroEyebrow text-[11px] font-semibold tracking-[0.08em] uppercase text-ax-orange mb-8 select-none">
-          ALTER ENGINE
-        </div>
-        
-        <div 
-          ref={stackRef}
-          onPointerMove={handlePointerMove}
-          onPointerLeave={handlePointerLeave}
-          className="heroHeadlineStack relative grid w-full max-w-[1080px] select-none"
-          style={{
-            ['--mouse-x' as string]: `${pointer.x}px`,
-            ['--mouse-y' as string]: `${pointer.y}px`
-          }}
-        >
-          {/* Base Layer */}
-          <h1 className="heroHeadlineBase col-start-1 row-start-1 w-full m-0 z-[1] text-ax-warm-white">
-            <HeroText currentIdx={currentIdx} isBase={true} />
-          </h1>
+      <div className="relative z-[2] w-full flex-1 flex flex-col justify-end container-ax pb-16 pt-[140px] lg:pb-20">
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_auto] gap-12 lg:gap-16 items-end">
+          {/* Left: headline, copy, prompt */}
+          <div className="max-w-[640px]">
+            <h1 className="hero-reveal font-display text-balance text-[38px] leading-[1.05] tracking-[-0.02em] sm:text-[46px] md:text-[56px] lg:text-[62px] font-medium text-ax-white">
+              Close the gap between what you want and what gets done.
+            </h1>
 
-          {/* Reveal Orange Layer */}
-          {!isTouch && (
-            <div 
-              aria-hidden="true"
-              className="heroHeadlineOrange col-start-1 row-start-1 w-full m-0 z-[2] text-ax-orange-core pointer-events-none pb-[300px] mb-[-300px]"
-              style={{
-                opacity: pointer.active ? 1 : 0,
-                maskImage: 'radial-gradient(100px circle at var(--mouse-x) var(--mouse-y), black 99%, transparent 100%)',
-                WebkitMaskImage: 'radial-gradient(100px circle at var(--mouse-x) var(--mouse-y), black 99%, transparent 100%)',
-                maskRepeat: 'no-repeat',
-                WebkitMaskRepeat: 'no-repeat',
-                transition: 'opacity 160ms ease-in-out'
-              }}
-            >
-              <HeroText currentIdx={currentIdx} isBase={false} />
+            <p className="hero-reveal mt-6 max-w-[480px] text-[17px] leading-[1.55] text-ax-text/85">
+              Tell ALTERX what you need. It works out the steps, runs them, and checks the result.
+            </p>
+
+            <div className="hero-reveal mt-9">
+              <label htmlFor="hero-prompt" className="sr-only">What do you want to get done?</label>
+              <div className="flex items-center gap-3 rounded-[6px] border border-ax-mint/25 bg-ax-black/45 backdrop-blur-md px-5 py-4 focus-within:border-ax-mint/60 transition-colors">
+                <input
+                  id="hero-prompt"
+                  type="text"
+                  value={prompt}
+                  onChange={(e) => setPrompt(e.target.value)}
+                  placeholder="What do you want to get done?"
+                  className="flex-1 bg-transparent outline-none text-[16px] text-ax-white placeholder:text-ax-muted"
+                />
+                <Link
+                  href={alterEngineDestination}
+                  aria-label="Get started"
+                  className="inline-flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-[4px] bg-ax-mint text-ax-black transition-all hover:bg-ax-emerald"
+                >
+                  <span aria-hidden="true">→</span>
+                </Link>
+              </div>
+
+              <div className="mt-4 flex flex-wrap gap-2">
+                {EXAMPLE_PROMPTS.map((example) => (
+                  <button
+                    key={example}
+                    type="button"
+                    onClick={() => setPrompt(example)}
+                    className="rounded-full border border-ax-mint/20 px-4 py-1.5 text-[13px] text-ax-text/80 transition-colors hover:border-ax-mint/50 hover:text-ax-mint"
+                  >
+                    {example}
+                  </button>
+                ))}
+              </div>
             </div>
-          )}
-        </div>
+          </div>
 
-        <style dangerouslySetInnerHTML={{__html: `
-          .heroHeadlineBase, .heroHeadlineOrange {
-            font-size: clamp(46px, 13vw, 64px);
-            line-height: 0.94;
-            letter-spacing: -0.045em;
-            font-weight: 560;
-          }
-          @media (min-width: 900px) {
-            .heroHeadlineBase, .heroHeadlineOrange {
-              font-size: clamp(58px, 7.4vw, 80px);
-              line-height: 0.91;
-              letter-spacing: -0.052em;
-              max-width: 900px;
-            }
-          }
-          @media (min-width: 1180px) {
-            .heroHeadlineBase, .heroHeadlineOrange {
-              font-size: clamp(58px, 7vw, 92px);
-              max-width: 1080px;
-            }
-          }
-          .phraseShell {
-             position: relative;
-             display: inline-block;
-             vertical-align: top;
-             width: 0;
-          }
-          .phraseVisible {
-             position: absolute;
-             inset: 0;
-          }
-        `}} />
-
-        <p className="heroSupport mt-6 md:mt-[34px] text-[17px] md:text-[18px] leading-[1.5] text-white/80 max-w-[680px] font-normal z-30">
-          Alter Engine structures complex work, carries out approved steps and keeps important decisions open to review.
-        </p>
-
-        <div className="heroActions mt-6 md:mt-[32px] flex flex-col sm:flex-row items-center gap-6 z-30">
-          <Link 
-            href={alterEngineDestination} 
-            style={{ background: 'var(--ax-orange-gradient)' }}
-            className="inline-flex h-12 items-center justify-center rounded-[4px] px-8 text-[var(--body-small)] font-medium text-ax-ink hover:brightness-110 transition-all focus-visible:outline-ax-white focus-visible:outline-2 focus-visible:outline-offset-4 shadow-none"
-          >
-            Try Alter Engine
-          </Link>
-          <Link href="#how-it-works" className="inline-flex h-12 items-center justify-center px-6 text-[var(--body-small)] font-medium text-white hover:text-ax-orange transition-colors">
-            See how it works
-          </Link>
+          {/* Right: quiet process labels, integrated into the environment */}
+          <div className="hero-reveal hidden lg:flex flex-col gap-5 pb-1 pl-8 border-l border-ax-mint/15">
+            {PROCESS_STEPS.map((step) => (
+              <div key={step.n} className="flex items-baseline gap-3">
+                <span className="text-[11px] font-medium tracking-[0.08em] text-ax-mint/70">{step.n}</span>
+                <div>
+                  <div className="text-[14px] font-medium text-ax-white leading-tight">{step.label}</div>
+                  <div className="text-[12px] text-ax-muted leading-tight">{step.copy}</div>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>
-  );
-}
-
-function HeroText({ currentIdx, isBase }: { currentIdx: number, isBase: boolean }) {
-  return (
-    <>
-      <div className="block">Start with the outcome.</div>
-      <div className="block flex flex-wrap gap-x-[0.22em]">
-        <span>Watch it become</span>
-        <span className="phraseShell">
-          <span className={`phraseVisible ${isBase ? 'hero-phrase-active' : 'hero-phrase-active'}`}>
-            {phrases[currentIdx]}
-          </span>
-        </span>
-      </div>
-    </>
   );
 }

@@ -4,12 +4,11 @@ import React, { useState, useRef, useEffect } from 'react';
 import { MegaMenu, MegaMenuId } from './MegaMenu';
 
 const triggers: { id: MegaMenuId, label: string }[] = [
-  { id: 'engine', label: 'Alter Engine' },
-  { id: 'solutions', label: 'Solutions' },
   { id: 'products', label: 'Products' },
+  { id: 'solutions', label: 'Solutions' },
   { id: 'developers', label: 'Developers' },
-  { id: 'company', label: 'Company' },
   { id: 'resources', label: 'Resources' },
+  { id: 'about', label: 'About' },
 ];
 
 export function DesktopNavigation() {
@@ -94,10 +93,10 @@ export function DesktopNavigation() {
       >
         {triggers.map((menu, i) => {
           const isActive = activeMenu === menu.id;
-          const textColor = isActive 
-            ? 'text-ax-black' 
+          const textColor = isActive
+            ? 'text-ax-black'
             : 'text-white/80 hover:text-white';
-          
+
           return (
             <button
               key={menu.id}
@@ -107,8 +106,8 @@ export function DesktopNavigation() {
               onKeyDown={(e) => handleKeyDown(e, menu.id, i)}
               aria-expanded={isActive}
               aria-haspopup="true"
-              className={`px-4 py-2 text-[15px] font-medium leading-[1] rounded-[2px] transition-all duration-[150ms] ease-[cubic-bezier(0.25,1,0.5,1)] focus-visible:outline-ax-orange focus-visible:outline-2 focus-visible:outline-offset-2 ${
-                isActive ? 'bg-ax-orange text-ax-black' : `bg-transparent ${textColor}`
+              className={`px-4 py-2 text-[15px] font-medium leading-[1] rounded-[3px] transition-all duration-[150ms] ease-[cubic-bezier(0.25,1,0.5,1)] focus-visible:outline-ax-mint focus-visible:outline-2 focus-visible:outline-offset-2 ${
+                isActive ? 'bg-ax-mint text-ax-black' : `bg-transparent ${textColor}`
               }`}
             >
               {menu.label}

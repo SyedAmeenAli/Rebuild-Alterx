@@ -6,85 +6,75 @@ export interface NavLink {
 }
 
 export const alterEngineDestination = process.env.NEXT_PUBLIC_ALTER_ENGINE_URL ?? "/try-alter-engine";
+export const talkToUsDestination = "/contact";
 
 export interface NavMenu {
   id: string;
   trigger: string;
-  primaryAction?: NavLink;
+  href?: string;
   links: NavLink[];
   secondaryLinks?: NavLink[];
-  visualType: 'engine' | 'solutions' | 'products' | 'developers' | 'company' | 'resources';
+  visualType: "products" | "solutions" | "developers" | "resources" | "about";
 }
 
 export const navigationData: NavMenu[] = [
   {
-    id: 'engine',
-    trigger: 'Alter Engine',
-    visualType: 'engine',
+    id: "products",
+    trigger: "Products",
+    href: "/products",
+    visualType: "products",
     links: [
-      { label: 'Overview', href: '#engine-overview' },
-      { label: 'How it works', href: '#engine-how-it-works' },
-      { label: 'Control and governance', href: '#engine-governance' },
-    ]
-  },
-  {
-    id: 'solutions',
-    trigger: 'Solutions',
-    visualType: 'solutions',
-    links: [
-      { label: 'Cognitive AI', href: '#cognitive-ai' },
-      { label: 'Custom workflows', href: '#custom-workflows' },
-      { label: 'Voice workflows', href: '#voice-workflows', disabled: true }, // Controlled by availability gate
-      { label: 'Operational coordination', href: '#operational' },
-      { label: 'Research and reporting', href: '#research' },
-    ]
-  },
-  {
-    id: 'products',
-    trigger: 'Products',
-    visualType: 'products',
-    primaryAction: { label: 'Alter Engine', href: '#engine' },
-    links: [
-      { label: 'Cognitive AI', href: '#cognitive-ai' }
+      { label: "Alter Engine", href: "/products#alter-engine", description: "The execution system underneath ALTERX." },
+      { label: "AxInventory", href: "/products#axinventory", description: "Inventory, POS, purchasing, GST and accounting." },
     ],
-    secondaryLinks: [
-      { label: 'Platform experience', href: '#platform', description: 'The workspace used to supervise Alter Engine.' }
-    ]
   },
   {
-    id: 'developers',
-    trigger: 'Developers',
-    visualType: 'developers',
+    id: "solutions",
+    trigger: "Solutions",
+    href: "/solutions",
+    visualType: "solutions",
     links: [
-      { label: 'Developer overview', href: '#developer-overview' },
-      { label: 'Architecture', href: '#architecture' },
-      { label: 'Request developer access', href: '/request-access?type=developer' },
-      { label: 'Documentation', href: '#docs', disabled: true },
-      { label: 'API access', href: '#api', disabled: true }
-    ]
+      { label: "Understand", href: "/solutions#understand" },
+      { label: "Plan", href: "/solutions#plan" },
+      { label: "Execute", href: "/solutions#execute" },
+      { label: "Verify", href: "/solutions#verify" },
+    ],
   },
   {
-    id: 'company',
-    trigger: 'Company',
-    visualType: 'company',
+    id: "developers",
+    trigger: "Developers",
+    href: "/developers",
+    visualType: "developers",
     links: [
-      { label: 'About AlterX', href: '#about' },
-      { label: 'Mission', href: '#mission' },
-      { label: 'Updates', href: '#updates', disabled: true },
-      { label: 'Contact', href: '#contact' }
-    ]
+      { label: "Developer overview", href: "/developers#overview" },
+      { label: "Documentation", href: "/developers#documentation" },
+      { label: "APIs / SDKs", href: "/developers#apis", disabled: true },
+      { label: "Playground", href: "/developers#playground", disabled: true },
+    ],
   },
   {
-    id: 'resources',
-    trigger: 'Resources',
-    visualType: 'resources',
+    id: "resources",
+    trigger: "Resources",
+    href: "/resources",
+    visualType: "resources",
     links: [
-      { label: 'Security and governance', href: '#security' },
-      { label: 'How Alter Engine works', href: '#engine-how-it-works' },
-      { label: 'Guides', href: '#guides', disabled: true },
-      { label: 'Updates', href: '#updates', disabled: true },
-      { label: 'Contact', href: '#contact' },
-      { label: 'Privacy and terms', href: '#privacy' }
-    ]
-  }
+      { label: "Resource hub", href: "/resources" },
+      { label: "Case studies", href: "/resources#case-studies", disabled: true },
+      { label: "Guides", href: "/resources#guides", disabled: true },
+      { label: "Research and updates", href: "/resources#research", disabled: true },
+    ],
+  },
+  {
+    id: "about",
+    trigger: "About",
+    href: "/about",
+    visualType: "about",
+    links: [
+      { label: "Our story", href: "/about#story" },
+      { label: "Mission", href: "/about#mission" },
+      { label: "Company", href: "/about#company" },
+      { label: "Careers", href: "/careers" },
+      { label: "Contact", href: "/contact" },
+    ],
+  },
 ];

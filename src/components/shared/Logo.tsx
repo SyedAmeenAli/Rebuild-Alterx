@@ -1,17 +1,28 @@
-import React from 'react';
+import Image from "next/image";
 
 export function Logo({ className }: { className?: string }) {
   return (
-    <svg 
-      className={className} 
-      viewBox="0 0 120 32" 
-      fill="none" 
-      xmlns="http://www.w3.org/2000/svg"
-      aria-label="AlterX Logo"
-    >
-      <text x="0" y="24" fontFamily="var(--font-hanken)" fontSize="24" fontWeight="600" fill="currentColor" letterSpacing="-0.02em">
-        AlterX
-      </text>
-    </svg>
+    <Image
+      src="/brand/wordmark-light.png"
+      alt="ALTERX"
+      width={480}
+      height={128}
+      priority
+      className={className}
+      style={{ width: "auto", height: "100%", objectFit: "contain" }}
+    />
+  );
+}
+
+export function LogoMark({ className }: { className?: string }) {
+  return (
+    <Image
+      src="/brand/mark-light.png"
+      alt="ALTERX"
+      width={128}
+      height={128}
+      className={className}
+      style={{ width: "auto", height: "100%", objectFit: "contain" }}
+    />
   );
 }
