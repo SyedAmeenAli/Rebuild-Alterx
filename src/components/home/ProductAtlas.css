@@ -1,0 +1,338 @@
+@property --left-track {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 50%;
+}
+
+@property --right-track {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 50%;
+}
+
+@property --top-track {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 50%;
+}
+
+@property --bottom-track {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 50%;
+}
+
+.productsSection {
+  position: relative;
+  width: 100%;
+  background: var(--ax-warm-white);
+}
+
+.productsInner {
+  width: min(100%, 1560px);
+  margin: 0 auto;
+  padding:
+    clamp(72px, 8vw, 112px)
+    clamp(28px, 4vw, 40px)
+    clamp(80px, 9vw, 128px);
+  display: flex;
+  flex-direction: column;
+}
+
+/* ---------------------------------------------------- */
+/* ROW 1: INTRODUCTION                                  */
+/* ---------------------------------------------------- */
+.productsIntroduction {
+  position: relative;
+  z-index: 2;
+  margin-bottom: clamp(48px, 5vw, 72px);
+}
+
+.productsIntroLabel {
+  color: var(--ax-orange-deep);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 24px;
+}
+
+.productsIntroHeading {
+  color: var(--ax-ink);
+  font-size: clamp(36px, 4.5vw, 48px);
+  font-weight: 500;
+  line-height: 1.1;
+  margin-bottom: 20px;
+}
+
+.productsIntroCopy {
+  color: var(--ax-ink);
+  opacity: 0.75;
+  font-size: 18px;
+  line-height: 1.5;
+}
+
+@media (min-width: 1024px) {
+  .productsIntroduction {
+    display: grid;
+    grid-template-columns: minmax(150px, 0.5fr) minmax(500px, 1.55fr) minmax(340px, 1fr);
+    align-items: end;
+    gap: clamp(30px, 3.5vw, 64px);
+    margin-bottom: clamp(48px, 5vw, 72px);
+  }
+  .productsIntroLabel, .productsIntroHeading, .productsIntroCopy {
+    margin-bottom: 0;
+  }
+}
+
+/* ---------------------------------------------------- */
+/* ROW 2: ATLAS (GEOMETRY FIELD)                        */
+/* ---------------------------------------------------- */
+.productAtlas {
+  position: relative;
+  width: 100%;
+  height: clamp(610px, 48vw, 720px);
+  overflow: clip;
+  border-radius: 4px;
+}
+
+/* The actual interactive 2x2 grid */
+.productInteractionField {
+  display: grid;
+  width: 100%;
+  height: 100%;
+  /* Fallback for browsers that don't support @property yet, though most do */
+  grid-template-columns: var(--left-track, 50%) var(--right-track, 50%);
+  grid-template-rows: var(--top-track, 50%) var(--bottom-track, 50%);
+  transition:
+    --left-track 620ms cubic-bezier(0.25, 1, 0.5, 1),
+    --right-track 620ms cubic-bezier(0.25, 1, 0.5, 1),
+    --top-track 620ms cubic-bezier(0.25, 1, 0.5, 1),
+    --bottom-track 620ms cubic-bezier(0.25, 1, 0.5, 1);
+  gap: 12px;
+  padding: 12px;
+  background: var(--ax-paper);
+}
+
+/* Different grid states driven by inline styles on .productInteractionField */
+
+.productRegionBackground {
+  position: relative;
+  border-radius: 4px;
+  overflow: clip;
+  display: flex;
+  flex-direction: column;
+  padding: clamp(24px, 3vw, 40px);
+  cursor: pointer;
+  transition: background-color 400ms ease, box-shadow 400ms ease;
+  background-color: var(--ax-white);
+  border: 1px solid rgba(0,0,0,0.04);
+  pointer-events: auto;
+}
+
+.productRegionBackground:focus-visible {
+  outline: 2px solid var(--ax-orange);
+  outline-offset: 2px;
+}
+
+/* State overrides */
+.productRegionBackground[data-state="active"] {
+  background-color: var(--ax-black); /* Changed to pure black per instructions */
+  color: var(--ax-warm-white);
+  box-shadow: 0 20px 40px -12px rgba(0,0,0,0.25);
+  border-color: transparent;
+}
+.productRegionBackground[data-state="dimmed"] {
+  background-color: var(--ax-paper-deep);
+  opacity: 0.6;
+}
+.productRegionBackground[data-state="neutral"] {
+  background-color: var(--ax-white);
+}
+
+/* Internal content structure */
+.productRegionContent {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  position: relative;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.productCategory {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: auto; /* Pushes everything else down */
+  transition: color 300ms;
+}
+
+.productRegionBackground[data-state="active"] .productCategory {
+  color: var(--ax-warm-white); /* Warm white instead of orange-bright on active */
+}
+.productRegionBackground[data-state="neutral"] .productCategory,
+.productRegionBackground[data-state="dimmed"] .productCategory {
+  color: rgba(9, 9, 9, 0.5);
+}
+
+.productTitle {
+  font-size: clamp(24px, 2.5vw, 36px);
+  font-weight: 500;
+  line-height: 1.1;
+  margin-top: 24px;
+  transition: color 300ms;
+}
+
+.productRegionBackground[data-state="active"] .productTitle {
+  color: var(--ax-warm-white);
+}
+.productRegionBackground[data-state="neutral"] .productTitle,
+.productRegionBackground[data-state="dimmed"] .productTitle {
+  color: var(--ax-ink);
+}
+
+/* Expanded content cross-fade */
+.productRegionExpandedContent {
+  display: grid;
+  grid-template-rows: 0fr;
+  opacity: 0;
+  transition: grid-template-rows 540ms cubic-bezier(0.25,1,0.5,1), opacity 400ms ease;
+  pointer-events: none;
+}
+
+.productRegionExpandedContent > div {
+  overflow: hidden;
+}
+
+.productRegionBackground[data-state="active"] .productRegionExpandedContent {
+  grid-template-rows: 1fr;
+  opacity: 1;
+  margin-top: 16px;
+}
+
+.productDescription {
+  font-size: 16px;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* Icon Stage */
+.productIconStage {
+  position: absolute;
+  top: clamp(24px, 3vw, 40px);
+  right: clamp(24px, 3vw, 40px);
+  bottom: 50%;
+  left: 30%;
+  display: grid;
+  place-items: center right;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.productIconStage svg {
+  pointer-events: none;
+  width: min(85%, 320px);
+  max-width: 100%;
+  max-height: 100%;
+  transform-origin: center;
+}
+
+/* ---------------------------------------------------- */
+/* ROW 3: DETAIL AREA                                   */
+/* ---------------------------------------------------- */
+.activeProductDetail {
+  position: relative;
+  width: 100%;
+  margin-top: clamp(48px, 5vw, 72px);
+  padding-top: clamp(32px, 3vw, 48px);
+  border-top: 1px solid rgba(9, 9, 9, 0.1);
+  padding-bottom: clamp(80px, 9vw, 128px);
+}
+
+@media (min-width: 1024px) {
+  .activeProductDetail {
+    display: grid;
+    grid-template-columns: minmax(280px, 1fr) repeat(3, minmax(170px, 0.8fr)) minmax(180px, 0.75fr);
+    align-items: start;
+    gap: clamp(22px, 2.5vw, 44px);
+  }
+}
+
+.detailCol {
+  display: flex;
+  flex-direction: column;
+}
+
+.detailColIntro {
+  grid-column: span 1;
+}
+
+.detailColRow {
+  grid-column: span 1;
+}
+
+.detailColCTA {
+  grid-column: span 1;
+}
+
+.detailTitle {
+  font-size: clamp(24px, 2vw, 32px);
+  font-weight: 500;
+  line-height: 1.2;
+  color: var(--ax-ink);
+  margin-bottom: 20px;
+}
+.detailExplanation {
+  font-size: 16px;
+  line-height: 1.6;
+  color: rgba(9,9,9,0.7);
+}
+.detailRowLabel {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--ax-ink);
+  margin-bottom: 12px;
+}
+.detailRowText {
+  font-size: 15px;
+  line-height: 1.5;
+  color: rgba(9,9,9,0.7);
+}
+.productCTA {
+  font-size: 14px;
+  font-weight: 500;
+  pointer-events: auto;
+  color: var(--ax-ink);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: color 200ms;
+}
+.productCTA:hover {
+  color: var(--ax-orange-core);
+}
+
+/* Mobile defaults */
+@media (max-width: 1023px) {
+  .productAtlas {
+    height: auto;
+  }
+  .productInteractionField {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 0;
+    background: transparent;
+  }
+  .productRegionBackground {
+    height: auto;
+    min-height: 280px;
+  }
+  .productRegionExpandedContent {
+    grid-template-rows: 1fr; /* Auto expand on mobile if preferred, or handle via JS */
+  }
+}

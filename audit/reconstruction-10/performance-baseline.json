@@ -1,0 +1,14 @@
+{
+  "scrollListeners": 6,
+  "activeRAFLoops": 3,
+  "activeTimers": 4,
+  "intersectionObservers": 2,
+  "resizeObservers": 2,
+  "longTasksDuringFullPageScroll": 12,
+  "approximateAverageAnimationFrameRate": 42,
+  "clsDuringScroll": 0.08,
+  "mainThreadScriptingTime": 420,
+  "largestAnimatedDOMCollection": "EngineComparison",
+  "largestCanvasDimensionsAndDPR": "Full section width/height at DPR 2.0",
+  "bundleAdditions": ["GSAP", "ScrollTrigger"]
+}

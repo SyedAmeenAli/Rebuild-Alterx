@@ -1,0 +1,97 @@
+{
+  "sectionLabel": "PRODUCTS AND SOLUTIONS",
+  "sectionHeading": "One Engine.\nFour ways to put it to work.",
+  "sectionSupportCopy": "Alter Engine is the foundation. Use it directly, apply it to inventory operations, shape it around an enterprise process or bring it into an existing product.",
+  "productOrder": ["engine", "cognitive", "custom", "build"],
+  "products": {
+    "engine": {
+      "category": "FLAGSHIP PRODUCT",
+      "title": "Alter Engine",
+      "description": "Turn one objective into a clear sequence of work. Review the plan, approve important actions and inspect the result.",
+      "points": [
+        "Structures the work",
+        "Pauses for decisions",
+        "Checks what comes back"
+      ],
+      "ctaLabel": "Try Alter Engine",
+      "ctaHref": "/try-alter-engine",
+      "detailTitle": "From one objective to reviewable work.",
+      "detailExplanation": "Alter Engine identifies what needs to be completed, proposes the steps and keeps approval points clear before actions run.",
+      "detailRows": [
+        { "label": "What you provide", "text": "The result you need and the relevant context." },
+        { "label": "What the Engine does", "text": "Structures the work and carries out approved steps." },
+        { "label": "What you receive", "text": "A result with its decisions, actions and checks available for review." }
+      ]
+    },
+    "cognitive": {
+      "category": "INVENTORY OPERATIONS",
+      "title": "Cognitive AI",
+      "description": "Bring stock attention, forecasting signals, product decisions and supplier actions into one operating view.",
+      "points": [
+        "See what needs attention",
+        "Understand the next decision",
+        "Route actions for approval"
+      ],
+      "ctaLabel": "Explore Cognitive AI",
+      "ctaHref": "/cognitive-ai",
+      "detailTitle": "Every inventory decision, explained and routed.",
+      "detailExplanation": "Instead of searching dashboards, Cognitive AI surfaces what needs your attention, explains why, and routes the necessary supplier actions for approval.",
+      "detailRows": [
+        { "label": "What you provide", "text": "Your forecast data and current inventory states." },
+        { "label": "What the Engine does", "text": "Identifies signals, explains the cause, and drafts the next action." },
+        { "label": "What you receive", "text": "Clear decisions ready for human approval." }
+      ]
+    },
+    "custom": {
+      "category": "ENTERPRISE",
+      "title": "Custom workflows",
+      "description": "Design an Alter Engine workflow around your existing systems, permissions, handoffs and operating rules.",
+      "points": [
+        "Map the real process",
+        "Define authority",
+        "Connect approved systems"
+      ],
+      "ctaLabel": "Discuss a workflow",
+      "ctaHref": "#discuss",
+      "detailTitle": "Your process. Our Engine.",
+      "detailExplanation": "Bring the capability of Alter Engine into your unique operating environment without compromising your existing permissions or security.",
+      "detailRows": [
+        { "label": "What you provide", "text": "Your operating rules and authorized systems." },
+        { "label": "What the Engine does", "text": "Translates objectives into your specific workflow steps." },
+        { "label": "What you receive", "text": "Engine automation that respects your governance." }
+      ]
+    },
+    "build": {
+      "category": "PRODUCTS AND INTERNAL SYSTEMS",
+      "title": "Build with AlterX",
+      "description": "Bring planned, approval-aware Alter Engine workflows into a product or internal environment.",
+      "points": [
+        "Submit an objective",
+        "Receive execution states",
+        "Return a reviewable result"
+      ],
+      "ctaLabel": "Explore developer access",
+      "ctaHref": "#developer",
+      "detailTitle": "Approval-aware automation for your product.",
+      "detailExplanation": "Provide your users with reliable, step-by-step automation that pauses for their approval and returns a fully transparent execution record.",
+      "detailRows": [
+        { "label": "What you provide", "text": "An API connection and user objectives." },
+        { "label": "What the Engine does", "text": "Plans the work and streams execution states back." },
+        { "label": "What you receive", "text": "A deterministic, reviewable result for your users." }
+      ]
+    }
+  },
+  "typography": {
+    "sectionLabel": "text-[12px] font-semibold tracking-widest",
+    "sectionHeading": "text-[clamp(40px,5vw,56px)] font-medium leading-[1.1]",
+    "sectionSupportCopy": "text-[18px] leading-[1.5]",
+    "productCategory": "text-[12px] font-semibold tracking-[0.08em] uppercase",
+    "productTitle": "text-[clamp(30px,3vw,46px)] font-medium leading-[1.1]",
+    "productDescription": "text-[18px]",
+    "detailTitle": "text-[28px] xl:text-[34px] font-medium leading-[1.1]",
+    "detailExplanation": "text-[17px] leading-relaxed",
+    "detailRowLabel": "text-[13px] font-semibold uppercase tracking-widest",
+    "detailRowText": "text-[16px]",
+    "detailCTA": "text-[15px] font-medium"
+  }
+}

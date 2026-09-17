@@ -1,0 +1,152 @@
+@import "tailwindcss";
+
+@theme {
+  --color-ax-black: #000000;
+  --color-ax-ink: #090909;
+  --color-ax-carbon: #151515;
+  --color-ax-carbon-soft: #1c1c1c;
+
+  --color-ax-white: #ffffff;
+  --color-ax-warm-white: #fbfaf7;
+  --color-ax-paper: #f3f0e9;
+  --color-ax-paper-deep: #e9e4da;
+
+  --color-ax-orange: #ff5a1f;
+  --color-ax-orange-core: #f15a24;
+  --color-ax-orange-bright: #ff741f;
+  --color-ax-orange-deep: #d94316;
+
+  --font-sans: var(--font-hanken), ui-sans-serif, system-ui, sans-serif;
+  --font-hanken: var(--font-hanken);
+
+  /* Typography Variables */
+  --nav-text: 15px;
+  --body-text: 18px;
+  --body-small: 16px;
+  --product-description: 17px;
+  --section-label: 12px;
+  --status-text: 14px;
+  --technical-text: 12px;
+
+  /* Global Stacking System */
+  --z-page: 0;
+  --z-page-content: 10;
+  --z-section-sticky: 20;
+  --z-header: 1000;
+  --z-menu-backdrop: 1100;
+  --z-mega-menu: 1200;
+  --z-dialog: 2000;
+}
+
+@layer base {
+  :root {
+    --ax-black: #000000;
+    --ax-ink: #090909;
+    --ax-carbon: #151515;
+    --ax-carbon-soft: #1c1c1c;
+  
+    --ax-white: #ffffff;
+    --ax-warm-white: #fbfaf7;
+    --ax-paper: #f3f0e9;
+    --ax-paper-deep: #e9e4da;
+  
+    --ax-orange: #ff5a1f;
+    --ax-orange-core: #f15a24;
+    --ax-orange-bright: #ff741f;
+    --ax-orange-deep: #d94316;
+  
+    --ax-orange-gradient:
+      linear-gradient(
+        135deg,
+        #ff741f 0%,
+        #ff5a1f 38%,
+        #f15a24 66%,
+        #d94316 100%
+      );
+  
+    --ax-gradient-orange:
+      linear-gradient(
+        135deg,
+        #ff761f 0%,
+        #ff5a1f 42%,
+        #f15a24 68%,
+        #bd3510 100%
+      );
+
+    --ax-gradient-dark:
+      radial-gradient(
+        ellipse at 70% 52%,
+        rgba(255, 90, 31, 0.17) 0%,
+        rgba(241, 90, 36, 0.055) 38%,
+        rgba(0, 0, 0, 0) 72%
+      );
+
+    --ax-gradient-light:
+      radial-gradient(
+        ellipse at 78% 40%,
+        rgba(255, 90, 31, 0.11) 0%,
+        rgba(255, 90, 31, 0.035) 40%,
+        rgba(255, 90, 31, 0) 72%
+      );
+
+    --ax-gradient-edge:
+      linear-gradient(
+        90deg,
+        rgba(255, 90, 31, 0) 0%,
+        rgba(255, 90, 31, 0.76) 48%,
+        rgba(255, 90, 31, 0) 100%
+      );
+  
+    --ax-orange-radial:
+      radial-gradient(
+        circle at 52% 52%,
+        rgba(255, 90, 31, 0.34) 0%,
+        rgba(241, 90, 36, 0.12) 32%,
+        rgba(0, 0, 0, 0) 68%
+      );
+  
+    --ax-line-dark: rgba(255, 255, 255, 0.16);
+    --ax-line-light: rgba(9, 9, 9, 0.16);
+
+    --background: var(--ax-warm-white);
+    --foreground: var(--ax-ink);
+    scroll-behavior: smooth;
+  }
+  
+  @media (prefers-reduced-motion: reduce) {
+    :root {
+      scroll-behavior: auto;
+    }
+    *,
+    ::before,
+    ::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+
+  html {
+    scroll-padding-top: 88px;
+  }
+
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-sans);
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  .clip-diagonal {
+    clip-path: polygon(0 0, 100% 0, 100% calc(100% - 24px), calc(100% - 24px) 100%, 0 100%);
+  }
+}
