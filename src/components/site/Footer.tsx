@@ -23,6 +23,7 @@ const GROUPS = [
     links: [
       { label: 'Developers', href: '/developers' },
       { label: 'Architecture', href: '/developers#system' },
+      { label: 'Documentation', href: '/docs' },
     ],
   },
   {

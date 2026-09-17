@@ -4,6 +4,7 @@ import { talkToUsDestination } from "@/content/navigation";
 
 const RESOURCES = [
   { label: "Engine", copy: "What Alter Engine is and how it fits into ALTERX.", href: "/products#alter-engine" },
+  { label: "Documentation", copy: "Not published yet — coming once there's a public API.", href: "/docs" },
   { label: "Contact", copy: "Talk to the team about the architecture.", href: talkToUsDestination },
 ];
 
@@ -17,7 +18,7 @@ export function DeveloperResources() {
           </p>
         </Reveal>
 
-        <div className="mt-10 grid grid-cols-1 gap-8 border-t border-ax-mint/10 pt-8 sm:grid-cols-2">
+        <div className="mt-10 grid grid-cols-1 gap-8 border-t border-ax-mint/10 pt-8 sm:grid-cols-3">
           {RESOURCES.map((r, i) => (
             <Reveal key={r.label} delay={i * 80}>
               <Link href={r.href} className="group block">
