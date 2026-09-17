@@ -18,6 +18,10 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: "ALTERX",
   description: "You describe the work. ALTERX handles the workflow.",
+  openGraph: {
+    siteName: "ALTERX",
+    type: "website",
+  },
 };
 
 export default function RootLayout({

@@ -1,88 +1,92 @@
-import React from 'react';
-import Link from 'next/link';
+import type { Metadata } from "next";
+import Link from "next/link";
+import { Header } from "@/components/site/Header";
+
+export const metadata: Metadata = {
+  title: "Try Alter Engine — ALTERX",
+  description: "Preview how Alter Engine structures an objective into a reviewable, step-by-step plan.",
+};
+
+const STEPS = [
+  { n: "1", label: "Understand", copy: "Extracts supplier endpoints, identifies Q3 shipping manifests, and determines inventory priorities from the CRM.", state: "done" as const },
+  { n: "2", label: "Plan", copy: "Generates a sequence to ping supplier APIs, sort delays, and compile a re-routing strategy for high-priority SKUs.", state: "done" as const },
+  { n: "3", label: "Approve (human decision)", copy: "The Engine halts. The operator reviews the proposed re-routing strategy before any stock is actually moved.", state: "active" as const },
+  { n: "4", label: "Act", copy: "Executes approved re-routing API calls to the warehouse management system.", state: "pending" as const },
+  { n: "5", label: "Check", copy: "Verifies that API responses match the intended re-routing state.", state: "pending" as const },
+];
 
 export default function TryAlterEngine() {
   return (
-    <div className="min-h-screen bg-ax-carbon text-ax-white flex flex-col pt-[120px] pb-24">
-      <div className="w-full max-w-[900px] mx-auto px-7 lg:px-10">
-        
-        <header className="mb-16 border-b border-ax-border-dark pb-10">
-          <h1 className="text-[48px] md:text-[64px] font-medium leading-[1.1] mb-6">
-            Try Alter Engine
-          </h1>
-          <p className="text-[18px] text-white/80 max-w-[600px] leading-[1.5]">
-            Preview how Alter Engine structures the work. This deterministic demonstration shows how a raw objective becomes a reviewable, step-by-step plan.
-          </p>
-        </header>
+    <main className="flex min-h-screen flex-col bg-ax-bg">
+      <Header />
+      <section className="flex-1 bg-ax-black pb-24 pt-[150px]">
+        <div className="container-ax max-w-[820px]">
+          <header className="mb-14 border-b border-ax-mint/10 pb-10">
+            <h1 className="font-display text-[36px] font-medium leading-[1.1] text-ax-white sm:text-[46px]">
+              Try Alter Engine
+            </h1>
+            <p className="mt-5 max-w-[560px] text-[17px] leading-[1.55] text-ax-text/80">
+              Preview how Alter Engine structures the work. This deterministic demonstration
+              shows how a raw objective becomes a reviewable, step-by-step plan.
+            </p>
+          </header>
 
-        <main className="flex flex-col gap-12">
-          
-          <section className="bg-ax-black/20 border border-ax-border-dark p-8 rounded">
-            <h2 className="text-[12px] font-semibold tracking-widest text-ax-orange uppercase mb-6">1. The Objective</h2>
-            <div className="text-[20px] font-medium p-4 bg-ax-black rounded border border-ax-border-dark/50">
-              &quot;Check supplier inventory for Q3 delays and re-route the highest priority stock.&quot;
-            </div>
-          </section>
-
-          <section className="bg-ax-black/20 border border-ax-border-dark p-8 rounded">
-            <h2 className="text-[12px] font-semibold tracking-widest text-ax-orange uppercase mb-6">2. Engine Structure</h2>
-            
-            <div className="flex flex-col gap-6">
-              <div className="flex gap-4">
-                <div className="flex-shrink-0 w-8 h-8 rounded-full bg-ax-carbon border border-ax-border-light flex items-center justify-center text-sm">1</div>
-                <div>
-                  <h3 className="font-medium mb-1">Understand</h3>
-                  <p className="text-white/70 text-[15px]">Extracts supplier endpoints, identifies Q3 shipping manifests, and determines inventory priorities from the CRM.</p>
-                </div>
+          <div className="flex flex-col gap-12">
+            <section className="rounded-[8px] border border-ax-mint/10 bg-ax-bg-soft/60 p-8">
+              <h2 className="mb-6 text-[12px] font-semibold uppercase tracking-[0.1em] text-ax-mint/70">
+                The objective
+              </h2>
+              <div className="rounded-[6px] border border-ax-mint/10 bg-ax-black p-4 text-[19px] font-medium text-ax-white">
+                &quot;Check supplier inventory for Q3 delays and re-route the highest priority
+                stock.&quot;
               </div>
-              
-              <div className="flex gap-4">
-                <div className="flex-shrink-0 w-8 h-8 rounded-full bg-ax-carbon border border-ax-border-light flex items-center justify-center text-sm">2</div>
-                <div>
-                  <h3 className="font-medium mb-1">Plan</h3>
-                  <p className="text-white/70 text-[15px]">Generates a sequence to ping supplier APIs, sort delays, and compile a re-routing strategy for high-priority SKUs.</p>
-                </div>
+            </section>
+
+            <section className="rounded-[8px] border border-ax-mint/10 bg-ax-bg-soft/60 p-8">
+              <h2 className="mb-7 text-[12px] font-semibold uppercase tracking-[0.1em] text-ax-mint/70">
+                Engine structure
+              </h2>
+
+              <div className="flex flex-col gap-6">
+                {STEPS.map((step) => (
+                  <div key={step.n} className={`flex gap-4 ${step.state === "pending" ? "opacity-50" : ""}`}>
+                    <div
+                      className={`flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full border text-[13px] font-semibold ${
+                        step.state === "active"
+                          ? "border-ax-mint bg-ax-mint text-ax-black"
+                          : "border-ax-mint/20 bg-ax-black text-ax-text"
+                      }`}
+                    >
+                      {step.n}
+                    </div>
+                    <div>
+                      <h3 className={`mb-1 font-medium ${step.state === "active" ? "text-ax-mint" : "text-ax-white"}`}>
+                        {step.label}
+                      </h3>
+                      <p className="text-[15px] text-ax-text/70">{step.copy}</p>
+                    </div>
+                  </div>
+                ))}
               </div>
+            </section>
 
-              <div className="flex gap-4 relative">
-                <div className="absolute left-[-24px] top-1/2 -translate-y-1/2 w-4 h-[2px] bg-ax-orange" />
-                <div className="flex-shrink-0 w-8 h-8 rounded-full bg-ax-orange text-ax-black flex items-center justify-center text-sm font-semibold">3</div>
-                <div>
-                  <h3 className="font-medium text-ax-orange mb-1">Approve (Human Decision)</h3>
-                  <p className="text-white/70 text-[15px]">The Engine halts. The operator reviews the proposed re-routing strategy before any stock is actually moved.</p>
-                </div>
+            <section className="flex flex-col items-start justify-between gap-6 rounded-[8px] border border-ax-mint/20 bg-ax-mint/5 p-8 md:flex-row md:items-center">
+              <div>
+                <h2 className="mb-2 text-[20px] font-medium text-ax-white">
+                  Ready for a real evaluation?
+                </h2>
+                <p className="text-ax-text/70">Connect Alter Engine to your own environment.</p>
               </div>
-
-              <div className="flex gap-4 opacity-50">
-                <div className="flex-shrink-0 w-8 h-8 rounded-full bg-ax-carbon border border-ax-border-light flex items-center justify-center text-sm">4</div>
-                <div>
-                  <h3 className="font-medium mb-1">Act</h3>
-                  <p className="text-white/70 text-[15px]">Executes approved re-routing API calls to the warehouse management system.</p>
-                </div>
-              </div>
-
-              <div className="flex gap-4 opacity-50">
-                <div className="flex-shrink-0 w-8 h-8 rounded-full bg-ax-carbon border border-ax-border-light flex items-center justify-center text-sm">5</div>
-                <div>
-                  <h3 className="font-medium mb-1">Check</h3>
-                  <p className="text-white/70 text-[15px]">Verifies that API responses match the intended re-routing state.</p>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          <section className="bg-ax-orange/10 border border-ax-orange/30 p-8 rounded flex flex-col md:flex-row items-center justify-between gap-8">
-            <div>
-              <h2 className="text-[22px] font-medium mb-2">Ready for a real evaluation?</h2>
-              <p className="text-white/70">Connect Alter Engine to your own environment.</p>
-            </div>
-            <Link href="/request-access" className="flex-shrink-0 inline-flex h-12 items-center justify-center rounded-[4px] bg-[#f15a24] px-8 text-sm font-medium text-[#090909] hover:bg-[#d94a18] transition-colors shadow-none">
-              Continue to Evaluation Form
-            </Link>
-          </section>
-
-        </main>
-      </div>
-    </div>
+              <Link
+                href="/request-access"
+                className="inline-flex h-12 flex-shrink-0 items-center justify-center rounded-[4px] bg-ax-mint px-7 text-[15px] font-medium text-ax-black transition-colors hover:bg-ax-emerald"
+              >
+                Continue to evaluation form
+              </Link>
+            </section>
+          </div>
+        </div>
+      </section>
+    </main>
   );
 }

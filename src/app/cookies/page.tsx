@@ -3,7 +3,10 @@ import Link from "next/link";
 import { Header } from "@/components/site/Header";
 import { talkToUsDestination } from "@/content/navigation";
 
-export const metadata: Metadata = { title: "Cookie Policy — ALTERX" };
+export const metadata: Metadata = {
+  title: "Cookie Policy — ALTERX",
+  description: "How ALTERX uses cookies. The site currently sets no non-essential tracking cookies.",
+};
 
 export default function CookiesPage() {
   return (
