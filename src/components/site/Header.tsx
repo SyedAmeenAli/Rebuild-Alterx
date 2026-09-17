@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { Logo } from '../shared/Logo';
 import { DesktopNavigation } from './DesktopNavigation';
+import { MobileNav } from './MobileNav';
 import { talkToUsDestination } from '@/content/navigation';
 
 export function Header() {
@@ -39,13 +40,14 @@ export function Header() {
         <DesktopNavigation />
       </div>
 
-      <div className="flex-shrink-0 flex items-center justify-end relative z-20">
+      <div className="flex-shrink-0 flex items-center justify-end gap-4 relative z-20">
         <Link
           href={talkToUsDestination}
-          className="inline-flex items-center justify-center px-5 py-2.5 text-sm font-medium rounded-[4px] bg-ax-mint text-ax-black focus-visible:outline-ax-mint focus-visible:outline-2 focus-visible:outline-offset-2 transition-all duration-200 hover:bg-ax-emerald"
+          className="inline-flex items-center justify-center px-4 sm:px-5 py-2.5 text-sm font-medium rounded-[4px] bg-ax-mint text-ax-black focus-visible:outline-ax-mint focus-visible:outline-2 focus-visible:outline-offset-2 transition-all duration-200 hover:bg-ax-emerald"
         >
           Talk to us
         </Link>
+        <MobileNav />
       </div>
     </header>
   );

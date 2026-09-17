@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import Link from 'next/link';
 import { Logo } from '../shared/Logo';
 
@@ -11,7 +12,10 @@ const columns = [
 
 export function Footer() {
   return (
-    <footer className="w-full bg-ax-black text-ax-text py-20 pb-10 relative border-t border-ax-mint/10">
+    <footer className="w-full bg-ax-black text-ax-text py-20 pb-10 relative border-t border-ax-mint/10 overflow-hidden">
+      <div className="absolute inset-0 opacity-[0.12] pointer-events-none">
+        <Image src="/hero/16_footer.jpg" alt="" fill sizes="100vw" className="object-cover" />
+      </div>
       <div
         className="absolute top-0 left-0 right-0 h-px opacity-40 pointer-events-none"
         style={{ background: 'var(--ax-gradient-edge)' }}
