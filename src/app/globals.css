@@ -40,6 +40,10 @@
   /* Container */
   --container-max: 1440px;
   --gutter: 28px;
+
+  /* Frame system */
+  --frame-gap: 2px;
+  --frame-border: rgba(159, 255, 192, 0.1);
 }
 
 @layer base {
