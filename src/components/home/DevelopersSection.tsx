@@ -136,6 +136,12 @@ function highlight(line: string) {
   return <span className="text-ax-text/80">{line}</span>;
 }
 
+const STACK_LAYERS = [
+  { x: 24, y: -21, border: "rgba(159,255,192,0.1)", bg: "rgba(6,17,11,0.45)" },
+  { x: 16, y: -14, border: "rgba(159,255,192,0.16)", bg: "rgba(6,17,11,0.6)" },
+  { x: 8, y: -7, border: "rgba(159,255,192,0.24)", bg: "rgba(6,17,11,0.75)" },
+];
+
 export function DevelopersSection() {
   const [selected, setSelected] = useState(0);
   const [lang, setLang] = useState<Lang>("ts");
@@ -152,81 +158,6 @@ export function DevelopersSection() {
     <section className="relative bg-ax-bg-soft py-24 lg:py-32">
       <div className="container-ax grid grid-cols-1 gap-14 lg:grid-cols-2 lg:gap-16">
         <Reveal>
-          <div className="relative mx-auto w-full max-w-[440px] pr-4 pt-3">
-            {/* receding stack behind the active panel, offset up-right, no rotation */}
-            <div
-              key={`stack-2-${pulse}`}
-              aria-hidden="true"
-              className="dev-stack-settle absolute inset-0 rounded-[6px] border"
-              style={{
-                borderColor: "rgba(159,255,192,0.14)",
-                backgroundColor: "rgba(6,17,11,0.55)",
-                ["--stack-x" as string]: "16px",
-                ["--stack-y" as string]: "-14px",
-                animationDelay: "40ms",
-              }}
-            />
-            <div
-              key={`stack-1-${pulse}`}
-              aria-hidden="true"
-              className="dev-stack-settle absolute inset-0 rounded-[6px] border"
-              style={{
-                borderColor: "rgba(159,255,192,0.22)",
-                backgroundColor: "rgba(6,17,11,0.7)",
-                ["--stack-x" as string]: "8px",
-                ["--stack-y" as string]: "-7px",
-              }}
-            />
-
-            <div
-              key={`front-${pulse}`}
-              className="dev-card-forward relative overflow-hidden rounded-[6px] p-5 sm:p-6"
-              style={{
-                border: "1px solid rgba(159,255,192,0.4)",
-                backgroundColor: "rgba(2,5,4,0.9)",
-                boxShadow: "0 20px 60px rgba(0,0,0,0.5)",
-              }}
-            >
-              <span
-                aria-hidden="true"
-                className="absolute inset-x-0 top-0 h-[2px]"
-                style={{ backgroundColor: "#32C97A" }}
-              />
-              <div className="flex items-center justify-between border-b border-ax-mint/15 pb-3.5">
-                <p className="text-[12px] font-medium text-ax-white">{active.file}</p>
-                <div className="flex items-center gap-1 rounded-[3px] border border-ax-mint/15 p-0.5">
-                  {(["ts", "py"] as Lang[]).map((l) => (
-                    <button
-                      key={l}
-                      onClick={() => setLang(l)}
-                      className="rounded-[2px] px-2 py-0.5 text-[10px] font-medium uppercase tracking-[0.06em] transition-colors duration-150"
-                      style={{
-                        color: lang === l ? "#020504" : "rgba(232,247,238,0.5)",
-                        backgroundColor: lang === l ? "#9FFFC0" : "transparent",
-                      }}
-                    >
-                      {l === "ts" ? "TypeScript" : "Python"}
-                    </button>
-                  ))}
-                </div>
-              </div>
-
-              <div key={`${active.key}-${lang}`} className="dev-panel-fade mt-4">
-                <pre className="overflow-x-auto font-mono text-[12.5px] leading-[1.75]">
-                  {(lang === "ts" ? active.ts : active.py).split("\n").map((line, i) => (
-                    <div key={i}>{line.length ? highlight(line) : " "}</div>
-                  ))}
-                </pre>
-              </div>
-
-              <p className="mt-4 border-t border-ax-mint/10 pt-3 text-[10.5px] leading-[1.5] text-ax-muted/55">
-                Conceptual — internal execution shown for clarity. Not a public API.
-              </p>
-            </div>
-          </div>
-        </Reveal>
-
-        <Reveal delay={100}>
           <div>
             <p className="text-[13px] font-medium uppercase tracking-[0.14em] text-ax-mint/70">
               Developers
@@ -235,7 +166,7 @@ export function DevelopersSection() {
               Built so work cannot quietly fail.
             </h2>
             <p className="mt-4 max-w-[440px] text-[15px] leading-[1.6] text-ax-muted">
-              v1 is a managed service. This is how execution is held — not a public signup.
+              v1 is a managed service. This is how execution is held, not a public signup.
             </p>
 
             <div className="mt-9 flex flex-col divide-y divide-ax-mint/10 border-t border-ax-mint/10">
@@ -271,6 +202,72 @@ export function DevelopersSection() {
             <p className="mt-6 max-w-[420px] text-[13px] leading-[1.6] text-ax-muted/80">
               Operators describe work in plain language. Engineers can see how it is held.
             </p>
+          </div>
+        </Reveal>
+
+        <Reveal delay={100}>
+          <div className="relative mx-auto mr-6 mt-6 w-full max-w-[540px]">
+            {STACK_LAYERS.map((s, idx) => (
+              <div
+                key={`stack-${idx}-${pulse}`}
+                aria-hidden="true"
+                className="dev-stack-settle absolute inset-0 rounded-[6px] border"
+                style={{
+                  borderColor: s.border,
+                  backgroundColor: s.bg,
+                  ["--stack-x" as string]: `${s.x}px`,
+                  ["--stack-y" as string]: `${s.y}px`,
+                  animationDelay: `${idx * 40}ms`,
+                }}
+              />
+            ))}
+
+            <div
+              key={`front-${pulse}`}
+              className="dev-card-forward relative min-h-[380px] overflow-hidden rounded-[6px] p-6 sm:p-7"
+              style={{
+                border: "1px solid rgba(159,255,192,0.4)",
+                backgroundColor: "rgba(2,5,4,0.92)",
+                boxShadow: "0 24px 70px rgba(0,0,0,0.55)",
+              }}
+            >
+              <span
+                aria-hidden="true"
+                className="absolute inset-x-0 top-0 h-[2px]"
+                style={{ backgroundColor: "#32C97A" }}
+              />
+              <div className="flex items-center justify-between border-b border-ax-mint/15 pb-4">
+                <p className="text-[13px] font-medium text-ax-white">{active.file}</p>
+                <div className="flex items-center gap-1 rounded-[3px] border border-ax-mint/15 p-0.5">
+                  {(["ts", "py"] as Lang[]).map((l) => (
+                    <button
+                      key={l}
+                      onClick={() => setLang(l)}
+                      className="rounded-[2px] px-2.5 py-1 text-[10px] font-medium uppercase tracking-[0.06em] transition-colors duration-150"
+                      style={{
+                        color: lang === l ? "#020504" : "rgba(232,247,238,0.5)",
+                        backgroundColor: lang === l ? "#9FFFC0" : "transparent",
+                      }}
+                    >
+                      {l === "ts" ? "TypeScript" : "Python"}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              <div key={`${active.key}-${lang}`} className="dev-panel-fade mt-5">
+                <p className="font-display text-[17px] font-medium text-ax-white">{active.label}</p>
+                <pre className="mt-3 overflow-x-auto font-mono text-[13px] leading-[1.85]">
+                  {(lang === "ts" ? active.ts : active.py).split("\n").map((line, i) => (
+                    <div key={i}>{line.length ? highlight(line) : " "}</div>
+                  ))}
+                </pre>
+              </div>
+
+              <p className="absolute inset-x-6 bottom-6 border-t border-ax-mint/10 pt-3 text-[10.5px] leading-[1.5] text-ax-muted/55 sm:inset-x-7">
+                Conceptual, internal execution shown for clarity. Not a public API.
+              </p>
+            </div>
           </div>
         </Reveal>
       </div>
