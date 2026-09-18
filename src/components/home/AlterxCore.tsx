@@ -21,24 +21,51 @@ function hasWebGL() {
 
 // ---- core sphere ----
 
+const DRAG_SENSITIVITY = 0.006;
+const MAX_ANGULAR_VELOCITY = 0.09;
+const DRAG_FRICTION = 0.94;
+
 function CoreSphere({ reduced }: { reduced: boolean }) {
   const spin = useRef<THREE.Group>(null);
   const tiltGroup = useRef<THREE.Group>(null);
   const material = useRef<ComponentRef<typeof MeshDistortMaterial>>(null);
   const tilt = useRef({ x: 0, y: 0 });
   const scrollBoost = useRef(0);
+  const velocity = useRef({ x: 0, y: 0 });
 
   useFrame((state, delta) => {
     const baseSpeed = reduced ? 0.006 : (2 * Math.PI) / 20;
 
     if (spin.current) {
+      if (!reduced && dragState.active) {
+        // direct: sphere follows the pointer while dragging
+        const dy = clamp(rotDelta.y, -MAX_ANGULAR_VELOCITY, MAX_ANGULAR_VELOCITY);
+        const dx = clamp(rotDelta.x, -MAX_ANGULAR_VELOCITY, MAX_ANGULAR_VELOCITY);
+        spin.current.rotation.y += dy;
+        spin.current.rotation.x += dx;
+        velocity.current.y = dy;
+        velocity.current.x = dx;
+      } else if (!reduced && (Math.abs(velocity.current.x) > 0.0003 || Math.abs(velocity.current.y) > 0.0003)) {
+        // released: inertia, decaying by friction each frame
+        spin.current.rotation.y += velocity.current.y;
+        spin.current.rotation.x += velocity.current.x;
+        velocity.current.x *= DRAG_FRICTION;
+        velocity.current.y *= DRAG_FRICTION;
+      }
+      rotDelta.x = 0;
+      rotDelta.y = 0;
+
+      // idle spin always runs underneath, so the object never looks frozen
       spin.current.rotation.y += delta * (baseSpeed * (1 + scrollBoost.current));
       spin.current.rotation.x += delta * (reduced ? 0 : baseSpeed * 0.18);
     }
 
-    if (!reduced) {
+    if (!reduced && !dragState.active) {
       tilt.current.x += (state.pointer.y * 0.1 - tilt.current.x) * 0.04;
       tilt.current.y += (state.pointer.x * 0.14 - tilt.current.y) * 0.04;
+    } else {
+      tilt.current.x += (0 - tilt.current.x) * 0.06;
+      tilt.current.y += (0 - tilt.current.y) * 0.06;
     }
     if (tiltGroup.current) {
       tiltGroup.current.rotation.x = tilt.current.x;
@@ -48,13 +75,15 @@ function CoreSphere({ reduced }: { reduced: boolean }) {
     scrollBoost.current += (scrollTarget - scrollBoost.current) * 0.05;
 
     if (material.current) {
-      const targetDistort = reduced ? 0.02 : 0.045 + contactStrength.current * 0.05;
-      material.current.distort += (targetDistort - material.current.distort) * 0.06;
-      const targetEmissive = 0.12 + contactStrength.current * 0.18;
+      const pulse = contactStrength.current * 0.05 + rippleStrength.current * 0.09;
+      const targetDistort = reduced ? 0.02 : 0.045 + pulse;
+      material.current.distort += (targetDistort - material.current.distort) * 0.08;
+      const targetEmissive = 0.12 + contactStrength.current * 0.18 + rippleStrength.current * 0.3;
       const mat = material.current as unknown as THREE.MeshPhysicalMaterial;
-      mat.emissiveIntensity += (targetEmissive - mat.emissiveIntensity) * 0.08;
+      mat.emissiveIntensity += (targetEmissive - mat.emissiveIntensity) * 0.1;
     }
     contactStrength.current *= 0.94;
+    rippleStrength.current *= 0.82;
   });
 
   return (
@@ -85,9 +114,18 @@ function CoreSphere({ reduced }: { reduced: boolean }) {
   );
 }
 
-// module-level mutable refs shared between sphere + particles for the contact pulse
+function clamp(v: number, min: number, max: number) {
+  return Math.min(max, Math.max(min, v));
+}
+
+// module-level mutable state shared between the container's pointer handlers,
+// the sphere and the particle layers (kept outside React state so per-frame
+// updates never trigger a re-render)
 let scrollTarget = 0;
 const contactStrength = { current: 0 };
+const rippleStrength = { current: 0 };
+const dragState = { active: false, moved: false, downX: 0, downY: 0 };
+const rotDelta = { x: 0, y: 0 };
 
 // ---- particle field ----
 
@@ -161,6 +199,9 @@ function ParticleLayer({ layer, reduced }: { layer: Layer; reduced: boolean }) {
       group.current.rotation.y += delta * layer.speed;
       group.current.rotation.x += delta * layer.speed * 0.3;
     }
+    const t = clamp(scrollTarget / 1.8, 0, 1);
+    const targetScale = 1 - t * 0.16;
+    group.current.scale.setScalar(group.current.scale.x + (targetScale - group.current.scale.x) * 0.05);
 
     const geom = points.current?.geometry;
     if (!geom) return;
@@ -289,9 +330,41 @@ export function AlterxCore() {
     };
     window.addEventListener("scroll", onScroll, { passive: true });
 
+    const el = containerRef.current;
+    const onPointerDown = (e: PointerEvent) => {
+      dragState.active = true;
+      dragState.moved = false;
+      dragState.downX = e.clientX;
+      dragState.downY = e.clientY;
+      rotDelta.x = 0;
+      rotDelta.y = 0;
+      (e.target as Element).setPointerCapture?.(e.pointerId);
+    };
+    const onPointerMove = (e: PointerEvent) => {
+      if (!dragState.active) return;
+      rotDelta.y += e.movementX * DRAG_SENSITIVITY;
+      rotDelta.x += e.movementY * DRAG_SENSITIVITY;
+      if (Math.hypot(e.clientX - dragState.downX, e.clientY - dragState.downY) > 4) {
+        dragState.moved = true;
+      }
+    };
+    const onPointerUp = () => {
+      dragState.active = false;
+      if (!dragState.moved && contactStrength.current > 0.05) {
+        rippleStrength.current = 1;
+      }
+    };
+
+    el?.addEventListener("pointerdown", onPointerDown);
+    window.addEventListener("pointermove", onPointerMove);
+    window.addEventListener("pointerup", onPointerUp);
+
     return () => {
       window.removeEventListener("resize", onResize);
       window.removeEventListener("scroll", onScroll);
+      el?.removeEventListener("pointerdown", onPointerDown);
+      window.removeEventListener("pointermove", onPointerMove);
+      window.removeEventListener("pointerup", onPointerUp);
     };
   }, []);
 
@@ -308,7 +381,7 @@ export function AlterxCore() {
   }
 
   return (
-    <div ref={containerRef} className="h-full w-full">
+    <div ref={containerRef} className="h-full w-full cursor-grab touch-none active:cursor-grabbing">
       <Canvas
         dpr={[1, mobile ? 1.25 : 1.8]}
         camera={{ position: [0.4, 0.1, 4.4], fov: 38 }}
