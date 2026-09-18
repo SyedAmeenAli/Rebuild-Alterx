@@ -1,8 +1,8 @@
 import Link from "next/link";
-import { MediaFrame } from "@/components/frames/MediaFrame";
 import { Reveal } from "@/components/shared/Reveal";
-import { alterxMedia, toMedia } from "@/content/alterx-media";
 import { alterEngineDestination } from "@/content/navigation";
+
+const ENGINE_FLOW = ["Plan", "Execute", "Verify", "Recover"];
 
 const RECORD = [
   { label: "Product", value: "Men's Overshirt" },
@@ -24,13 +24,24 @@ export function HomeProducts() {
       <div className="container-ax mt-14 lg:mt-16">
         <div className="grid grid-cols-1 gap-3 lg:grid-cols-2">
           <Reveal>
-            <Link href={alterEngineDestination} className="group relative block overflow-hidden">
-              <MediaFrame media={toMedia(alterxMedia.engineStill)} aspect="aspect-[4/3]" drift>
-                <div
-                  className="absolute inset-0"
-                  style={{ background: "linear-gradient(0deg, rgba(2,5,4,0.75) 0%, rgba(2,5,4,0) 45%)" }}
-                />
-              </MediaFrame>
+            <Link href={alterEngineDestination} className="group relative block overflow-hidden bg-ax-black">
+              <div className="aspect-[4/3] p-7 pb-20 sm:p-9 sm:pb-24">
+                <span className="text-[12px] font-medium uppercase tracking-[0.1em] text-ax-muted">
+                  Execution flow
+                </span>
+                <div className="mt-6 flex flex-wrap gap-2">
+                  {ENGINE_FLOW.map((step, i) => (
+                    <div key={step} className="flex items-center gap-2">
+                      <span className="rounded-full border border-ax-mint/20 px-3.5 py-1.5 text-[13px] font-medium text-ax-text/80">
+                        {step}
+                      </span>
+                      {i < ENGINE_FLOW.length - 1 && (
+                        <span aria-hidden="true" className="text-ax-mint/40">→</span>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              </div>
               <div className="pointer-events-none absolute inset-x-0 bottom-0 flex items-end justify-between p-6">
                 <div>
                   <p className="text-[12px] font-medium uppercase tracking-[0.1em] text-ax-mint/80">

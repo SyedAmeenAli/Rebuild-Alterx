@@ -1,6 +1,6 @@
-import { MediaFrame } from "@/components/frames/MediaFrame";
 import { Reveal } from "@/components/shared/Reveal";
-import { alterxMedia, toMedia } from "@/content/alterx-media";
+
+const STEPS = ["Request", "Plan", "Execute"];
 
 export function RequestToWork() {
   return (
@@ -18,8 +18,18 @@ export function RequestToWork() {
       </div>
 
       <Reveal delay={120}>
-        <div className="mt-14 lg:mt-16">
-          <MediaFrame media={toMedia(alterxMedia.homeRequestFrame)} aspect="aspect-[21/9]" />
+        <div className="container-ax mt-14 lg:mt-16">
+          <div className="relative flex aspect-[21/9] items-center justify-center rounded-[10px] border border-ax-mint/10 bg-ax-bg-soft/40 px-10">
+            <div className="relative flex w-full max-w-[640px] items-center justify-between">
+              <div className="absolute left-0 right-0 top-1/2 h-px -translate-y-1/2 bg-ax-mint/20" aria-hidden="true" />
+              {STEPS.map((step) => (
+                <div key={step} className="relative z-10 flex flex-col items-center gap-3 bg-ax-bg-soft/40 px-3">
+                  <span className="h-3 w-3 rounded-full border-2 border-ax-mint bg-ax-black" />
+                  <span className="text-[13px] font-medium text-ax-text/80">{step}</span>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </Reveal>
     </section>
