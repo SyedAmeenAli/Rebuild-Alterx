@@ -1,15 +1,40 @@
+"use client";
+
+import { useEffect, useState } from "react";
 import { Reveal } from "@/components/shared/Reveal";
 
-const NODES = [
+const BASE_NODES = [
   { label: "Model", top: 8, left: 50 },
   { label: "Search", top: 27, left: 86.6 },
   { label: "Messaging", top: 73, left: 86.6 },
   { label: "Payments", top: 92, left: 50 },
   { label: "Data", top: 73, left: 13.4 },
-  { label: "Other systems", top: 27, left: 13.4 },
 ];
+const SWAP_POS = { top: 27, left: 13.4 };
+const SWAP_POOL = ["Other system", "Other tool", "External system"];
 
 export function Adapters() {
+  const [swapIndex, setSwapIndex] = useState(0);
+  const [connected, setConnected] = useState(true);
+  const [reduced, setReduced] = useState(false);
+
+  useEffect(() => {
+    const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    setReduced(prefersReduced);
+    if (prefersReduced) return;
+
+    const cycle = setInterval(() => {
+      setConnected(false);
+      setTimeout(() => {
+        setSwapIndex((i) => (i + 1) % SWAP_POOL.length);
+        setConnected(true);
+      }, 700);
+    }, 4200);
+    return () => clearInterval(cycle);
+  }, []);
+
+  const nodes = [...BASE_NODES, { label: SWAP_POOL[swapIndex], ...SWAP_POS }];
+
   return (
     <section className="relative bg-ax-black py-28 lg:py-36">
       <div className="container-ax">
@@ -34,7 +59,7 @@ export function Adapters() {
                 className="pointer-events-none absolute inset-0 h-full w-full"
                 aria-hidden="true"
               >
-                {NODES.map((n) => (
+                {BASE_NODES.map((n) => (
                   <line
                     key={n.label}
                     x1={50}
@@ -45,22 +70,44 @@ export function Adapters() {
                     strokeWidth={0.4}
                   />
                 ))}
+                <line
+                  x1={50}
+                  y1={50}
+                  x2={SWAP_POS.left}
+                  y2={SWAP_POS.top}
+                  stroke="rgba(159,255,192,0.16)"
+                  strokeWidth={0.4}
+                  style={{
+                    opacity: reduced || connected ? 1 : 0,
+                    transition: "opacity 300ms ease",
+                  }}
+                />
               </svg>
 
               <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-[6px] border border-ax-mint bg-ax-mint/10 px-5 py-3 text-center font-display text-[15px] font-medium text-ax-mint sm:text-[16px]">
                 Alter Engine
               </div>
 
-              {NODES.map((n, i) => (
-                <Reveal key={n.label} delay={140 + i * 60}>
-                  <span
-                    className="absolute -translate-x-1/2 -translate-y-1/2 whitespace-nowrap rounded-full border border-ax-mint/20 bg-ax-black px-3 py-1.5 text-center text-[11px] font-medium text-ax-text/80 sm:px-4 sm:text-[13px]"
-                    style={{ top: `${n.top}%`, left: `${n.left}%` }}
-                  >
-                    {n.label}
-                  </span>
-                </Reveal>
+              {BASE_NODES.map((n) => (
+                <span
+                  key={n.label}
+                  className="absolute -translate-x-1/2 -translate-y-1/2 whitespace-nowrap rounded-full border border-ax-mint/20 bg-ax-black px-3 py-1.5 text-center text-[11px] font-medium text-ax-text/80 sm:px-4 sm:text-[13px]"
+                  style={{ top: `${n.top}%`, left: `${n.left}%` }}
+                >
+                  {n.label}
+                </span>
               ))}
+
+              <span
+                className="absolute -translate-x-1/2 -translate-y-1/2 whitespace-nowrap rounded-full border border-ax-mint/20 bg-ax-black px-3 py-1.5 text-center text-[11px] font-medium text-ax-text/80 transition-all duration-300 sm:px-4 sm:text-[13px]"
+                style={{
+                  top: `${SWAP_POS.top}%`,
+                  left: `${SWAP_POS.left}%`,
+                  opacity: reduced || connected ? 1 : 0,
+                }}
+              >
+                {SWAP_POOL[swapIndex]}
+              </span>
             </div>
 
             <p className="mx-auto mt-10 max-w-[420px] text-center text-[13px] leading-[1.6] text-ax-muted lg:mt-14">

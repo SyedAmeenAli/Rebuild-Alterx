@@ -38,7 +38,7 @@ export function DurableExecution() {
                 Execution
               </p>
               <h2 className="font-display mt-5 max-w-[440px] text-balance text-[28px] leading-[1.2] tracking-[-0.015em] text-ax-white sm:text-[34px]">
-                Work that keeps its place.
+                Work should not disappear when something stops.
               </h2>
               <p className="mt-5 max-w-[440px] text-[16px] leading-[1.6] text-ax-text/80">
                 Long-running work needs durable state. If an interruption happens during

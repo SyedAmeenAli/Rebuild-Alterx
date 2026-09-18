@@ -1,13 +1,13 @@
 import Image from "next/image";
 import Link from "next/link";
-import { alterEngineDestination } from "@/content/navigation";
+import { alterEngineDestination, talkToUsDestination } from "@/content/navigation";
 
 export function DevelopersHero() {
   return (
     <section className="relative flex min-h-[86svh] flex-col overflow-clip bg-ax-black text-ax-white">
       <div className="absolute inset-0 z-0">
         <Image
-          src="/hero/04_developers_hero.jpg"
+          src="/media/alterx/05_developers_still.jpg"
           alt=""
           fill
           priority
@@ -29,11 +29,12 @@ export function DevelopersHero() {
         </p>
 
         <h1 className="hero-reveal font-display mt-6 max-w-[680px] text-balance text-[38px] leading-[1.08] tracking-[-0.02em] text-ax-white sm:text-[48px] lg:text-[56px]">
-          Build on a system designed to execute.
+          Under the simple interface, there is a serious execution system.
         </h1>
 
         <p className="hero-reveal mt-6 max-w-[480px] text-[17px] leading-[1.55] text-ax-text/85">
-          ALTERX separates intelligence from the machinery that makes work reliable.
+          ALTERX is built to plan, run, verify and recover work without hiding the complexity
+          underneath.
         </p>
 
         <div className="hero-reveal mt-9 flex flex-wrap items-center gap-x-8 gap-y-4">
@@ -41,14 +42,14 @@ export function DevelopersHero() {
             href={alterEngineDestination}
             className="inline-flex h-12 items-center justify-center rounded-[4px] bg-ax-mint px-7 text-[15px] font-medium text-ax-black transition-colors hover:bg-ax-emerald"
           >
-            Explore the engine
+            Explore the Engine
             <span aria-hidden="true" className="ml-2">→</span>
           </Link>
           <Link
-            href="#system"
+            href={talkToUsDestination}
             className="inline-flex items-center gap-2 text-[15px] font-medium text-ax-white/85 transition-colors hover:text-ax-mint"
           >
-            See how it works
+            Talk to us
             <span aria-hidden="true">→</span>
           </Link>
         </div>
