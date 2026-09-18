@@ -45,7 +45,7 @@ export function TheGap() {
             The gap
           </p>
           <h2 className="font-display mt-5 max-w-[680px] text-balance text-[30px] leading-[1.18] tracking-[-0.015em] text-ax-white sm:text-[38px] lg:text-[44px]">
-            Powerful steps are easy. Keeping the whole process together is harder.
+            The steps aren&apos;t the hard part. Keeping them together is.
           </h2>
           <p className="mt-6 max-w-[560px] text-[16px] leading-[1.6] text-ax-text/80">
             A single request can mean understanding what was asked, checking company

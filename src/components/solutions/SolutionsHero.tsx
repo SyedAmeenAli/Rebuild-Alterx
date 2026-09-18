@@ -7,7 +7,7 @@ export function SolutionsHero() {
     <section className="relative flex min-h-[86svh] flex-col overflow-clip bg-ax-black text-ax-white">
       <div className="absolute inset-0 z-0">
         <Image
-          src="/hero/02_solutions_hero.jpg"
+          src="/media/alterx/04_solutions_still.jpg"
           alt=""
           fill
           priority
@@ -29,12 +29,11 @@ export function SolutionsHero() {
         </p>
 
         <h1 className="hero-reveal font-display mt-6 max-w-[720px] text-balance text-[38px] leading-[1.08] tracking-[-0.02em] text-ax-white sm:text-[48px] lg:text-[58px]">
-          Turn business goals into real outcomes.
+          Where work gets complicated.
         </h1>
 
         <p className="hero-reveal mt-6 max-w-[480px] text-[17px] leading-[1.55] text-ax-text/85">
-          ALTERX connects the intent behind a business objective to the work required to carry
-          it through.
+          ALTERX helps turn a goal into a process that can actually run.
         </p>
 
         <div className="hero-reveal mt-9 flex flex-wrap items-center gap-x-8 gap-y-4">
@@ -45,13 +44,13 @@ export function SolutionsHero() {
             Talk to us
             <span aria-hidden="true" className="ml-2">→</span>
           </Link>
-          <Link
-            href="#process"
+          <a
+            href="#gap"
             className="inline-flex items-center gap-2 text-[15px] font-medium text-ax-white/85 transition-colors hover:text-ax-mint"
           >
             See how it works
-            <span aria-hidden="true">→</span>
-          </Link>
+            <span aria-hidden="true">↓</span>
+          </a>
         </div>
       </div>
     </section>

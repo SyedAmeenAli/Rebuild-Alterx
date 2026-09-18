@@ -25,7 +25,7 @@ export function WhereItFits() {
             Where it fits
           </p>
           <h2 className="font-display mt-5 max-w-[620px] text-balance text-[30px] leading-[1.18] tracking-[-0.015em] text-ax-white sm:text-[38px] lg:text-[44px]">
-            Work that crosses systems. Work that still needs to finish.
+            Work that crosses systems.
           </h2>
         </Reveal>
 

@@ -3,18 +3,18 @@ import { Reveal } from "@/components/shared/Reveal";
 const EXAMPLES = [
   {
     n: "01",
-    label: "Lead qualification",
-    steps: ["A request arrives.", "Relevant context is checked.", "The lead is classified.", "The next action happens."],
+    label: "A lead arrives",
+    copy: "The process can understand the request, apply the relevant information, and move the lead to the next step.",
   },
   {
     n: "02",
-    label: "Order coordination",
-    steps: ["An order needs information from multiple systems.", "ALTERX coordinates the process and checks the result."],
+    label: "An order moves",
+    copy: "Information needs to move across systems without losing context.",
   },
   {
     n: "03",
-    label: "Reporting",
-    steps: ["Information is collected,", "processed,", "checked,", "and delivered as a completed result."],
+    label: "A report needs to finish",
+    copy: "Information is collected, processed, checked, and delivered.",
   },
 ];
 
@@ -26,32 +26,26 @@ export function ExampleWork() {
           <p className="text-[12px] font-medium uppercase tracking-[0.14em] text-ax-mint/70">
             Put it to work
           </p>
-          <h2 className="font-display mt-5 max-w-[600px] text-balance text-[30px] leading-[1.18] tracking-[-0.015em] text-ax-white sm:text-[38px] lg:text-[44px]">
-            Some work is simple to automate. Some work needs a system.
-          </h2>
         </Reveal>
 
-        <div className="mt-16 grid grid-cols-1 gap-12 border-t border-ax-mint/10 pt-12 sm:grid-cols-3 sm:gap-8 lg:mt-20">
+        <div className="mt-10 flex flex-col border-t border-ax-mint/10">
           {EXAMPLES.map((ex, i) => (
             <Reveal key={ex.n} delay={i * 90}>
-              <span className="text-[13px] font-medium tracking-[0.06em] text-ax-mint">
-                Example {ex.n}
-              </span>
-              <h3 className="font-display mt-3 text-[22px] font-medium text-ax-white">{ex.label}</h3>
-              <div className="mt-4 flex flex-col gap-1.5">
-                {ex.steps.map((step, si) => (
-                  <p key={si} className="text-[14px] leading-[1.55] text-ax-muted">
-                    {step}
-                  </p>
-                ))}
+              <div className="flex flex-col gap-3 border-b border-ax-mint/10 py-9 sm:flex-row sm:items-baseline sm:gap-10">
+                <span className="text-[13px] font-medium tracking-[0.06em] text-ax-mint sm:w-10 sm:flex-shrink-0">
+                  {ex.n}
+                </span>
+                <h3 className="font-display text-[22px] font-medium text-ax-white sm:w-[280px] sm:flex-shrink-0 sm:text-[26px]">
+                  {ex.label}
+                </h3>
+                <p className="max-w-[440px] text-[15px] leading-[1.6] text-ax-muted">{ex.copy}</p>
               </div>
             </Reveal>
           ))}
         </div>
 
-        <p className="mt-14 max-w-[520px] text-[13px] leading-[1.6] text-ax-muted/70">
-          Illustrative examples of the process classes ALTERX is designed around, not a record of
-          current deployments.
+        <p className="mt-10 max-w-[520px] text-[13px] leading-[1.6] text-ax-muted/70">
+          Illustrative examples of the kinds of work ALTERX is designed around.
         </p>
       </div>
     </section>

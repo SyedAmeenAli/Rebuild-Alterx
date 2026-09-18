@@ -5,7 +5,6 @@ import { TheGap } from "@/components/solutions/TheGap";
 import { WhereItFits } from "@/components/solutions/WhereItFits";
 import { ProcessMap } from "@/components/solutions/ProcessMap";
 import { WhyItHoldsTogether } from "@/components/solutions/WhyItHoldsTogether";
-import { FeatureVisual } from "@/components/solutions/FeatureVisual";
 import { ExampleWork } from "@/components/solutions/ExampleWork";
 import { SolutionsCta } from "@/components/solutions/SolutionsCta";
 
@@ -23,7 +22,6 @@ export default function SolutionsPage() {
       <WhereItFits />
       <ProcessMap />
       <WhyItHoldsTogether />
-      <FeatureVisual />
       <ExampleWork />
       <SolutionsCta />
     </main>

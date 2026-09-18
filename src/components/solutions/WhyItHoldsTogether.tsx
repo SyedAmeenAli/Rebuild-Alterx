@@ -1,13 +1,8 @@
 import { MediaFrame } from "@/components/frames/MediaFrame";
 import { Reveal } from "@/components/shared/Reveal";
-import { image } from "@/lib/media";
+import { alterxMedia, toMedia } from "@/content/alterx-media";
 
-const PRINCIPLES = [
-  { n: "01", label: "Nothing fails silently", copy: "Every run ends with an explicit result." },
-  { n: "02", label: "Decisions stay controlled", copy: "Policy and recovery decisions are deterministic rather than hidden inside arbitrary model calls." },
-  { n: "03", label: "Failure is diagnosed", copy: "Different failures require different responses. Nothing is blindly retried." },
-  { n: "04", label: "Systems stay replaceable", copy: "External providers sit behind interfaces so they don't dictate the entire workflow." },
-];
+const STATES = ["Working", "Problem", "Identify", "Respond", "Continue"];
 
 export function WhyItHoldsTogether() {
   return (
@@ -15,40 +10,46 @@ export function WhyItHoldsTogether() {
       <div className="container-ax">
         <Reveal>
           <p className="text-[12px] font-medium uppercase tracking-[0.14em] text-ax-mint/70">
-            Built for the real world
+            Reliability
           </p>
-          <h2 className="font-display mt-5 max-w-[560px] text-balance text-[30px] leading-[1.18] tracking-[-0.015em] text-ax-white sm:text-[38px] lg:text-[44px]">
-            Reliability is a system, not a prompt.
+          <h2 className="font-display mt-5 max-w-[560px] text-balance text-[30px] leading-[1.18] tracking-[-0.015em] text-ax-white sm:text-[38px] lg:text-[42px]">
+            Real work doesn&apos;t always go to plan.
           </h2>
+          <p className="mt-5 max-w-[520px] text-[16px] leading-[1.6] text-ax-text/80">
+            ALTERX is built to recognize when something changes, respond deliberately, and keep
+            the process moving when it can.
+          </p>
         </Reveal>
-
-        <Reveal delay={80}>
-          <MediaFrame
-            media={image("/hero/09_solutions_features.jpg", "", "center 65%")}
-            aspect="aspect-[16/5]"
-            className="mt-14 lg:mt-16"
-            drift
-          />
-        </Reveal>
-
-        <div className="mt-14 grid grid-cols-1 border-t border-ax-mint/10 sm:grid-cols-2 lg:mt-16 lg:grid-cols-4">
-          {PRINCIPLES.map((p, i) => (
-            <Reveal key={p.n} delay={i * 70}>
-              <div
-                className={`h-full border-b border-ax-mint/10 py-9 pr-6 sm:border-r ${
-                  i % 2 === 0 ? "" : "sm:pl-8"
-                } lg:border-b-0 lg:pl-8 lg:first:pl-0 lg:last:border-r-0`}
-              >
-                <span className="text-[13px] font-medium tracking-[0.06em] text-ax-mint">{p.n}</span>
-                <div className="font-display mt-4 text-[19px] font-medium leading-[1.25] text-ax-white">
-                  {p.label}
-                </div>
-                <p className="mt-3 text-[14px] leading-[1.6] text-ax-muted">{p.copy}</p>
-              </div>
-            </Reveal>
-          ))}
-        </div>
       </div>
+
+      <Reveal delay={100}>
+        <div className="mt-14 lg:mt-16">
+          <MediaFrame media={toMedia(alterxMedia.verificationFrame)} aspect="aspect-[21/9]">
+            <div
+              className="absolute inset-0"
+              style={{ background: "linear-gradient(0deg, rgba(2,5,4,0.75) 0%, rgba(2,5,4,0.15) 55%)" }}
+            />
+            <div className="absolute bottom-6 left-6 flex flex-wrap items-center gap-2 sm:bottom-10 sm:left-10 sm:gap-3">
+              {STATES.map((s, i) => (
+                <div key={s} className="flex items-center gap-2 sm:gap-3">
+                  <span
+                    className={`rounded-full border px-3.5 py-1.5 text-[13px] font-medium backdrop-blur-sm ${
+                      i === STATES.length - 1
+                        ? "border-ax-mint bg-ax-mint text-ax-black"
+                        : "border-ax-mint/30 bg-ax-black/40 text-ax-text"
+                    }`}
+                  >
+                    {s}
+                  </span>
+                  {i < STATES.length - 1 && (
+                    <span aria-hidden="true" className="text-ax-mint/40">→</span>
+                  )}
+                </div>
+              ))}
+            </div>
+          </MediaFrame>
+        </div>
+      </Reveal>
     </section>
   );
 }
