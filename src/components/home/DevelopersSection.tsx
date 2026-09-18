@@ -139,41 +139,59 @@ function highlight(line: string) {
 export function DevelopersSection() {
   const [selected, setSelected] = useState(0);
   const [lang, setLang] = useState<Lang>("ts");
+  const [pulse, setPulse] = useState(0);
   const active = LAYERS[selected];
+
+  const select = (i: number) => {
+    if (i === selected) return;
+    setSelected(i);
+    setPulse((p) => p + 1);
+  };
 
   return (
     <section className="relative bg-ax-bg-soft py-24 lg:py-32">
       <div className="container-ax grid grid-cols-1 gap-14 lg:grid-cols-2 lg:gap-16">
         <Reveal>
-          <div className="relative mx-auto w-full max-w-[440px]" style={{ transform: "rotate(-1.6deg)" }}>
-            {/* receding, tilted stack behind the active panel */}
+          <div className="relative mx-auto w-full max-w-[440px] pr-4 pt-3">
+            {/* receding stack behind the active panel, offset up-right, no rotation */}
             <div
+              key={`stack-2-${pulse}`}
               aria-hidden="true"
-              className="absolute inset-0 origin-bottom-left rounded-[6px] border"
+              className="dev-stack-settle absolute inset-0 rounded-[6px] border"
               style={{
-                borderColor: "rgba(159,255,192,0.18)",
-                backgroundColor: "rgba(6,17,11,0.6)",
-                transform: "rotate(-5deg) translate(14px, 16px)",
+                borderColor: "rgba(159,255,192,0.14)",
+                backgroundColor: "rgba(6,17,11,0.55)",
+                ["--stack-x" as string]: "16px",
+                ["--stack-y" as string]: "-14px",
+                animationDelay: "40ms",
               }}
             />
             <div
+              key={`stack-1-${pulse}`}
               aria-hidden="true"
-              className="absolute inset-0 origin-bottom-left rounded-[6px] border"
+              className="dev-stack-settle absolute inset-0 rounded-[6px] border"
               style={{
-                borderColor: "rgba(159,255,192,0.28)",
-                backgroundColor: "rgba(6,17,11,0.75)",
-                transform: "rotate(-3deg) translate(7px, 8px)",
+                borderColor: "rgba(159,255,192,0.22)",
+                backgroundColor: "rgba(6,17,11,0.7)",
+                ["--stack-x" as string]: "8px",
+                ["--stack-y" as string]: "-7px",
               }}
             />
 
             <div
-              className="relative rounded-[6px] p-5 sm:p-6"
+              key={`front-${pulse}`}
+              className="dev-card-forward relative overflow-hidden rounded-[6px] p-5 sm:p-6"
               style={{
-                border: "1px solid rgba(159,255,192,0.55)",
-                backgroundColor: "rgba(2,5,4,0.85)",
-                boxShadow: "0 0 0 1px rgba(159,255,192,0.08), 0 20px 60px rgba(0,0,0,0.5)",
+                border: "1px solid rgba(159,255,192,0.4)",
+                backgroundColor: "rgba(2,5,4,0.9)",
+                boxShadow: "0 20px 60px rgba(0,0,0,0.5)",
               }}
             >
+              <span
+                aria-hidden="true"
+                className="absolute inset-x-0 top-0 h-[2px]"
+                style={{ backgroundColor: "#32C97A" }}
+              />
               <div className="flex items-center justify-between border-b border-ax-mint/15 pb-3.5">
                 <p className="text-[12px] font-medium text-ax-white">{active.file}</p>
                 <div className="flex items-center gap-1 rounded-[3px] border border-ax-mint/15 p-0.5">
@@ -226,7 +244,7 @@ export function DevelopersSection() {
                 return (
                   <button
                     key={l.key}
-                    onClick={() => setSelected(i)}
+                    onClick={() => select(i)}
                     aria-pressed={isSelected}
                     className="group relative grid grid-cols-[160px_1fr] items-baseline gap-6 px-2 py-3.5 -mx-2 text-left transition-colors duration-200 hover:bg-ax-mint/[0.04]"
                   >
