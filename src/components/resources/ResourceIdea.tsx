@@ -65,7 +65,7 @@ export function ResourceIdea() {
                 style={{ transform: `translateX(${active * -1.5}%)` }}
               >
                 <Image
-                  src="/hero/11_how_it_works.jpg"
+                  src="/media/alterx/03_alter_engine_still.jpg"
                   alt=""
                   fill
                   sizes="(min-width: 1024px) 60vw, 100vw"

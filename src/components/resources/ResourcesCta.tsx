@@ -22,7 +22,7 @@ export function ResourcesCta() {
           <div className="flex flex-col items-start gap-6 sm:flex-row sm:items-center sm:justify-between">
             <div>
               <h2 className="font-display max-w-[380px] text-balance text-[24px] leading-[1.25] tracking-[-0.01em] text-ax-white sm:text-[28px]">
-                Go from reading about it to talking about it.
+                We build systems by learning where they break.
               </h2>
               <p className="mt-3 text-[15px] text-ax-text/80">
                 Tell us what you&apos;re working on.

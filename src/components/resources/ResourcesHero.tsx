@@ -7,7 +7,7 @@ export function ResourcesHero() {
     <section className="relative flex min-h-[70svh] flex-col overflow-clip bg-ax-black text-ax-white">
       <div className="absolute inset-0 z-0">
         <Image
-          src="/hero/05_resources_hero.jpg"
+          src="/media/alterx/06_resources_still.jpg"
           alt=""
           fill
           priority
@@ -29,7 +29,7 @@ export function ResourcesHero() {
         </p>
 
         <h1 className="hero-reveal font-display mt-6 max-w-[560px] text-balance text-[36px] leading-[1.1] tracking-[-0.02em] text-ax-white sm:text-[44px] lg:text-[50px]">
-          Things worth exploring.
+          Thinking about systems that actually work.
         </h1>
 
         <p className="hero-reveal mt-6 max-w-[440px] text-[17px] leading-[1.55] text-ax-text/85">

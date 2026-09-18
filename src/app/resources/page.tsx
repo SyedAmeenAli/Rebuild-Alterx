@@ -4,11 +4,7 @@ import { ResourcesHero } from "@/components/resources/ResourcesHero";
 import { ResourceIndex } from "@/components/resources/ResourceIndex";
 import { ResourceIdea } from "@/components/resources/ResourceIdea";
 import { EngineeringNotes } from "@/components/resources/EngineeringNotes";
-import { FeaturedResource } from "@/components/resources/FeaturedResource";
-import { ProductExploration } from "@/components/resources/ProductExploration";
-import { TechnicalExploration } from "@/components/resources/TechnicalExploration";
 import { ResourcesFaq } from "@/components/resources/ResourcesFaq";
-import { ResourcesContact } from "@/components/resources/ResourcesContact";
 import { ResourcesCta } from "@/components/resources/ResourcesCta";
 
 export const metadata: Metadata = {
@@ -24,11 +20,7 @@ export default function ResourcesPage() {
       <ResourceIndex />
       <ResourceIdea />
       <EngineeringNotes />
-      <FeaturedResource />
-      <ProductExploration />
-      <TechnicalExploration />
       <ResourcesFaq />
-      <ResourcesContact />
       <ResourcesCta />
     </main>
   );
