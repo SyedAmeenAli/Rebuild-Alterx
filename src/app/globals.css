@@ -184,6 +184,52 @@
       animation: none;
     }
   }
+  @keyframes engine-draw {
+    from { stroke-dashoffset: var(--draw-len, 200); }
+    to { stroke-dashoffset: 0; }
+  }
+  .engine-draw {
+    stroke-dasharray: var(--draw-len, 200);
+    stroke-dashoffset: var(--draw-len, 200);
+    animation: engine-draw 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+  @keyframes engine-fade-in {
+    from { opacity: 0; transform: translateY(6px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .engine-fade-in {
+    animation: engine-fade-in 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+  @keyframes engine-scan {
+    0% { transform: translateY(0); opacity: 0.9; }
+    100% { transform: translateY(96px); opacity: 0; }
+  }
+  .engine-scan {
+    animation: engine-scan 0.9s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  }
+  @keyframes engine-dot-travel {
+    0% { offset-distance: 0%; opacity: 0; }
+    8% { opacity: 1; }
+    92% { opacity: 1; }
+    100% { offset-distance: 100%; opacity: 0; }
+  }
+  .engine-dot-travel {
+    offset-path: var(--travel-path);
+    animation: engine-dot-travel 1.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  }
+  @keyframes engine-border-pulse {
+    0% { opacity: 0.14; }
+    30% { opacity: 0.6; }
+    100% { opacity: 0.14; }
+  }
+  .engine-border-pulse {
+    animation: engine-border-pulse 0.7s ease-out;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .engine-draw, .engine-fade-in, .engine-scan, .engine-dot-travel, .engine-border-pulse {
+      animation: none;
+    }
+  }
   .font-display {
     font-family: var(--font-display);
   }
