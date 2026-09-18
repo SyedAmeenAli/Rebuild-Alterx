@@ -30,7 +30,7 @@ export function Header() {
         }`}
       />
 
-      <div className="flex-shrink-0 relative z-20 h-6">
+      <div className="flex-shrink-0 relative z-20 h-8 sm:h-9">
         <Link href="/" aria-label="ALTERX Homepage" className="block h-full focus-visible:outline-ax-mint focus-visible:outline-2 focus-visible:outline-offset-4 rounded-sm">
           <Logo className="h-full w-auto" />
         </Link>
