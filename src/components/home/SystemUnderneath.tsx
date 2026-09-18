@@ -1,19 +1,35 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { Reveal } from "@/components/shared/Reveal";
 
 const CARDS = [
-  { label: "Understand", copy: "Reads what you want in normal language.", col: "lg:col-span-4", h: "lg:min-h-[140px]" },
-  { label: "Plan", copy: "Breaks it into a path.", col: "lg:col-span-5", h: "lg:min-h-[140px]" },
-  { label: "Connect", copy: "Hooks the tools the work needs.", col: "lg:col-span-3", h: "lg:min-h-[140px]" },
-  { label: "Do", copy: "Runs the steps and keeps a record.", col: "lg:col-span-6", h: "lg:min-h-[190px]" },
-  { label: "Check", copy: "Looks at the result before it is finished.", col: "lg:col-span-3", h: "lg:min-h-[190px]" },
-  { label: "Recover", copy: "If something fails, it classifies and continues.", col: "lg:col-span-3", h: "lg:min-h-[190px]" },
+  { label: "Understand", copy: "Reads what you want in normal language.", col: "lg:col-span-4", h: "lg:min-h-[140px]", video: "understand" },
+  { label: "Plan", copy: "Breaks it into a path.", col: "lg:col-span-5", h: "lg:min-h-[140px]", video: "plan" },
+  { label: "Connect", copy: "Hooks the tools the work needs.", col: "lg:col-span-3", h: "lg:min-h-[140px]", video: "connect" },
+  { label: "Do", copy: "Runs the steps and keeps a record.", col: "lg:col-span-6", h: "lg:min-h-[190px]", video: "do" },
+  { label: "Check", copy: "Looks at the result before it is finished.", col: "lg:col-span-3", h: "lg:min-h-[190px]", video: "check" },
+  { label: "Recover", copy: "If something fails, it classifies and continues.", col: "lg:col-span-3", h: "lg:min-h-[190px]", video: "recover" },
 ];
 
 export function SystemUnderneath() {
   const [hovered, setHovered] = useState<number | null>(null);
+  const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
+
+  const handleEnter = (i: number) => {
+    setHovered(i);
+    const v = videoRefs.current[i];
+    if (v) v.play().catch(() => {});
+  };
+
+  const handleLeave = (i: number) => {
+    setHovered(null);
+    const v = videoRefs.current[i];
+    if (v) {
+      v.pause();
+      v.currentTime = 0;
+    }
+  };
 
   return (
     <section id="engine" className="relative bg-ax-bg-soft py-24 lg:py-32">
@@ -38,20 +54,42 @@ export function SystemUnderneath() {
               return (
                 <div
                   key={c.label}
-                  onMouseEnter={() => setHovered(i)}
-                  onMouseLeave={() => setHovered(null)}
-                  onFocus={() => setHovered(i)}
-                  onBlur={() => setHovered(null)}
+                  onMouseEnter={() => handleEnter(i)}
+                  onMouseLeave={() => handleLeave(i)}
+                  onFocus={() => handleEnter(i)}
+                  onBlur={() => handleLeave(i)}
                   tabIndex={0}
-                  className={`relative flex min-h-[150px] flex-col justify-between rounded-[6px] border p-6 transition-all duration-[240ms] ease-[cubic-bezier(0.22,1,0.36,1)] ${c.col} ${c.h}`}
+                  className={`group relative flex min-h-[150px] flex-col justify-between overflow-hidden rounded-[6px] border p-6 transition-all duration-[240ms] ease-[cubic-bezier(0.22,1,0.36,1)] ${c.col} ${c.h}`}
                   style={{
                     borderColor: isHovered ? "#32C97A" : "rgba(159,255,192,0.1)",
-                    backgroundColor: isHovered ? "rgba(50,201,122,0.06)" : "rgba(9,23,15,0.4)",
+                    backgroundColor: "rgba(9,23,15,0.4)",
                     transform: isHovered ? "translateY(-3px)" : isReceded ? "scale(0.985)" : "none",
                     opacity: isReceded ? 0.55 : 1,
                   }}
                 >
-                  <div className="flex items-start justify-between">
+                  <video
+                    ref={(el) => {
+                      videoRefs.current[i] = el;
+                    }}
+                    src={`/media/alterx/video/engine/${c.video}.mp4`}
+                    muted
+                    loop
+                    playsInline
+                    preload="none"
+                    className="absolute inset-0 h-full w-full object-cover transition-opacity duration-300"
+                    style={{ opacity: isHovered ? 0.55 : 0 }}
+                    aria-hidden="true"
+                  />
+                  <div
+                    className="pointer-events-none absolute inset-0 transition-opacity duration-300"
+                    style={{
+                      background: "linear-gradient(180deg, rgba(2,5,4,0.55) 0%, rgba(2,5,4,0.75) 100%)",
+                      opacity: isHovered ? 1 : 0,
+                    }}
+                    aria-hidden="true"
+                  />
+
+                  <div className="relative flex items-start justify-between">
                     <span
                       className="font-display text-[17px] font-medium uppercase tracking-[0.02em] transition-colors duration-200"
                       style={{ color: isHovered ? "#9FFFC0" : "#E8F7EE" }}
@@ -64,7 +102,7 @@ export function SystemUnderneath() {
                       </span>
                     )}
                   </div>
-                  <span className="mt-4 max-w-[260px] text-[14px] leading-[1.5] text-ax-muted">{c.copy}</span>
+                  <span className="relative mt-4 max-w-[260px] text-[14px] leading-[1.5] text-ax-muted">{c.copy}</span>
                 </div>
               );
             })}
