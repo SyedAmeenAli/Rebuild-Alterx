@@ -14,24 +14,16 @@ const GROUPS = [
   {
     title: 'Solutions',
     links: [
-      { label: 'Solutions', href: '/solutions' },
-      { label: 'How it works', href: '/solutions#process' },
+      { label: 'From intent to execution', href: '/solutions#process' },
+      { label: 'Operations', href: '/solutions' },
+      { label: 'Inventory', href: '/products#axinventory' },
     ],
   },
   {
     title: 'Developers',
     links: [
-      { label: 'Developers', href: '/developers' },
-      { label: 'Architecture', href: '/developers#system' },
-      { label: 'Documentation', href: '/docs' },
-    ],
-  },
-  {
-    title: 'Resources',
-    links: [
-      { label: 'Resources', href: '/resources' },
-      { label: 'Engineering Notes', href: '/resources#engineering-notes' },
-      { label: 'FAQ', href: '/resources#faq' },
+      { label: 'How it is built', href: '/developers#system' },
+      { label: 'Reliability', href: '/solutions#reliability' },
     ],
   },
   {
@@ -39,18 +31,34 @@ const GROUPS = [
     links: [
       { label: 'About', href: '/about' },
       { label: 'Careers', href: '/careers' },
-      { label: 'Talk to us', href: talkToUsDestination },
+      { label: 'Contact', href: talkToUsDestination },
+      { label: 'Resources', href: '/resources' },
+    ],
+  },
+  {
+    title: 'Help',
+    links: [
+      { label: 'FAQs', href: '/resources#faq' },
+      { label: 'Contact', href: talkToUsDestination },
     ],
   },
   {
     title: 'Legal',
     links: [
-      { label: 'Privacy Policy', href: '/privacy' },
-      { label: 'Terms of Use', href: '/terms' },
-      { label: 'Cookie Policy', href: '/cookies' },
-      { label: 'Cookie Preferences', href: '/cookies#preferences' },
+      { label: 'Privacy', href: '/privacy' },
+      { label: 'Terms', href: '/terms' },
+      { label: 'Cookies', href: '/cookies' },
     ],
   },
+];
+
+const FAQS = [
+  { q: 'What do I actually do?', a: 'You describe the outcome in normal language.' },
+  { q: 'Is this a chatbot?', a: 'No. It runs work and keeps a record.' },
+  { q: 'What is ALTER ENGINE?', a: 'The execution system under ALTERX.' },
+  { q: 'What is AXINVENTORY?', a: 'Inventory, POS, accounting for Indian retail.' },
+  { q: 'Can I get an API key?', a: 'Not in v1. Managed service.' },
+  { q: 'Where are you?', a: 'Hyderabad.' },
 ];
 
 export function Footer() {
@@ -105,9 +113,29 @@ export function Footer() {
           </nav>
         </div>
 
-        <p className="text-center text-xs text-ax-muted md:text-left">
-          &copy; {new Date().getFullYear()} ALTERX. All rights reserved.
-        </p>
+        <div className="pb-12 mb-10 border-b border-white/10">
+          <h3 className="text-[11px] font-semibold uppercase tracking-[0.1em] text-ax-mint/70">
+            Frequently asked questions
+          </h3>
+          <div className="mt-6 flex flex-col divide-y divide-white/10">
+            {FAQS.map((faq) => (
+              <div
+                key={faq.q}
+                className="grid grid-cols-1 gap-1 py-4 sm:grid-cols-[280px_1fr] sm:items-baseline sm:gap-6"
+              >
+                <span className="text-[14px] font-medium text-ax-white">{faq.q}</span>
+                <span className="text-[14px] text-ax-muted">{faq.a}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+          <p className="text-xs text-ax-muted">
+            &copy; {new Date().getFullYear()} ALTERX. All rights reserved.
+          </p>
+          <p className="text-xs text-ax-muted">Hyderabad</p>
+        </div>
       </div>
     </footer>
   );
