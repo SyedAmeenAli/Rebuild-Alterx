@@ -147,6 +147,16 @@
   .hero-image-drift {
     animation: hero-image-drift 20s ease-out both;
   }
+  @keyframes engine-path-draw {
+    0% { transform: scaleX(0); }
+    35% { transform: scaleX(0.6); }
+    52% { transform: scaleX(0.6); }
+    78% { transform: scaleX(0.8); }
+    100% { transform: scaleX(1); }
+  }
+  .engine-path-draw {
+    animation: engine-path-draw 2.2s cubic-bezier(0.4, 0, 0.2, 1) both;
+  }
   .font-display {
     font-family: var(--font-display);
   }

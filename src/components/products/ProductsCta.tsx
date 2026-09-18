@@ -26,12 +26,12 @@ export function ProductsCta() {
       <div className="relative container-ax text-center">
         <Reveal>
           <h2 className="font-display mx-auto max-w-[560px] text-balance text-[30px] leading-[1.2] tracking-[-0.015em] text-ax-white sm:text-[38px] lg:text-[44px]">
-            See what the system can do.
+            See the work behind the interface.
           </h2>
         </Reveal>
         <Reveal delay={100}>
           <p className="mx-auto mt-5 max-w-[420px] text-[16px] leading-[1.6] text-ax-text/85">
-            Start with the engine. Or start with the product.
+            Start with the engine, or explore the product.
           </p>
         </Reveal>
         <Reveal delay={180}>

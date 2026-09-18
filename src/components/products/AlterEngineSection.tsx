@@ -1,10 +1,8 @@
 import Link from "next/link";
 import { MediaFrame } from "@/components/frames/MediaFrame";
 import { Reveal } from "@/components/shared/Reveal";
-import { image } from "@/lib/media";
+import { alterxMedia, toMedia } from "@/content/alterx-media";
 import { alterEngineDestination } from "@/content/navigation";
-
-const FLOW = ["Objective", "Plan", "Execute", "Verify", "Recover", "Done"];
 
 export function AlterEngineSection() {
   return (
@@ -14,38 +12,15 @@ export function AlterEngineSection() {
           <p className="text-[12px] font-medium uppercase tracking-[0.14em] text-ax-mint/70">
             Alter Engine
           </p>
-          <h2 className="font-display mt-5 max-w-[520px] text-balance text-[30px] leading-[1.18] tracking-[-0.015em] text-ax-white sm:text-[38px] lg:text-[44px]">
-            The engine underneath the simplicity.
+          <h2 className="font-display mt-5 max-w-[560px] text-balance text-[30px] leading-[1.18] tracking-[-0.015em] text-ax-white sm:text-[38px] lg:text-[46px]">
+            The execution system underneath ALTERX.
           </h2>
         </Reveal>
       </div>
 
       <Reveal delay={100}>
         <div className="mt-10 lg:mt-14">
-          <MediaFrame media={image("/hero/11_how_it_works.jpg", "", "center 30%")} aspect="aspect-[21/9]" drift>
-            <div
-              className="absolute inset-0"
-              style={{ background: "linear-gradient(90deg, rgba(2,5,4,0.6) 0%, rgba(2,5,4,0) 50%)" }}
-            />
-            <div className="absolute bottom-6 left-6 flex flex-wrap items-center gap-2 sm:bottom-10 sm:left-10 sm:gap-3">
-              {FLOW.map((step, i) => (
-                <div key={step} className="flex items-center gap-2 sm:gap-3">
-                  <span
-                    className={`rounded-full border px-3.5 py-1.5 text-[13px] font-medium backdrop-blur-sm ${
-                      i === FLOW.length - 1
-                        ? "border-ax-mint bg-ax-mint text-ax-black"
-                        : "border-ax-mint/30 bg-ax-black/40 text-ax-text"
-                    }`}
-                  >
-                    {step}
-                  </span>
-                  {i < FLOW.length - 1 && (
-                    <span aria-hidden="true" className="text-ax-mint/40">→</span>
-                  )}
-                </div>
-              ))}
-            </div>
-          </MediaFrame>
+          <MediaFrame media={toMedia(alterxMedia.engineStill)} aspect="aspect-[16/9] lg:aspect-[21/9]" drift />
         </div>
       </Reveal>
 

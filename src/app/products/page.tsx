@@ -1,10 +1,8 @@
 import type { Metadata } from "next";
 import { Header } from "@/components/site/Header";
 import { ProductsHero } from "@/components/products/ProductsHero";
-import { ProductIndex } from "@/components/products/ProductIndex";
 import { AlterEngineSection } from "@/components/products/AlterEngineSection";
-import { EngineWhyItExists } from "@/components/products/EngineWhyItExists";
-import { EngineReliability } from "@/components/products/EngineReliability";
+import { EngineInOneView } from "@/components/products/EngineInOneView";
 import { ProductTransition } from "@/components/products/ProductTransition";
 import { AxInventorySection } from "@/components/products/AxInventorySection";
 import { AxInventoryCapabilities } from "@/components/products/AxInventoryCapabilities";
@@ -23,10 +21,8 @@ export default function ProductsPage() {
     <main className="flex min-h-screen flex-col bg-ax-bg">
       <Header />
       <ProductsHero />
-      <ProductIndex />
       <AlterEngineSection />
-      <EngineWhyItExists />
-      <EngineReliability />
+      <EngineInOneView />
       <ProductTransition />
       <AxInventorySection />
       <AxInventoryCapabilities />

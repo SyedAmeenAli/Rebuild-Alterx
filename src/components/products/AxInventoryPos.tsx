@@ -1,6 +1,6 @@
 import { Reveal } from "@/components/shared/Reveal";
 
-const FLOW = ["Sale", "Local action", "Offline", "Sync", "Back office"];
+const FLOW = ["Sale", "Offline", "Local", "Sync", "Back in system"];
 
 export function AxInventoryPos() {
   return (

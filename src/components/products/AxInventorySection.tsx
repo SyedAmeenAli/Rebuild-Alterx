@@ -1,39 +1,33 @@
-import Image from "next/image";
 import Link from "next/link";
 import { Reveal } from "@/components/shared/Reveal";
 import { talkToUsDestination } from "@/content/navigation";
 
+const RECORD = [
+  { label: "Product", value: "Men's Overshirt" },
+  { label: "Variant", value: "Olive / M" },
+  { label: "SKU", value: "AX-OS-OLV-M" },
+  { label: "Stock", value: "24" },
+  { label: "Locations", value: "Store 01 (10), Store 02 (14)" },
+];
+
 export function AxInventorySection() {
   return (
-    <section id="axinventory" className="relative overflow-hidden bg-ax-black">
-      <div className="relative aspect-[16/9] w-full lg:aspect-[21/9] lg:min-h-[560px]">
-        <Image
-          src="/hero/10_products_showcase.jpg"
-          alt=""
-          fill
-          sizes="100vw"
-          className="object-cover"
-        />
-        <div
-          className="absolute inset-0"
-          style={{
-            background:
-              "linear-gradient(200deg, rgba(2,5,4,0.9) 0%, rgba(2,5,4,0.4) 42%, rgba(2,5,4,0.65) 100%)",
-          }}
-        />
-
-        <div className="absolute inset-0 flex flex-col justify-center container-ax">
+    <section id="axinventory" className="relative bg-ax-black py-28 lg:py-36">
+      <div className="container-ax">
+        <div className="grid grid-cols-1 items-center gap-14 lg:grid-cols-[1fr_1fr] lg:gap-20">
           <Reveal>
             <p className="text-[12px] font-medium uppercase tracking-[0.14em] text-ax-mint/70">
               AxInventory
             </p>
-            <h2 className="font-display mt-5 max-w-[420px] text-balance text-[32px] leading-[1.15] tracking-[-0.015em] text-ax-white sm:text-[42px] lg:text-[46px]">
+            <h2 className="font-display mt-5 max-w-[440px] text-balance text-[32px] leading-[1.15] tracking-[-0.015em] text-ax-white sm:text-[42px] lg:text-[46px]">
               A real product. Real work.
             </h2>
-            <p className="mt-6 max-w-[420px] text-[16px] leading-[1.55] text-ax-text/90">
-              AxInventory is inventory, point of sale and accounting software for Indian retail
-              businesses. It brings catalogue, stock, sales, purchasing, tax compliance and books
-              into one system.
+            <p className="mt-6 max-w-[440px] text-[16px] leading-[1.55] text-ax-text/85">
+              AxInventory is inventory, point of sale, purchasing, GST and accounting software for
+              Indian retail.
+            </p>
+            <p className="mt-4 max-w-[440px] text-[16px] leading-[1.55] text-ax-text/85">
+              Catalogue, stock, sales, purchasing, tax compliance and books in one system.
             </p>
             <Link
               href={talkToUsDestination}
@@ -42,6 +36,31 @@ export function AxInventorySection() {
               Explore AxInventory
               <span aria-hidden="true">→</span>
             </Link>
+          </Reveal>
+
+          <Reveal delay={120}>
+            <div className="rounded-[6px] border border-ax-mint/15 bg-ax-bg-soft/60 p-7 sm:p-9">
+              <div className="flex items-center gap-2 border-b border-ax-mint/10 pb-4">
+                <span className="h-[7px] w-[7px] rounded-full bg-ax-mint/40" />
+                <span className="h-[7px] w-[7px] rounded-full bg-ax-mint/40" />
+                <span className="h-[7px] w-[7px] rounded-full bg-ax-mint/40" />
+                <span className="ml-2 text-[12px] font-medium uppercase tracking-[0.1em] text-ax-muted">
+                  AxInventory core
+                </span>
+              </div>
+              <div className="mt-6 flex flex-col gap-4">
+                {RECORD.map((r) => (
+                  <div key={r.label} className="flex flex-col gap-1.5 border-b border-ax-mint/5 pb-4 last:border-b-0 last:pb-0">
+                    <span className="text-[12px] font-medium uppercase tracking-[0.08em] text-ax-muted">
+                      {r.label}
+                    </span>
+                    <span className="font-display text-[16px] font-medium text-ax-white">
+                      {r.value}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
           </Reveal>
         </div>
       </div>
