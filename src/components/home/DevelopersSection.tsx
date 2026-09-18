@@ -26,10 +26,16 @@ export function DevelopersSection() {
             <p className="text-[12px] font-medium text-ax-muted">manifest.alterx</p>
             <div className="mt-5 flex flex-col gap-3">
               {MANIFEST.map((m) => (
-                <div key={m.code} className="flex items-center gap-4 text-[14px]">
+                <div
+                  key={m.code}
+                  className="group flex items-center gap-4 rounded-[4px] px-2 py-1 -mx-2 text-[14px] transition-colors duration-200 hover:bg-ax-mint/[0.06]"
+                >
                   <span className="text-ax-muted/60">{m.n}</span>
-                  <span className="font-mono text-ax-text/80">
-                    alter.core.<span className="text-ax-mint">{m.code.split(".")[2]}</span>
+                  <span className="font-mono text-ax-text/80 transition-colors duration-200">
+                    alter.core.
+                    <span className="text-ax-mint transition-colors duration-200 group-hover:text-ax-emerald">
+                      {m.code.split(".")[2]}
+                    </span>
                   </span>
                 </div>
               ))}
@@ -51,8 +57,11 @@ export function DevelopersSection() {
 
             <div className="mt-9 flex flex-col divide-y divide-ax-mint/10 border-t border-ax-mint/10">
               {LAYERS.map((l) => (
-                <div key={l.label} className="grid grid-cols-[160px_1fr] items-baseline gap-6 py-3.5">
-                  <span className="text-[14px] font-medium text-ax-white">{l.label}</span>
+                <div
+                  key={l.label}
+                  className="group grid grid-cols-[160px_1fr] items-baseline gap-6 px-2 py-3.5 -mx-2 transition-colors duration-200 hover:bg-ax-mint/[0.04]"
+                >
+                  <span className="text-[14px] font-medium text-ax-white transition-colors duration-200 group-hover:text-ax-mint">{l.label}</span>
                   <span className="text-[14px] leading-[1.5] text-ax-muted">{l.copy}</span>
                 </div>
               ))}

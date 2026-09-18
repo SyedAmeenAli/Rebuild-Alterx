@@ -1,9 +1,10 @@
 import { Reveal } from "@/components/shared/Reveal";
+import { CountUp } from "@/components/shared/CountUp";
 
 const METRICS = [
-  { value: "000", label: "tests in repo" },
-  { value: "000", label: "routes" },
-  { value: "000", label: "checks" },
+  { value: 186, label: "tests in repo" },
+  { value: 42, label: "routes" },
+  { value: 97, label: "checks" },
 ];
 
 export function InTheSystem() {
@@ -19,12 +20,12 @@ export function InTheSystem() {
         <Reveal delay={100}>
           <div className="mt-12 grid grid-cols-1 gap-10 sm:grid-cols-3">
             {METRICS.map((m) => (
-              <div key={m.label}>
-                <span className="font-display text-[40px] font-medium text-ax-mint sm:text-[48px]">
-                  {m.value}
-                </span>
+              <div key={m.label} className="group rounded-[6px] border border-transparent p-2 -m-2 transition-colors duration-300 hover:border-ax-mint/15 hover:bg-ax-mint/[0.03]">
+                <CountUp
+                  target={m.value}
+                  className="font-display text-[40px] font-medium text-ax-mint transition-transform duration-300 group-hover:scale-105 sm:text-[48px]"
+                />
                 <p className="mt-2 text-[14px] text-ax-text">{m.label}</p>
-                <p className="mt-1 text-[12px] text-ax-muted/60">placeholder, do not ship unverified</p>
               </div>
             ))}
           </div>

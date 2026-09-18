@@ -32,9 +32,12 @@ export function HomeAxInventory() {
               </div>
               <div className="mt-6 flex flex-col divide-y divide-ax-mint/10 border-t border-ax-mint/10">
                 {INVENTORY_ROWS.map((row) => (
-                  <div key={row.label} className="flex items-center justify-between py-3.5 text-[14px]">
-                    <span className="text-ax-muted">{row.label}</span>
-                    <span className="text-ax-white">{row.value}</span>
+                  <div
+                    key={row.label}
+                    className="group flex items-center justify-between px-2 py-3.5 -mx-2 text-[14px] transition-colors duration-200 hover:bg-ax-mint/[0.04]"
+                  >
+                    <span className="text-ax-muted transition-colors duration-200 group-hover:text-ax-text">{row.label}</span>
+                    <span className="text-ax-white transition-colors duration-200 group-hover:text-ax-mint">{row.value}</span>
                   </div>
                 ))}
               </div>
@@ -55,8 +58,11 @@ export function HomeAxInventory() {
 
               <div className="mt-9 flex flex-col divide-y divide-ax-mint/10 border-t border-ax-mint/10">
                 {CAPABILITIES.map((c) => (
-                  <div key={c.label} className="grid grid-cols-[110px_1fr] items-baseline gap-6 py-3.5">
-                    <span className="text-[14px] font-medium text-ax-white">{c.label}</span>
+                  <div
+                    key={c.label}
+                    className="group grid grid-cols-[110px_1fr] items-baseline gap-6 px-2 py-3.5 -mx-2 transition-colors duration-200 hover:bg-ax-mint/[0.04]"
+                  >
+                    <span className="text-[14px] font-medium text-ax-white transition-colors duration-200 group-hover:text-ax-mint">{c.label}</span>
                     <span className="text-[14px] leading-[1.5] text-ax-muted">{c.copy}</span>
                   </div>
                 ))}
