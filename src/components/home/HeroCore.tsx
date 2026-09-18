@@ -48,9 +48,9 @@ export function HeroCore() {
             />
           </h1>
           <p className="hero-reveal mt-7 max-w-[400px] text-[17px] leading-[1.55] text-ax-muted" style={{ animationDelay: "80ms" }}>
-            Planning, execution, verification, and recovery.
+            Say what you need done, once.
             <br />
-            Managed end to end, so you don&apos;t have to.
+            ALTERX carries it through, no dashboards to babysit.
           </p>
           <div className="hero-reveal mt-9" style={{ animationDelay: "140ms" }}>
             <Link href={talkToUsDestination} className="group inline-flex items-center gap-2 text-[15px] font-medium text-ax-white">
