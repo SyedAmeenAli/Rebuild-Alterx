@@ -169,29 +169,18 @@
   .engine-path-draw {
     animation: engine-path-draw 2.2s cubic-bezier(0.4, 0, 0.2, 1) both;
   }
-  @keyframes alterx-petal-breathe {
+  @keyframes alterx-core-fallback-breathe {
     0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.08); }
+    50% { transform: scale(1.02); }
   }
-  .alterx-core-goo {
-    filter: url(#alterx-goo);
-  }
-  .alterx-core-petal {
-    --core-x: 32%;
-    --core-y: 28%;
-    border-radius: 50%;
+  .alterx-core-fallback {
     background:
-      radial-gradient(circle at var(--core-x) var(--core-y), rgba(216, 255, 231, 0.55) 0%, rgba(159, 255, 192, 0.3) 25%, rgba(50, 201, 122, 0.32) 55%, rgba(18, 61, 39, 0.5) 85%);
-    box-shadow: 0 0 70px rgba(50, 201, 122, 0.25);
-    animation: alterx-petal-breathe 7s ease-in-out infinite;
-    transition: background 300ms cubic-bezier(0.22, 1, 0.36, 1);
-  }
-  .alterx-core-hole {
-    background: radial-gradient(circle at 50% 45%, rgba(2, 5, 4, 0.98) 0%, rgba(6, 17, 11, 0.95) 55%, rgba(9, 23, 15, 0.7) 100%);
-    box-shadow: 0 0 24px 6px rgba(159, 255, 192, 0.18), inset 0 0 18px rgba(0, 0, 0, 0.6);
+      radial-gradient(circle at 34% 30%, rgba(216, 255, 231, 0.55) 0%, rgba(159, 255, 192, 0.28) 20%, rgba(91, 234, 153, 0.5) 45%, rgba(18, 61, 39, 0.85) 78%);
+    box-shadow: 0 0 90px rgba(91, 234, 153, 0.16);
+    animation: alterx-core-fallback-breathe 8s ease-in-out infinite;
   }
   @media (prefers-reduced-motion: reduce) {
-    .alterx-core-petal {
+    .alterx-core-fallback {
       animation: none;
     }
   }
