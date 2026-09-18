@@ -24,14 +24,6 @@ export const alterxMedia = {
     desktopPosition: "center 40%",
     mobilePosition: "center 30%",
   },
-  requestToWorkVideo: {
-    type: "video",
-    src: "/media/alterx/video/request-to-work.mp4",
-    poster: "/media/alterx/02_home_request_frame.jpg",
-    alt: "",
-    desktopPosition: "center",
-    mobilePosition: "center",
-  },
   homeRequestFrame: {
     type: "image",
     src: "/media/alterx/02_home_request_frame.jpg",

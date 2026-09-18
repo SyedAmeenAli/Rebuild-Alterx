@@ -19,7 +19,7 @@ export function RequestToWork() {
 
       <Reveal delay={120}>
         <div className="mt-14 lg:mt-16">
-          <MediaFrame media={toMedia(alterxMedia.requestToWorkVideo)} aspect="aspect-[21/9]" />
+          <MediaFrame media={toMedia(alterxMedia.homeRequestFrame)} aspect="aspect-[21/9]" />
         </div>
       </Reveal>
     </section>
