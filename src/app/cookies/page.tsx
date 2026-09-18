@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Header } from "@/components/site/Header";
+import { Footer } from "@/components/site/Footer";
 import { talkToUsDestination } from "@/content/navigation";
 
 export const metadata: Metadata = {
@@ -44,6 +45,7 @@ export default function CookiesPage() {
           </Link>
         </div>
       </section>
+      <Footer />
     </main>
   );
 }

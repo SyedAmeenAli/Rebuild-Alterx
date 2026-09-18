@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Header } from "@/components/site/Header";
+import { Footer } from "@/components/site/Footer";
 import { talkToUsDestination } from "@/content/navigation";
 
 export function LegalPage({ label, title }: { label: string; title: string }) {
@@ -27,6 +28,7 @@ export function LegalPage({ label, title }: { label: string; title: string }) {
           </Link>
         </div>
       </section>
+      <Footer />
     </main>
   );
 }
