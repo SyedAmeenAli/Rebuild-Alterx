@@ -21,23 +21,18 @@ export function HeroCore() {
 
       <div className="container-ax relative grid grid-cols-1 items-center gap-14 lg:grid-cols-[1fr_0.9fr] lg:gap-8">
         <div>
-          <p className="hero-reveal text-[13px] font-medium uppercase tracking-[0.14em] text-ax-mint/70">
-            ALTERX
-          </p>
-          <h1
-            className="hero-reveal mt-5 font-display text-balance text-[42px] font-medium leading-[1.02] tracking-[-0.03em] sm:text-[60px] lg:text-[72px]"
-            style={{ animationDelay: "40ms" }}
-          >
-            Tell it to
-            <br />
+          <div className="hero-reveal flex items-center gap-2.5">
+            <p className="text-[13px] font-medium uppercase tracking-[0.14em] text-ax-mint/70">
+              ALTERX
+            </p>
             <RotatingText
               texts={ROTATING_STATES}
-              mainClassName="inline-flex items-center px-3 sm:px-4 bg-ax-mint text-ax-black overflow-hidden py-2 sm:py-3 justify-center rounded-lg leading-none"
+              mainClassName="inline-flex items-center px-2 bg-ax-mint text-ax-black overflow-hidden py-0.5 justify-center rounded text-[11px] font-medium uppercase tracking-[0.08em] leading-none"
               staggerFrom="last"
               initial={{ y: "100%" }}
               animate={{ y: 0 }}
               exit={{ y: "-120%" }}
-              staggerDuration={0.025}
+              staggerDuration={0.02}
               splitLevelClassName="overflow-hidden"
               transition={{ type: "spring", damping: 30, stiffness: 400 }}
               rotationInterval={2000}
@@ -45,11 +40,21 @@ export function HeroCore() {
               auto
               loop
             />
+          </div>
+          <h1
+            className="hero-reveal mt-5 font-display text-balance text-[42px] font-medium leading-[1.02] tracking-[-0.03em] sm:text-[60px] lg:text-[72px]"
+            style={{ animationDelay: "40ms" }}
+          >
+            Tell it
             <br />
-            what needs to happen.
+            what needs
+            <br />
+            to happen.
           </h1>
-          <p className="hero-reveal mt-7 max-w-[420px] text-[17px] leading-[1.55] text-ax-muted" style={{ animationDelay: "80ms" }}>
-            You describe the work. ALTERX handles the workflow.
+          <p className="hero-reveal mt-7 max-w-[440px] text-[17px] leading-[1.55] text-ax-muted" style={{ animationDelay: "80ms" }}>
+            You describe the outcome. ALTERX plans it, connects the right systems,
+            executes the work, and verifies the result — recovering on its own if
+            something breaks.
           </p>
           <div className="hero-reveal mt-9" style={{ animationDelay: "140ms" }}>
             <Link href={talkToUsDestination} className="group inline-flex items-center gap-2 text-[15px] font-medium text-ax-white">
