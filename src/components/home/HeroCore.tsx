@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { talkToUsDestination } from "@/content/navigation";
-import { AlterxCore } from "./AlterxCore";
+import MetaBalls from "@/components/shared/MetaBalls";
 
 export function HeroCore() {
   return (
@@ -43,7 +43,18 @@ export function HeroCore() {
           className="hero-reveal relative mx-auto h-[360px] w-[360px] sm:h-[460px] sm:w-[460px]"
           style={{ animationDelay: "120ms" }}
         >
-          <AlterxCore />
+          <MetaBalls
+            color="#9FFFC0"
+            cursorBallColor="#9FFFC0"
+            cursorBallSize={1}
+            ballCount={30}
+            animationSize={19}
+            enableMouseInteraction
+            enableTransparency
+            hoverSmoothness={0.11}
+            clumpFactor={0.9}
+            speed={0.6}
+          />
         </div>
       </div>
     </section>
