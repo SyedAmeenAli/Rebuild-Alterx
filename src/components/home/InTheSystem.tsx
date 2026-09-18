@@ -11,7 +11,7 @@ export function InTheSystem() {
     <section className="relative bg-ax-bg-soft py-24 lg:py-32">
       <div className="container-ax">
         <Reveal>
-          <h2 className="font-display text-[26px] leading-[1.2] tracking-[-0.01em] text-ax-white sm:text-[32px]">
+          <h2 className="font-display text-[32px] font-medium leading-[1.1] tracking-[-0.025em] text-ax-white sm:text-[40px]">
             In the system
           </h2>
         </Reveal>

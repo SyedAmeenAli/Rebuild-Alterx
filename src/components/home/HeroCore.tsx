@@ -30,10 +30,10 @@ export function HeroCore() {
 
       <div className="container-ax relative grid grid-cols-1 items-center gap-14 lg:grid-cols-[1fr_0.9fr] lg:gap-8">
         <div>
-          <p className="hero-reveal text-[12px] font-medium uppercase tracking-[0.1em] text-ax-mint/70">
+          <p className="hero-reveal text-[13px] font-medium uppercase tracking-[0.14em] text-ax-mint/70">
             ALTERX
           </p>
-          <h1 className="hero-reveal mt-4 font-display text-balance text-[38px] font-medium leading-[1.05] tracking-[-0.02em] sm:text-[54px] lg:text-[64px]" style={{ animationDelay: "40ms" }}>
+          <h1 className="hero-reveal mt-5 font-display text-balance text-[42px] font-medium leading-[1.02] tracking-[-0.03em] sm:text-[60px] lg:text-[72px]" style={{ animationDelay: "40ms" }}>
             Tell it
             <br />
             what needs

@@ -39,10 +39,10 @@ export function DevelopersSection() {
 
         <Reveal delay={100}>
           <div>
-            <p className="text-[12px] font-medium uppercase tracking-[0.1em] text-ax-mint/70">
+            <p className="text-[13px] font-medium uppercase tracking-[0.14em] text-ax-mint/70">
               Developers
             </p>
-            <h2 className="font-display mt-4 max-w-[440px] text-balance text-[28px] leading-[1.2] tracking-[-0.015em] text-ax-white sm:text-[34px]">
+            <h2 className="font-display mt-5 max-w-[440px] text-balance text-[32px] font-medium leading-[1.1] tracking-[-0.025em] text-ax-white sm:text-[40px]">
               Built so work cannot quietly fail.
             </h2>
             <p className="mt-4 max-w-[440px] text-[15px] leading-[1.6] text-ax-muted">
