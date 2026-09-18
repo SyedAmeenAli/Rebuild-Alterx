@@ -10,10 +10,19 @@ export function Hero() {
   const [prompt, setPrompt] = useState("");
 
   return (
-    <section className="hero relative flex flex-col items-center bg-ax-black pb-24 pt-[160px] text-ax-white lg:pb-32 lg:pt-[180px]">
-      <div className="container-ax flex flex-col items-center text-center">
+    <section className="hero relative flex flex-col items-center overflow-hidden bg-ax-black pb-24 pt-[160px] text-ax-white lg:pb-32 lg:pt-[180px]">
+      <div
+        className="pointer-events-none absolute inset-x-0 top-0 h-[600px]"
+        style={{
+          background:
+            "radial-gradient(ellipse 60% 100% at 50% 0%, rgba(50,201,122,0.14) 0%, rgba(91,234,153,0.04) 45%, rgba(0,0,0,0) 75%)",
+        }}
+        aria-hidden="true"
+      />
+
+      <div className="container-ax relative flex flex-col items-center text-center">
         <h1 className="hero-reveal font-display max-w-[820px] text-balance text-[38px] font-medium leading-[1.08] tracking-[-0.02em] sm:text-[52px] md:text-[62px] lg:text-[70px]">
-          Work that stays <em className="italic text-ax-mint">clear</em>, even
+          Work that stays <span className="text-ax-mint">clear</span>, even
           when AI is doing it.
         </h1>
 
