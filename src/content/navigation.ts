@@ -46,7 +46,7 @@ export const navigationData: NavMenu[] = [
     href: "/developers",
     visualType: "developers",
     links: [
-      { label: "Developer overview", href: "/developers#overview" },
+      { label: "Developer overview", href: "/developers#system" },
       { label: "Documentation", href: "/docs" },
       { label: "APIs / SDKs", href: "/developers#apis", disabled: true },
       { label: "Playground", href: "/developers#playground", disabled: true },

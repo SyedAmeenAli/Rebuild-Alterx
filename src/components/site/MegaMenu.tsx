@@ -152,7 +152,7 @@ function DevelopersMenu() {
       </Column>
       <Column>
         <SectionLabel>Technical</SectionLabel>
-        <NavLink href="/developers#overview" title="Developer overview" />
+        <NavLink href="/developers#system" title="Developer overview" />
         <NavLink href="/docs" title="Documentation" />
       </Column>
       <Column isLast>
