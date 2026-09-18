@@ -9,90 +9,201 @@ const LAYERS = [
     file: "planning.ts",
     label: "Planning",
     copy: "Structured intention sequence.",
-    code: ["alter.core.plan(mission)", "  // Structured intention sequence.", "  return plan.steps"],
+    ts: `import { core } from "@alterx/engine"
+
+const steps = await core.plan(mission, {
+  context: mission.records,
+  constraints: mission.rules,
+})
+
+// steps: [{ id, action, dependsOn }]`,
+    py: `from alterx.core import plan
+
+steps = plan(
+    mission,
+    context=mission.records,
+    constraints=mission.rules,
+)
+
+# steps: [{ id, action, depends_on }]`,
   },
   {
     key: "binding",
     file: "binding.ts",
     label: "Binding",
     copy: "Tool and credential mapping.",
-    code: ["alter.core.bind(plan)", "  // Tool and credential mapping.", "  return plan.bound"],
+    ts: `import { core } from "@alterx/engine"
+
+const bound = await core.bind(plan, {
+  systems: ["axinventory", "email"],
+  scope: connector.scope,
+})
+
+// bound: { tools, credentials }`,
+    py: `from alterx.core import bind
+
+bound = bind(
+    plan,
+    systems=["axinventory", "email"],
+    scope=connector.scope,
+)
+
+# bound: { tools, credentials }`,
   },
   {
     key: "execution",
     file: "execution.ts",
     label: "Durable execution",
     copy: "Engine-level progress checkpointing.",
-    code: ["alter.core.execute(plan)", "  // Engine-level progress checkpointing.", "  return run.state"],
+    ts: `import { core } from "@alterx/engine"
+
+const run = await core.execute(bound, {
+  checkpoint: true,
+})
+
+// run.state: "running" | "waiting_approval" | "completed"`,
+    py: `from alterx.core import execute
+
+run = execute(bound, checkpoint=True)
+
+# run.state: "running" | "waiting_approval" | "completed"`,
   },
   {
     key: "verification",
     file: "verify.ts",
     label: "Verification",
     copy: "Output integrity review.",
-    code: ["alter.core.verify(result)", "  // Output integrity review.", "  return result.checked"],
+    ts: `import { core } from "@alterx/engine"
+
+const checked = await core.verify(run.result, {
+  criteria: mission.criteria,
+})
+
+// checked: { matched, verified, consistent }`,
+    py: `from alterx.core import verify
+
+checked = verify(run.result, criteria=mission.criteria)
+
+# checked: { matched, verified, consistent }`,
   },
   {
     key: "recovery",
     file: "recover.ts",
     label: "Recovery",
     copy: "Self-correcting failover branches.",
-    code: ["alter.core.recover(failure)", "  // Self-correcting failover branches.", "  return run.continued"],
+    ts: `import { core } from "@alterx/engine"
+
+const continued = await core.recover(run.failure, {
+  classify: true,
+})
+
+// continued.state: "recovered" | "blocked"`,
+    py: `from alterx.core import recover
+
+continued = recover(run.failure, classify=True)
+
+# continued.state: "recovered" | "blocked"`,
   },
   {
     key: "memory",
     file: "memory.ts",
     label: "Memory",
     copy: "State archival across sessions.",
-    code: ["alter.core.memory(session)", "  // State archival across sessions.", "  return session.archived"],
+    ts: `import { core } from "@alterx/engine"
+
+const archived = await core.memory(session, {
+  retain: ["decisions", "evidence"],
+})
+
+// archived: { sessionId, timeline }`,
+    py: `from alterx.core import memory
+
+archived = memory(session, retain=["decisions", "evidence"])
+
+# archived: { session_id, timeline }`,
   },
 ] as const;
 
+type Lang = "ts" | "py";
+
+function highlight(line: string) {
+  if (line.trim().startsWith("//") || line.trim().startsWith("#")) {
+    return <span className="text-ax-muted/55">{line}</span>;
+  }
+  if (line.trim().startsWith("import") || line.trim().startsWith("from")) {
+    return <span className="text-ax-mint/70">{line}</span>;
+  }
+  return <span className="text-ax-text/80">{line}</span>;
+}
+
 export function DevelopersSection() {
   const [selected, setSelected] = useState(0);
+  const [lang, setLang] = useState<Lang>("ts");
   const active = LAYERS[selected];
 
   return (
     <section className="relative bg-ax-bg-soft py-24 lg:py-32">
       <div className="container-ax grid grid-cols-1 gap-14 lg:grid-cols-2 lg:gap-16">
         <Reveal>
-          <div className="relative">
-            {/* receding, slightly slanted stack behind the active panel */}
+          <div className="relative mx-auto w-full max-w-[440px]" style={{ transform: "rotate(-1.6deg)" }}>
+            {/* receding, tilted stack behind the active panel */}
             <div
               aria-hidden="true"
-              className="absolute inset-0 origin-bottom-left rounded-[6px] border border-ax-mint/[0.06] bg-ax-black/30"
-              style={{ transform: "rotate(-1.4deg) translate(10px, 10px)" }}
+              className="absolute inset-0 origin-bottom-left rounded-[6px] border"
+              style={{
+                borderColor: "rgba(159,255,192,0.18)",
+                backgroundColor: "rgba(6,17,11,0.6)",
+                transform: "rotate(-5deg) translate(14px, 16px)",
+              }}
             />
             <div
               aria-hidden="true"
-              className="absolute inset-0 origin-bottom-left rounded-[6px] border border-ax-mint/10 bg-ax-black/45"
-              style={{ transform: "rotate(-0.7deg) translate(5px, 5px)" }}
+              className="absolute inset-0 origin-bottom-left rounded-[6px] border"
+              style={{
+                borderColor: "rgba(159,255,192,0.28)",
+                backgroundColor: "rgba(6,17,11,0.75)",
+                transform: "rotate(-3deg) translate(7px, 8px)",
+              }}
             />
 
-            <div className="relative rounded-[6px] border border-ax-mint/25 bg-ax-black/70 p-6 sm:p-7">
-              <div className="flex items-center justify-between border-b border-ax-mint/10 pb-4">
-                <p className="text-[12px] font-medium text-ax-text">{active.file}</p>
-                <span className="text-[10px] font-medium uppercase tracking-[0.1em] text-ax-mint/60">
-                  Alter core
-                </span>
+            <div
+              className="relative rounded-[6px] p-5 sm:p-6"
+              style={{
+                border: "1px solid rgba(159,255,192,0.55)",
+                backgroundColor: "rgba(2,5,4,0.85)",
+                boxShadow: "0 0 0 1px rgba(159,255,192,0.08), 0 20px 60px rgba(0,0,0,0.5)",
+              }}
+            >
+              <div className="flex items-center justify-between border-b border-ax-mint/15 pb-3.5">
+                <p className="text-[12px] font-medium text-ax-white">{active.file}</p>
+                <div className="flex items-center gap-1 rounded-[3px] border border-ax-mint/15 p-0.5">
+                  {(["ts", "py"] as Lang[]).map((l) => (
+                    <button
+                      key={l}
+                      onClick={() => setLang(l)}
+                      className="rounded-[2px] px-2 py-0.5 text-[10px] font-medium uppercase tracking-[0.06em] transition-colors duration-150"
+                      style={{
+                        color: lang === l ? "#020504" : "rgba(232,247,238,0.5)",
+                        backgroundColor: lang === l ? "#9FFFC0" : "transparent",
+                      }}
+                    >
+                      {l === "ts" ? "TypeScript" : "Python"}
+                    </button>
+                  ))}
+                </div>
               </div>
 
-              <div key={active.key} className="dev-panel-fade mt-5 flex flex-col gap-1.5">
-                {active.code.map((line, i) => (
-                  <p key={i} className="font-mono text-[13px] leading-[1.7] text-ax-text/85">
-                    {i === 1 ? (
-                      <span className="text-ax-muted/60">{line}</span>
-                    ) : i === 0 ? (
-                      <>
-                        <span className="text-ax-mint">{line.split("(")[0]}</span>
-                        {"(" + line.split("(")[1]}
-                      </>
-                    ) : (
-                      <span className="text-ax-text/70">{line}</span>
-                    )}
-                  </p>
-                ))}
+              <div key={`${active.key}-${lang}`} className="dev-panel-fade mt-4">
+                <pre className="overflow-x-auto font-mono text-[12.5px] leading-[1.75]">
+                  {(lang === "ts" ? active.ts : active.py).split("\n").map((line, i) => (
+                    <div key={i}>{line.length ? highlight(line) : " "}</div>
+                  ))}
+                </pre>
               </div>
+
+              <p className="mt-4 border-t border-ax-mint/10 pt-3 text-[10.5px] leading-[1.5] text-ax-muted/55">
+                Conceptual — internal execution shown for clarity. Not a public API.
+              </p>
             </div>
           </div>
         </Reveal>
