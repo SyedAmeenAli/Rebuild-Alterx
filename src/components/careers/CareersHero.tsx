@@ -7,7 +7,7 @@ export function CareersHero() {
     <section className="relative flex min-h-[80svh] flex-col overflow-clip bg-ax-black text-ax-white">
       <div className="absolute inset-0 z-0">
         <Image
-          src="/hero/07_careers_hero.jpg"
+          src="/media/alterx/08_careers_still.jpg"
           alt=""
           fill
           priority

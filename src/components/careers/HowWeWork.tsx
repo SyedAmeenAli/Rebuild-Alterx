@@ -12,11 +12,11 @@ export function HowWeWork() {
           </p>
         </Reveal>
         <Reveal delay={100}>
-          <div className="mt-8 flex flex-wrap gap-x-3 gap-y-3">
+          <div className="mt-8 flex flex-col divide-y divide-ax-mint/10 border-t border-ax-mint/10 sm:flex-row sm:divide-x sm:divide-y-0">
             {THEMES.map((theme) => (
               <span
                 key={theme}
-                className="rounded-full border border-ax-mint/20 px-4 py-2 text-[14px] text-ax-text/85"
+                className="py-4 font-display text-[17px] font-medium text-ax-white sm:flex-1 sm:px-6 sm:py-0 sm:text-[16px] sm:leading-[1.4] first:sm:pl-0"
               >
                 {theme}
               </span>
