@@ -1,33 +1,58 @@
+"use client";
+
+import { useState } from "react";
 import { Reveal } from "@/components/shared/Reveal";
 
-const STEPS = ["Request", "Plan", "Execute"];
+const NODES = ["Intent", "Understand", "Plan", "Connect", "Execute", "Verify", "Recover"];
 
 export function RequestToWork() {
-  return (
-    <section id="how" className="relative bg-ax-black py-28 lg:py-36">
-      <div className="container-ax">
-        <Reveal>
-          <h2 className="font-display max-w-[620px] text-balance text-[30px] leading-[1.18] tracking-[-0.015em] text-ax-white sm:text-[38px] lg:text-[44px]">
-            You describe the work. ALTERX handles the workflow.
-          </h2>
-          <p className="mt-5 max-w-[480px] text-[16px] leading-[1.6] text-ax-text/80">
-            You don&apos;t need to build the process yourself. Start with what you need to
-            happen.
-          </p>
-        </Reveal>
-      </div>
+  const [active, setActive] = useState<number | null>(null);
 
-      <Reveal delay={120}>
-        <div className="container-ax mt-14 lg:mt-16">
-          <div className="relative flex aspect-[21/9] items-center justify-center rounded-[10px] border border-ax-mint/10 bg-ax-bg-soft/40 px-10">
-            <div className="relative flex w-full max-w-[640px] items-center justify-between">
-              <div className="absolute left-0 right-0 top-1/2 h-px -translate-y-1/2 bg-ax-mint/20" aria-hidden="true" />
-              {STEPS.map((step) => (
-                <div key={step} className="relative z-10 flex flex-col items-center gap-3 bg-ax-bg-soft/40 px-3">
-                  <span className="h-3 w-3 rounded-full border-2 border-ax-mint bg-ax-black" />
-                  <span className="text-[13px] font-medium text-ax-text/80">{step}</span>
-                </div>
-              ))}
+  return (
+    <section id="how" className="relative bg-ax-black py-24 lg:py-28">
+      <Reveal>
+        <div className="container-ax">
+          <div className="rounded-[4px] border border-ax-mint/10 bg-ax-bg-soft/30 px-6 py-14 sm:px-10 lg:py-16">
+            <div className="grid grid-cols-1 gap-10 lg:grid-cols-[0.85fr_2fr] lg:gap-12">
+              <div>
+                <p className="font-display text-[19px] font-medium leading-[1.3] text-ax-white">
+                  A request becomes a path.
+                </p>
+              </div>
+
+              <div
+                role="list"
+                className="relative flex flex-wrap items-center gap-x-2 gap-y-6"
+                onMouseLeave={() => setActive(null)}
+              >
+                {NODES.map((node, i) => (
+                  <div key={node} className="flex items-center gap-2">
+                    <button
+                      type="button"
+                      role="listitem"
+                      onMouseEnter={() => setActive(i)}
+                      onFocus={() => setActive(i)}
+                      onBlur={() => setActive(null)}
+                      className="text-[15px] font-medium transition-all duration-[240ms] ease-[cubic-bezier(0.22,1,0.36,1)]"
+                      style={{
+                        color: active === null || active === i ? "#5BEA99" : "#123D27",
+                        opacity: active === null || active === i ? 1 : 0.4,
+                      }}
+                    >
+                      {node}
+                    </button>
+                    {i < NODES.length - 1 && (
+                      <span
+                        aria-hidden="true"
+                        className="h-px w-6 transition-colors duration-[240ms]"
+                        style={{
+                          backgroundColor: active === i || active === i + 1 ? "#5BEA99" : "#123D27",
+                        }}
+                      />
+                    )}
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>

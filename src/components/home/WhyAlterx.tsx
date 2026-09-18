@@ -1,44 +1,51 @@
-import { Reveal } from "@/components/shared/Reveal";
+"use client";
 
-const PRINCIPLES = [
-  "Clear steps",
-  "People stay in control",
-  "Work is checked",
-  "Failures are handled deliberately",
+import { useState } from "react";
+
+const ROWS = [
+  { label: "Execute", copy: "The work runs." },
+  { label: "Verify", copy: "The result is checked." },
+  { label: "Continue", copy: "Failure is classified and the path goes on." },
 ];
 
 export function WhyAlterx() {
-  return (
-    <section className="relative bg-ax-black py-28 lg:py-36">
-      <div className="container-ax grid grid-cols-1 gap-14 lg:grid-cols-[1.1fr_0.9fr] lg:gap-20">
-        <Reveal>
-          <h2 className="font-display text-balance text-[30px] leading-[1.2] tracking-[-0.015em] text-ax-white sm:text-[38px] lg:text-[44px]">
-            Most AI either chats or acts blindly. ALTERX sits in the middle.
-          </h2>
-          <p className="mt-6 max-w-[480px] text-[16px] leading-[1.6] text-ax-text/80">
-            It organizes the work, keeps the steps clear, and gives the process somewhere to go
-            when reality gets in the way.
-          </p>
-        </Reveal>
+  const [active, setActive] = useState<number | null>(null);
 
-        <Reveal delay={100}>
-          <div className="relative">
-            <div
-              className="absolute -right-3 -top-3 h-full w-full rounded-[6px] border border-ax-mint/10 bg-ax-bg-soft/40"
-              aria-hidden="true"
-            />
-            <div className="relative flex flex-col divide-y divide-ax-mint/10 border-t border-ax-mint/10 bg-ax-black px-6 py-2">
-              {PRINCIPLES.map((p, i) => (
-                <div key={p} className="flex items-center gap-4 py-5">
-                  <span className="text-[13px] font-medium tracking-[0.06em] text-ax-mint">
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
-                  <span className="text-[17px] font-medium text-ax-white">{p}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-        </Reveal>
+  return (
+    <section className="relative bg-ax-black py-24 lg:py-28">
+      <div className="container-ax">
+        <div className="flex flex-col border-t border-ax-mint/10" onMouseLeave={() => setActive(null)}>
+          {ROWS.map((row, i) => {
+            const isActive = active === i;
+            const isDimmed = active !== null && !isActive;
+            return (
+              <div
+                key={row.label}
+                onMouseEnter={() => setActive(i)}
+                onFocus={() => setActive(i)}
+                onBlur={() => setActive(null)}
+                tabIndex={0}
+                className="relative flex flex-col gap-1.5 border-b border-ax-mint/10 py-8 transition-opacity duration-300 sm:flex-row sm:items-baseline sm:justify-between sm:gap-10"
+                style={{ opacity: isDimmed ? 0.4 : 1 }}
+              >
+                <span
+                  className="absolute left-0 top-0 h-px transition-all duration-300"
+                  style={{
+                    width: isActive ? "64px" : "0px",
+                    backgroundColor: "#32C97A",
+                  }}
+                  aria-hidden="true"
+                />
+                <span className="font-display text-[22px] font-medium text-ax-white sm:text-[26px]">
+                  {row.label}
+                </span>
+                <span className="max-w-[360px] text-[15px] leading-[1.5] text-ax-muted sm:text-right">
+                  {row.copy}
+                </span>
+              </div>
+            );
+          })}
+        </div>
       </div>
     </section>
   );
