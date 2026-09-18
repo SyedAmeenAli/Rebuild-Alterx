@@ -1,51 +1,55 @@
-"use client";
+import { Reveal } from "@/components/shared/Reveal";
 
-import { useState } from "react";
-
-const ROWS = [
-  { label: "Execute", copy: "The work runs." },
-  { label: "Verify", copy: "The result is checked." },
-  { label: "Continue", copy: "Failure is classified and the path goes on." },
-];
+const SUCCESS_PATH = ["Execute", "Verify", "Continue"];
+const FAILURE_PATH = ["Fail", "Classify", "Respond", "Recover"];
 
 export function WhyAlterx() {
-  const [active, setActive] = useState<number | null>(null);
-
   return (
-    <section className="relative bg-ax-black py-24 lg:py-28">
+    <section className="relative bg-ax-black py-28 lg:py-36">
       <div className="container-ax">
-        <div className="flex flex-col border-t border-ax-mint/10" onMouseLeave={() => setActive(null)}>
-          {ROWS.map((row, i) => {
-            const isActive = active === i;
-            const isDimmed = active !== null && !isActive;
-            return (
-              <div
-                key={row.label}
-                onMouseEnter={() => setActive(i)}
-                onFocus={() => setActive(i)}
-                onBlur={() => setActive(null)}
-                tabIndex={0}
-                className="relative flex flex-col gap-1.5 border-b border-ax-mint/10 py-8 transition-opacity duration-300 sm:flex-row sm:items-baseline sm:justify-between sm:gap-10"
-                style={{ opacity: isDimmed ? 0.4 : 1 }}
-              >
-                <span
-                  className="absolute left-0 top-0 h-px transition-all duration-300"
-                  style={{
-                    width: isActive ? "64px" : "0px",
-                    backgroundColor: "#32C97A",
-                  }}
-                  aria-hidden="true"
-                />
-                <span className="font-display text-[22px] font-medium text-ax-white sm:text-[26px]">
-                  {row.label}
-                </span>
-                <span className="max-w-[360px] text-[15px] leading-[1.5] text-ax-muted sm:text-right">
-                  {row.copy}
-                </span>
-              </div>
-            );
-          })}
-        </div>
+        <Reveal>
+          <p className="font-display mx-auto max-w-[520px] text-balance text-center text-[28px] leading-[1.25] tracking-[-0.015em] text-ax-white sm:text-[36px] lg:text-[42px]">
+            Successful execution isn&apos;t enough.
+          </p>
+        </Reveal>
+
+        <Reveal delay={100}>
+          <div className="mt-14 flex flex-col items-center gap-10 lg:mt-16">
+            <div className="flex flex-wrap items-center justify-center gap-3">
+              {SUCCESS_PATH.map((step, i) => (
+                <div key={step} className="flex items-center gap-3">
+                  <span
+                    className={`rounded-full border px-5 py-2 text-[14px] font-medium ${
+                      i === SUCCESS_PATH.length - 1
+                        ? "border-ax-mint bg-ax-mint text-ax-black"
+                        : "border-ax-mint/25 text-ax-text/85"
+                    }`}
+                  >
+                    {step}
+                  </span>
+                  {i < SUCCESS_PATH.length - 1 && (
+                    <span aria-hidden="true" className="text-ax-mint/40">→</span>
+                  )}
+                </div>
+              ))}
+            </div>
+
+            <p className="text-[13px] text-ax-muted">If something changes —</p>
+
+            <div className="flex flex-wrap items-center justify-center gap-3">
+              {FAILURE_PATH.map((step, i) => (
+                <div key={step} className="flex items-center gap-3">
+                  <span className="rounded-full border border-ax-mint/20 px-5 py-2 text-[14px] font-medium text-ax-text/80">
+                    {step}
+                  </span>
+                  {i < FAILURE_PATH.length - 1 && (
+                    <span aria-hidden="true" className="text-ax-mint/40">→</span>
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+        </Reveal>
       </div>
     </section>
   );

@@ -77,6 +77,9 @@ export function Footer() {
             <p className="text-[13px] font-medium uppercase tracking-[0.1em] text-ax-muted/80">
               AI that does the work.
             </p>
+            <p className="max-w-[220px] text-[13px] leading-[1.6] text-ax-muted/70">
+              Outcome first. Governed by design. Proven in use.
+            </p>
           </div>
 
           <nav className="grid grid-cols-2 gap-x-8 gap-y-10 sm:grid-cols-3 lg:grid-cols-6 lg:gap-x-10">
