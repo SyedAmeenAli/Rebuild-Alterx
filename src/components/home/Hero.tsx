@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState } from 'react';
-import Image from 'next/image';
 import Link from 'next/link';
 import { alterEngineDestination } from '@/content/navigation';
 
@@ -11,92 +10,67 @@ export function Hero() {
   const [prompt, setPrompt] = useState("");
 
   return (
-    <section
-      className="hero relative min-h-[100svh] flex flex-col overflow-clip bg-ax-black text-ax-white"
-    >
-      <div className="absolute inset-0 z-0">
-        <Image
-          src="/media/alterx/01_home_hero.jpg"
-          alt=""
-          fill
-          priority
-          sizes="100vw"
-          className="object-cover hero-image-drift"
-        />
+    <section className="hero relative flex flex-col items-center bg-ax-black pb-24 pt-[160px] text-ax-white lg:pb-32 lg:pt-[180px]">
+      <div className="container-ax flex flex-col items-center text-center">
+        <h1 className="hero-reveal font-display max-w-[820px] text-balance text-[38px] font-medium leading-[1.08] tracking-[-0.02em] sm:text-[52px] md:text-[62px] lg:text-[70px]">
+          Work that stays <em className="italic text-ax-mint">clear</em>, even
+          when AI is doing it.
+        </h1>
+
+        <p className="hero-reveal mt-7 max-w-[520px] text-[17px] leading-[1.55] text-ax-text/80">
+          Tell ALTERX what you need. It works out the steps, runs them, and keeps the work
+          moving.
+        </p>
+
+        <div className="hero-reveal mt-9 flex flex-wrap items-center justify-center gap-3">
+          <Link
+            href={alterEngineDestination}
+            className="inline-flex h-12 items-center justify-center rounded-full bg-ax-mint px-7 text-[15px] font-medium text-ax-black transition-colors hover:bg-ax-emerald"
+          >
+            Try Engine
+            <span aria-hidden="true" className="ml-2">→</span>
+          </Link>
+          <a
+            href="#how"
+            className="inline-flex h-12 items-center justify-center rounded-full border border-ax-mint/20 px-7 text-[15px] font-medium text-ax-white/85 transition-colors hover:border-ax-mint/50 hover:text-ax-white"
+          >
+            See how it works
+          </a>
+        </div>
       </div>
 
-      <div
-        className="absolute inset-0 z-[1] pointer-events-none"
-        style={{
-          background:
-            'linear-gradient(180deg, rgba(2,5,4,0.35) 0%, rgba(2,5,4,0.15) 30%, rgba(2,5,4,0.55) 70%, rgba(2,5,4,0.88) 100%)',
-        }}
-      />
-      <div
-        className="absolute inset-x-0 bottom-0 h-72 z-[1] pointer-events-none"
-        style={{ background: 'var(--ax-gradient-glow)' }}
-      />
-
-      <div className="relative z-[2] w-full flex-1 flex flex-col justify-end container-ax pb-16 pt-[140px] lg:pb-20">
-        <div className="max-w-[720px]">
-          <h1 className="hero-reveal font-display text-balance text-[40px] leading-[1.04] tracking-[-0.02em] sm:text-[52px] md:text-[64px] lg:text-[74px] font-medium text-ax-white">
-            Work that stays clear, even when AI is doing it.
-          </h1>
-
-          <p className="hero-reveal mt-7 max-w-[480px] text-[17px] leading-[1.55] text-ax-text/85">
-            Tell ALTERX what you need. It works out the steps, runs them, and keeps the work
-            moving.
-          </p>
-
-          <div className="hero-reveal mt-9 flex flex-wrap items-center gap-x-8 gap-y-4">
+      <div className="hero-reveal mt-16 w-full lg:mt-20">
+        <div className="container-ax max-w-[760px]">
+          <label htmlFor="hero-prompt" className="sr-only">What do you want to get done?</label>
+          <div className="flex items-center gap-2 rounded-[10px] border border-ax-mint/15 bg-ax-bg-soft/60 px-5 py-4 backdrop-blur-md transition-colors focus-within:border-ax-mint/50 sm:gap-3 sm:px-6">
+            <input
+              id="hero-prompt"
+              type="text"
+              value={prompt}
+              onChange={(e) => setPrompt(e.target.value)}
+              placeholder="What do you want to get done?"
+              className="min-w-0 flex-1 bg-transparent text-[15px] text-ax-white outline-none placeholder:text-ax-muted sm:text-[16px]"
+            />
             <Link
               href={alterEngineDestination}
-              className="inline-flex h-12 items-center justify-center rounded-[4px] bg-ax-mint px-7 text-[15px] font-medium text-ax-black transition-colors hover:bg-ax-emerald"
+              aria-label="Get started"
+              className="inline-flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full bg-ax-mint text-ax-black transition-all hover:bg-ax-emerald"
             >
-              Try Engine
-              <span aria-hidden="true" className="ml-2">→</span>
-            </Link>
-            <a
-              href="#how"
-              className="inline-flex items-center gap-2 text-[15px] font-medium text-ax-white/85 transition-colors hover:text-ax-mint"
-            >
-              See how it works
               <span aria-hidden="true">→</span>
-            </a>
+            </Link>
           </div>
 
-          <div className="hero-reveal mt-10">
-            <label htmlFor="hero-prompt" className="sr-only">What do you want to get done?</label>
-            <div className="flex items-center gap-2 sm:gap-3 rounded-[6px] border border-ax-mint/25 bg-ax-black/45 backdrop-blur-md px-4 sm:px-5 py-4 focus-within:border-ax-mint/60 transition-colors">
-              <input
-                id="hero-prompt"
-                type="text"
-                value={prompt}
-                onChange={(e) => setPrompt(e.target.value)}
-                placeholder="What do you want to get done?"
-                className="min-w-0 flex-1 bg-transparent outline-none text-[15px] sm:text-[16px] text-ax-white placeholder:text-ax-muted"
-              />
-              <Link
-                href={alterEngineDestination}
-                aria-label="Get started"
-                className="inline-flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-[4px] bg-ax-mint text-ax-black transition-all hover:bg-ax-emerald"
+          <div className="mt-4 flex flex-wrap justify-center gap-2">
+            {EXAMPLE_PROMPTS.map((example) => (
+              <button
+                key={example}
+                type="button"
+                onClick={() => setPrompt(example)}
+                className="rounded-full border border-ax-mint/15 px-4 py-1.5 text-[13px] text-ax-text/70 transition-colors hover:border-ax-mint/40 hover:text-ax-mint"
               >
-                <span aria-hidden="true">→</span>
-              </Link>
-            </div>
-
-            <div className="mt-4 flex flex-wrap gap-2">
-              {EXAMPLE_PROMPTS.map((example) => (
-                <button
-                  key={example}
-                  type="button"
-                  onClick={() => setPrompt(example)}
-                  className="rounded-full border border-ax-mint/20 px-4 py-1.5 text-[13px] text-ax-text/80 transition-colors hover:border-ax-mint/50 hover:text-ax-mint"
-                >
-                  {example}
-                </button>
-              ))}
-            </div>
+                {example}
+              </button>
+            ))}
           </div>
         </div>
       </div>

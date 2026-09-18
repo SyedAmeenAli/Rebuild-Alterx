@@ -21,73 +21,67 @@ export function HomeProducts() {
         </Reveal>
       </div>
 
-      <Reveal delay={100}>
-        <div className="mt-14 lg:mt-16">
-          <MediaFrame media={toMedia(alterxMedia.engineStill)} aspect="aspect-[16/9] lg:aspect-[21/9]" drift />
-        </div>
-      </Reveal>
-      <div className="container-ax mt-8 lg:mt-10">
-        <Reveal delay={140}>
-          <div className="flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:justify-between">
-            <div>
-              <p className="text-[12px] font-medium uppercase tracking-[0.14em] text-ax-mint/70">
-                Alter Engine
-              </p>
-              <p className="mt-2 max-w-[420px] text-[16px] leading-[1.55] text-ax-text/85">
-                Turns an objective into executable work.
-              </p>
-            </div>
-            <Link
-              href={alterEngineDestination}
-              className="inline-flex flex-shrink-0 items-center gap-2 text-[15px] font-medium text-ax-mint transition-colors hover:text-ax-emerald"
-            >
-              Explore Alter Engine
-              <span aria-hidden="true">→</span>
+      <div className="container-ax mt-14 lg:mt-16">
+        <div className="grid grid-cols-1 gap-3 lg:grid-cols-2">
+          <Reveal>
+            <Link href={alterEngineDestination} className="group relative block overflow-hidden">
+              <MediaFrame media={toMedia(alterxMedia.engineStill)} aspect="aspect-[4/3]" drift>
+                <div
+                  className="absolute inset-0"
+                  style={{ background: "linear-gradient(0deg, rgba(2,5,4,0.75) 0%, rgba(2,5,4,0) 45%)" }}
+                />
+              </MediaFrame>
+              <div className="pointer-events-none absolute inset-x-0 bottom-0 flex items-end justify-between p-6">
+                <div>
+                  <p className="text-[12px] font-medium uppercase tracking-[0.1em] text-ax-mint/80">
+                    Alter Engine
+                  </p>
+                  <p className="mt-1.5 max-w-[280px] text-[14px] leading-[1.4] text-ax-text/80">
+                    Turns an objective into executable work.
+                  </p>
+                </div>
+                <span className="flex-shrink-0 text-[14px] font-medium text-ax-white opacity-0 transition-opacity group-hover:opacity-100">
+                  Explore →
+                </span>
+              </div>
             </Link>
-          </div>
-        </Reveal>
-      </div>
+          </Reveal>
 
-      <div className="container-ax mt-20 lg:mt-24">
-        <Reveal delay={100}>
-          <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-[1fr_1fr] lg:gap-16">
-            <div>
-              <p className="text-[12px] font-medium uppercase tracking-[0.14em] text-ax-mint/70">
-                AxInventory
-              </p>
-              <p className="mt-3 max-w-[420px] text-[16px] leading-[1.55] text-ax-text/85">
-                Inventory, point of sale, purchasing, GST and accounting for Indian retail.
-              </p>
-              <Link
-                href="/products#axinventory"
-                className="mt-6 inline-flex items-center gap-2 text-[15px] font-medium text-ax-mint transition-colors hover:text-ax-emerald"
-              >
-                Explore AxInventory
-                <span aria-hidden="true">→</span>
-              </Link>
-            </div>
-
-            <div className="rounded-[6px] border border-ax-mint/15 bg-ax-black/40 p-7 sm:p-9">
-              <div className="flex items-center gap-2 border-b border-ax-mint/10 pb-4">
+          <Reveal delay={100}>
+            <Link href="/products#axinventory" className="group relative block overflow-hidden bg-ax-black">
+              <div className="aspect-[4/3] p-7 pb-20 sm:p-9 sm:pb-24">
                 <span className="text-[12px] font-medium uppercase tracking-[0.1em] text-ax-muted">
                   AxInventory core
                 </span>
+                <div className="mt-6 flex flex-col gap-3">
+                  {RECORD.map((r) => (
+                    <div key={r.label} className="flex items-baseline justify-between gap-4 border-b border-ax-mint/5 pb-3">
+                      <span className="text-[12px] font-medium uppercase tracking-[0.06em] text-ax-muted">
+                        {r.label}
+                      </span>
+                      <span className="font-display text-[15px] font-medium text-ax-white">
+                        {r.value}
+                      </span>
+                    </div>
+                  ))}
+                </div>
               </div>
-              <div className="mt-6 flex flex-col gap-4">
-                {RECORD.map((r) => (
-                  <div key={r.label} className="flex flex-col gap-1.5 border-b border-ax-mint/5 pb-4 last:border-b-0 last:pb-0">
-                    <span className="text-[12px] font-medium uppercase tracking-[0.08em] text-ax-muted">
-                      {r.label}
-                    </span>
-                    <span className="font-display text-[16px] font-medium text-ax-white">
-                      {r.value}
-                    </span>
-                  </div>
-                ))}
+              <div className="pointer-events-none absolute inset-x-0 bottom-0 flex items-end justify-between p-6">
+                <div>
+                  <p className="text-[12px] font-medium uppercase tracking-[0.1em] text-ax-mint/80">
+                    AxInventory
+                  </p>
+                  <p className="mt-1.5 max-w-[280px] text-[14px] leading-[1.4] text-ax-text/80">
+                    Inventory, POS, purchasing, GST and accounting for Indian retail.
+                  </p>
+                </div>
+                <span className="flex-shrink-0 text-[14px] font-medium text-ax-white opacity-0 transition-opacity group-hover:opacity-100">
+                  Explore →
+                </span>
               </div>
-            </div>
-          </div>
-        </Reveal>
+            </Link>
+          </Reveal>
+        </div>
       </div>
     </section>
   );
