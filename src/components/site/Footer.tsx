@@ -56,8 +56,12 @@ const GROUPS = [
 export function Footer() {
   return (
     <footer className="w-full bg-ax-black text-ax-text py-20 pb-10 relative border-t border-ax-mint/10 overflow-hidden">
-      <div className="absolute inset-0 opacity-[0.12] pointer-events-none">
-        <Image src="/hero/16_footer.jpg" alt="" fill sizes="100vw" className="object-cover" />
+      <div className="absolute inset-0 opacity-[0.4] pointer-events-none">
+        <Image src="/media/alterx/10_footer_still.jpg" alt="" fill sizes="100vw" className="object-cover object-bottom" />
+        <div
+          className="absolute inset-0"
+          style={{ background: "linear-gradient(0deg, rgba(2,5,4,0.3) 0%, rgba(2,5,4,0.85) 60%, rgba(2,5,4,0.98) 100%)" }}
+        />
       </div>
       <div
         className="absolute top-0 left-0 right-0 h-px opacity-40 pointer-events-none"
@@ -66,8 +70,13 @@ export function Footer() {
 
       <div className="container-ax relative">
         <div className="flex flex-col gap-12 pb-16 mb-12 border-b border-white/10 lg:flex-row lg:justify-between lg:gap-8">
-          <div className="h-7 flex-shrink-0">
-            <Logo className="h-full w-auto" />
+          <div className="flex flex-col gap-3">
+            <div className="h-7 flex-shrink-0">
+              <Logo className="h-full w-auto" />
+            </div>
+            <p className="text-[13px] font-medium uppercase tracking-[0.1em] text-ax-muted/80">
+              AI that does the work.
+            </p>
           </div>
 
           <nav className="grid grid-cols-2 gap-x-8 gap-y-10 sm:grid-cols-3 lg:grid-cols-6 lg:gap-x-10">

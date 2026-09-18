@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Reveal } from "@/components/shared/Reveal";
-import { talkToUsDestination } from "@/content/navigation";
+import { alterEngineDestination, talkToUsDestination } from "@/content/navigation";
 
 export function FinalCta() {
   return (
@@ -26,22 +26,31 @@ export function FinalCta() {
       <div className="relative container-ax text-center">
         <Reveal>
           <h2 className="font-display mx-auto max-w-[680px] text-balance text-[32px] leading-[1.18] tracking-[-0.015em] text-ax-white sm:text-[42px] lg:text-[50px]">
-            Bring us something you wish you could automate.
+            Start with one result.
           </h2>
         </Reveal>
         <Reveal delay={100}>
           <p className="mx-auto mt-6 max-w-[440px] text-[16px] leading-[1.6] text-ax-text/85">
-            Tell us about the process. We&apos;ll show you where ALTERX fits.
+            Tell us what you want to get done.
           </p>
         </Reveal>
         <Reveal delay={180}>
-          <Link
-            href={talkToUsDestination}
-            className="mt-10 inline-flex items-center gap-2 rounded-[4px] bg-ax-mint px-7 py-3 text-[15px] font-medium text-ax-black transition-colors hover:bg-ax-emerald"
-          >
-            Talk to us
-            <span aria-hidden="true">→</span>
-          </Link>
+          <div className="mt-10 flex flex-wrap items-center justify-center gap-x-8 gap-y-4">
+            <Link
+              href={alterEngineDestination}
+              className="inline-flex items-center gap-2 rounded-[4px] bg-ax-mint px-7 py-3 text-[15px] font-medium text-ax-black transition-colors hover:bg-ax-emerald"
+            >
+              Try Engine
+              <span aria-hidden="true">→</span>
+            </Link>
+            <Link
+              href={talkToUsDestination}
+              className="inline-flex items-center gap-2 text-[15px] font-medium text-ax-white/85 transition-colors hover:text-ax-mint"
+            >
+              Talk to us
+              <span aria-hidden="true">→</span>
+            </Link>
+          </div>
         </Reveal>
       </div>
     </section>
