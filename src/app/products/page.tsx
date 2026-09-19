@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Header } from "@/components/site/Header";
 import { ProductsHero } from "@/components/products/ProductsHero";
+import { ProductSelector } from "@/components/products/ProductSelector";
 import { AlterEngineSection } from "@/components/products/AlterEngineSection";
 import { EngineInOneView } from "@/components/products/EngineInOneView";
 import { ProductTransition } from "@/components/products/ProductTransition";
@@ -21,6 +22,7 @@ export default function ProductsPage() {
     <main className="flex min-h-screen flex-col bg-ax-bg">
       <Header />
       <ProductsHero />
+      <ProductSelector />
       <AlterEngineSection />
       <EngineInOneView />
       <ProductTransition />
