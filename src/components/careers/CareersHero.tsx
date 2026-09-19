@@ -1,29 +1,19 @@
-import Image from "next/image";
 import Link from "next/link";
 import { talkToUsDestination } from "@/content/navigation";
 
 export function CareersHero() {
   return (
-    <section className="relative flex min-h-[80svh] flex-col overflow-clip bg-ax-black text-ax-white">
-      <div className="absolute inset-0 z-0">
-        <Image
-          src="/media/alterx/08_careers_still.jpg"
-          alt=""
-          fill
-          priority
-          sizes="100vw"
-          className="object-cover hero-image-drift"
-        />
-        <div
-          className="absolute inset-0"
-          style={{
-            background:
-              "linear-gradient(200deg, rgba(2,5,4,0.55) 0%, rgba(2,5,4,0.4) 40%, rgba(2,5,4,0.92) 100%)",
-          }}
-        />
-      </div>
+    <section className="relative flex min-h-[70svh] flex-col justify-end overflow-hidden bg-ax-black text-ax-white">
+      <div
+        className="pointer-events-none absolute inset-x-0 top-0 h-[500px]"
+        style={{
+          background:
+            "radial-gradient(ellipse 55% 90% at 30% 10%, rgba(50,201,122,0.1) 0%, rgba(91,234,153,0.03) 45%, rgba(0,0,0,0) 75%)",
+        }}
+        aria-hidden="true"
+      />
 
-      <div className="relative z-[2] flex flex-1 flex-col justify-end container-ax pb-20 pt-[150px] lg:pb-24">
+      <div className="relative z-[2] container-ax pb-20 pt-[150px] lg:pb-24">
         <p className="hero-reveal text-[12px] font-medium uppercase tracking-[0.14em] text-ax-mint/70">
           Careers
         </p>
