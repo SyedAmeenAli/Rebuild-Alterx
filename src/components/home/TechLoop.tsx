@@ -12,12 +12,7 @@ const TECH_LOGOS = [
 
 export function TechLoop() {
   return (
-    <section className="relative border-t border-ax-mint/10 bg-ax-bg-soft py-14">
-      <div className="container-ax">
-        <p className="mb-8 text-center text-[11px] font-medium uppercase tracking-[0.14em] text-ax-muted/60">
-          Built with
-        </p>
-      </div>
+    <section className="relative border-t border-ax-mint/10 bg-ax-bg-soft py-10">
       <div style={{ height: 40, position: "relative" }}>
         <LogoLoop
           logos={TECH_LOGOS}

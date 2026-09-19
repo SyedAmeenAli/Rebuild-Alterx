@@ -120,7 +120,7 @@ export default function BorderGlow({
   coneSpread = 24,
   animated = false,
   colors = ["#5BEA99", "#32C97A", "#9FFFC0"],
-  fillOpacity = 0.35,
+  fillOpacity = 0,
 }: BorderGlowProps) {
   const cardRef = useRef<HTMLDivElement>(null);
 

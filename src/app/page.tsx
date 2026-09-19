@@ -13,10 +13,10 @@ export default function Home() {
     <main className="flex min-h-screen flex-col bg-ax-bg">
       <Header />
       <HeroCore />
+      <TechLoop />
       <SystemUnderneath />
       <HomeAxInventory />
       <DevelopersSection />
-      <TechLoop />
       <InTheSystem />
       <LatestSection />
       <GetStarted />
