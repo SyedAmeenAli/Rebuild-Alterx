@@ -304,12 +304,18 @@ export function AlterxCore() {
   const [supported, setSupported] = useState<boolean | null>(null);
   const [reduced, setReduced] = useState(false);
   const [mobile, setMobile] = useState(false);
+  const [dragEnabled, setDragEnabled] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     setSupported(hasWebGL());
     setReduced(window.matchMedia("(prefers-reduced-motion: reduce)").matches);
     setMobile(window.innerWidth < 640);
+    // Coarse-pointer (touch) devices skip the drag-to-rotate interaction entirely:
+    // capturing pointer events here previously blocked native page scroll over
+    // the whole hero, so a touch scroll starting on the sphere never moved the page.
+    const canDrag = window.matchMedia("(pointer: fine)").matches;
+    setDragEnabled(canDrag);
 
     const onResize = () => setMobile(window.innerWidth < 640);
     window.addEventListener("resize", onResize);
@@ -355,9 +361,11 @@ export function AlterxCore() {
       }
     };
 
-    el?.addEventListener("pointerdown", onPointerDown);
-    window.addEventListener("pointermove", onPointerMove);
-    window.addEventListener("pointerup", onPointerUp);
+    if (canDrag) {
+      el?.addEventListener("pointerdown", onPointerDown);
+      window.addEventListener("pointermove", onPointerMove);
+      window.addEventListener("pointerup", onPointerUp);
+    }
 
     return () => {
       window.removeEventListener("resize", onResize);
@@ -381,7 +389,10 @@ export function AlterxCore() {
   }
 
   return (
-    <div ref={containerRef} className="h-full w-full cursor-grab touch-none active:cursor-grabbing">
+    <div
+      ref={containerRef}
+      className={`h-full w-full ${dragEnabled ? "cursor-grab touch-none active:cursor-grabbing" : ""}`}
+    >
       <Canvas
         dpr={[1, mobile ? 1.25 : 1.8]}
         camera={{ position: [0.4, 0.1, 4.4], fov: 38 }}

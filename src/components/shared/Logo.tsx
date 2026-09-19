@@ -6,7 +6,7 @@ export function Logo({ className }: { className?: string }) {
       src="/brand/wordmark-light.png"
       alt="ALTERX"
       width={480}
-      height={128}
+      height={268}
       priority
       className={className}
       style={{ width: "auto", height: "100%", objectFit: "contain" }}

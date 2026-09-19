@@ -29,15 +29,15 @@ export function MobileNav() {
         aria-label={open ? "Close menu" : "Open menu"}
         aria-expanded={open}
         onClick={() => setOpen((v) => !v)}
-        className="relative z-20 flex h-9 w-9 flex-col items-center justify-center gap-[5px] focus-visible:outline-ax-mint focus-visible:outline-2 focus-visible:outline-offset-2"
+        className="relative z-20 flex h-9 w-9 flex-col items-center justify-center gap-[5px] rounded-[6px] border border-ax-mint/20 bg-ax-black/40 backdrop-blur-sm focus-visible:outline-ax-mint focus-visible:outline-2 focus-visible:outline-offset-2"
       >
         <span
-          className={`block h-[1.5px] w-5 bg-ax-white transition-transform duration-200 ${
+          className={`block h-[2px] w-5 rounded-full bg-ax-white transition-transform duration-200 ${
             open ? "translate-y-[3.25px] rotate-45" : ""
           }`}
         />
         <span
-          className={`block h-[1.5px] w-5 bg-ax-white transition-transform duration-200 ${
+          className={`block h-[2px] w-5 rounded-full bg-ax-white transition-transform duration-200 ${
             open ? "-translate-y-[3.25px] -rotate-45" : ""
           }`}
         />
