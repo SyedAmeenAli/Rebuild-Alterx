@@ -28,7 +28,7 @@ const GROUPS = [
     links: [
       { label: 'Latest', href: '/resources#index' },
       { label: 'Engineering Notes', href: '/resources#engineering-notes' },
-      { label: 'FAQ', href: '/resources#faq' },
+      { label: 'Resources FAQ', href: '/resources#faq' },
     ],
   },
   {
