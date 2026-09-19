@@ -33,10 +33,12 @@
 
 .hover-concepts__label {
   position: absolute;
+  top: 50%;
+  left: 50%;
   min-width: 10em;
   padding: 0.5em;
   text-align: center;
-  transform: rotate(-90deg);
+  transform: translate(-50%, -50%) rotate(-90deg);
   transition: transform 0.5s ease, color 0.3s ease;
   text-transform: uppercase;
   color: #9fffc0;
@@ -46,11 +48,13 @@
 }
 
 .hover-concepts__panel:hover .hover-concepts__label {
-  transform: rotate(0);
+  transform: translate(-50%, -64px) rotate(0deg);
 }
 
 .hover-concepts__copy {
   position: absolute;
+  top: 50%;
+  left: 50%;
   max-width: 15em;
   padding: 0 1.2em;
   text-align: center;
@@ -58,11 +62,13 @@
   line-height: 1.5;
   color: #cfe9da;
   opacity: 0;
-  transition: opacity 0.3s ease 0.15s;
+  transform: translate(-50%, -8px);
+  transition: opacity 0.3s ease 0.15s, transform 0.3s ease 0.15s;
 }
 
 .hover-concepts__panel:hover .hover-concepts__copy {
   opacity: 1;
+  transform: translate(-50%, 16px);
 }
 
 @media (hover: none) {
