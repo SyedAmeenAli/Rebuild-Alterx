@@ -9,15 +9,15 @@ function EngineVisual() {
       <div className="relative flex items-center">
         <div className="absolute left-0 right-0 top-1/2 h-px -translate-y-1/2 bg-ax-mint/15" />
         <div className="news-visual-travel absolute top-1/2 h-1.5 w-1.5 -translate-y-1/2 rounded-full bg-ax-mint shadow-[0_0_8px_rgba(91,234,153,0.8)]" />
-        <div className="relative flex w-full items-center justify-between">
+        <div className="relative flex w-full items-center justify-between gap-1">
           {ENGINE_STEPS.map((step, i) => (
-            <div key={step} className="flex flex-col items-center gap-2">
+            <div key={step} className="flex min-w-0 flex-col items-center gap-2">
               <span
-                className="h-1.5 w-1.5 rounded-full transition-colors duration-300"
+                className="h-1.5 w-1.5 flex-shrink-0 rounded-full transition-colors duration-300"
                 style={{ backgroundColor: i === ACTIVE_ENGINE_STEP ? "#5BEA99" : "rgba(159,255,192,0.25)" }}
               />
               <span
-                className="text-[9px] font-medium uppercase tracking-[0.06em] transition-colors duration-300"
+                className="whitespace-nowrap text-[7px] font-medium uppercase tracking-[0.04em] transition-colors duration-300 sm:text-[9px] sm:tracking-[0.06em]"
                 style={{ color: i === ACTIVE_ENGINE_STEP ? "#9FFFC0" : "rgba(232,247,238,0.35)" }}
               >
                 {step}
