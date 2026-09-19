@@ -16,7 +16,7 @@ export function HomeFaq() {
   const [open, setOpen] = useState<number | null>(0);
 
   return (
-    <section className="relative bg-ax-bg-soft pb-24 lg:pb-32">
+    <section id="faq" className="relative bg-ax-bg-soft pb-24 lg:pb-32">
       <div className="container-ax">
         <Reveal>
           <h2 className="font-display text-[28px] font-medium leading-[1.1] tracking-[-0.02em] text-ax-white sm:text-[34px]">

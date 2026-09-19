@@ -1,210 +1,117 @@
 "use client";
 
-import React, { useEffect, useState } from 'react';
-import Link from 'next/link';
-import { alterEngineDestination } from '@/content/navigation';
-
-export type MegaMenuId =
-  | "products"
-  | "solutions"
-  | "developers"
-  | "resources"
-  | "about"
-  | null;
+import React, { useEffect, useState } from "react";
+import Link from "next/link";
+import { PRODUCTS } from "@/content/navigation";
+import { NewsVisual } from "@/components/home/latest/NewsVisual";
+import BorderGlow from "@/components/shared/BorderGlow";
 
 interface MegaMenuProps {
-  activeMenu: MegaMenuId;
+  activeMenu: "products" | null;
   onClose: () => void;
   onMouseEnter: () => void;
   onMouseLeave: () => void;
 }
 
+function AlterxVisual() {
+  return (
+    <div className="flex h-full w-full flex-col justify-center gap-3 bg-[#06110B] px-8">
+      <p className="text-[11px] font-medium uppercase tracking-[0.14em] text-ax-mint/70">ALTERX</p>
+      <p className="font-display max-w-[280px] text-[22px] font-medium leading-[1.2] text-ax-white">
+        One system for everything you run.
+      </p>
+      <p className="max-w-[260px] text-[13px] leading-[1.6] text-ax-muted">
+        Say what you need done, once. It takes care of the rest, on its own.
+      </p>
+    </div>
+  );
+}
+
+function ProductVisual({ visual }: { visual: "alterx" | "engine" | "inventory" }) {
+  if (visual === "alterx") return <AlterxVisual />;
+  return <NewsVisual type={visual} />;
+}
+
 export function MegaMenu({ activeMenu, onClose, onMouseEnter, onMouseLeave }: MegaMenuProps) {
-  const [mountedMenu, setMountedMenu] = useState<MegaMenuId>(activeMenu);
-  const [isFading, setIsFading] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+  const [selected, setSelected] = useState(0);
 
   useEffect(() => {
-    let timer: NodeJS.Timeout;
-    if (activeMenu && !isOpen) {
-      setMountedMenu(activeMenu);
+    if (activeMenu === "products") {
       setIsOpen(true);
-    } else if (activeMenu && isOpen && activeMenu !== mountedMenu) {
-      setIsFading(true);
-      timer = setTimeout(() => {
-        setMountedMenu(activeMenu);
-        setIsFading(false);
-      }, 90);
-    } else if (!activeMenu && mountedMenu) {
-      if (isOpen) setIsOpen(false);
-      timer = setTimeout(() => {
-        setMountedMenu(null);
-      }, 120);
+      setSelected(0);
+    } else {
+      setIsOpen(false);
     }
-    return () => {
-      if (timer) clearTimeout(timer);
-    };
-  }, [activeMenu, isOpen, mountedMenu]);
+  }, [activeMenu]);
 
-  if (!isOpen && !mountedMenu) return null;
+  if (!isOpen && activeMenu !== "products") return null;
 
   return (
     <>
       <div
-        className={`fixed inset-x-0 bottom-0 z-[var(--z-menu-backdrop)] bg-ax-black/70 transition-all duration-[120ms] ease-[cubic-bezier(0.25,1,0.5,1)] ${isOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
-        style={{ top: 'var(--header-height, 72px)' }}
+        className={`fixed inset-x-0 bottom-0 z-[var(--z-menu-backdrop)] bg-ax-black/70 transition-opacity duration-[120ms] ease-[cubic-bezier(0.25,1,0.5,1)] ${
+          isOpen ? "opacity-100" : "pointer-events-none opacity-0"
+        }`}
+        style={{ top: "var(--header-height, 72px)" }}
         onClick={onClose}
         aria-hidden="true"
       />
 
       <div
-        className={`mega-menu-portal-panel fixed left-1/2 -translate-x-1/2 z-[var(--z-mega-menu)] w-[min(1160px,calc(100vw-56px))] max-h-[calc(100svh-var(--header-height,72px)-36px)] overflow-y-auto bg-ax-surface/98 backdrop-blur-xl border border-ax-mint/10 rounded-lg shadow-2xl transition-all ease-[cubic-bezier(0.25,1,0.5,1)] ${isOpen ? 'opacity-100 translate-y-0 duration-[180ms]' : 'opacity-0 -translate-y-2 duration-[120ms]'}`}
-        style={{ top: 'calc(var(--header-height, 72px) + 10px)' }}
+        className={`mega-menu-portal-panel fixed left-1/2 z-[var(--z-mega-menu)] w-[min(920px,calc(100vw-56px))] -translate-x-1/2 overflow-hidden rounded-[20px] border border-ax-mint/10 bg-[#06110B] shadow-2xl transition-all ease-[cubic-bezier(0.25,1,0.5,1)] ${
+          isOpen ? "translate-y-0 opacity-100 duration-[220ms]" : "-translate-y-1.5 opacity-0 duration-[160ms]"
+        }`}
+        style={{ top: "calc(var(--header-height, 72px) + 10px)" }}
         onMouseEnter={onMouseEnter}
         onMouseLeave={onMouseLeave}
+        data-menu-panel="products"
       >
-        <div className={`transition-all ease-[cubic-bezier(0.25,1,0.5,1)] ${isFading ? 'opacity-0 translate-y-1 duration-[90ms]' : 'opacity-100 translate-y-0 duration-[160ms]'}`}>
-          {mountedMenu === 'products' && <ProductsMenu />}
-          {mountedMenu === 'solutions' && <SolutionsMenu />}
-          {mountedMenu === 'developers' && <DevelopersMenu />}
-          {mountedMenu === 'resources' && <ResourcesMenu />}
-          {mountedMenu === 'about' && <AboutMenu />}
+        <div className="grid grid-cols-1 md:grid-cols-[0.85fr_1.15fr]">
+          <div className="p-7 md:p-8">
+            <p className="mb-5 text-[11px] font-semibold uppercase tracking-[0.14em] text-ax-muted">Products</p>
+            <div className="flex flex-col">
+              {PRODUCTS.map((p, i) => (
+                <Link
+                  key={p.href}
+                  href={p.href}
+                  onMouseEnter={() => setSelected(i)}
+                  onFocus={() => setSelected(i)}
+                  onClick={onClose}
+                  className="group rounded-[10px] px-3 py-3 transition-colors hover:bg-ax-mint/[0.06]"
+                >
+                  <div
+                    className="font-display text-[19px] font-medium transition-colors"
+                    style={{ color: selected === i ? "#9FFFC0" : "#F4FFF8" }}
+                  >
+                    {p.label}
+                  </div>
+                  {p.desc && <div className="mt-1 text-[13px] leading-[1.5] text-ax-muted">{p.desc}</div>}
+                </Link>
+              ))}
+            </div>
+
+            <div className="mt-2 border-t border-ax-mint/10 pt-2">
+              <Link
+                href="/products"
+                onClick={onClose}
+                className="group flex items-center gap-1.5 rounded-[10px] px-3 py-2.5 text-[13px] font-medium text-ax-muted transition-colors hover:text-ax-mint"
+              >
+                Explore all products
+                <span className="transition-transform duration-200 group-hover:translate-x-1" aria-hidden="true">→</span>
+              </Link>
+            </div>
+          </div>
+
+          <div className="relative hidden border-l border-ax-mint/10 p-6 md:block">
+            <BorderGlow borderRadius={12} backgroundColor="rgba(0,0,0,0)" className="h-full w-full">
+              <div key={selected} className="menu-visual-switch h-full w-full overflow-hidden rounded-[12px]">
+                <ProductVisual visual={PRODUCTS[selected].visual} />
+              </div>
+            </BorderGlow>
+          </div>
         </div>
       </div>
     </>
-  );
-}
-
-function Column({ children, isLast }: { children: React.ReactNode, isLast?: boolean }) {
-  return (
-    <div className={`p-8 lg:p-10 ${!isLast ? 'border-r border-ax-mint/10' : ''}`}>
-      {children}
-    </div>
-  );
-}
-
-function SectionLabel({ children }: { children: React.ReactNode }) {
-  return <div className="text-[12px] font-semibold text-ax-muted uppercase tracking-wider mb-6">{children}</div>;
-}
-
-function NavLink({ href, title, desc, large }: { href: string, title: string, desc?: string, large?: boolean }) {
-  return (
-    <Link href={href} className="group block mb-5 last:mb-0">
-      <div className={`font-medium transition-colors group-hover:text-ax-mint flex items-center gap-2 ${large ? 'font-display text-[22px] md:text-[26px] leading-[1.2] text-ax-white' : 'text-[16px] leading-[1.3] text-ax-text'}`}>
-        {title}
-        {large && <span className="text-ax-mint opacity-0 -translate-x-2 transition-all group-hover:opacity-100 group-hover:translate-x-0">→</span>}
-      </div>
-      {desc && <div className="text-[14px] text-ax-muted mt-1.5 leading-relaxed">{desc}</div>}
-    </Link>
-  );
-}
-
-function ProductsMenu() {
-  return (
-    <div className="grid grid-cols-1 md:grid-cols-3 min-h-[320px]">
-      <Column>
-        <div className="font-display text-[24px] text-ax-white leading-tight mb-3">The intelligence behind execution.</div>
-        <div className="text-[15px] text-ax-muted leading-relaxed">Two real products built on the same execution technology.</div>
-      </Column>
-      <Column>
-        <SectionLabel>Alter Engine</SectionLabel>
-        <NavLink href="/products#alter-engine" title="Alter Engine" desc="Turns objectives into planned, executed and verified work." large />
-      </Column>
-      <Column isLast>
-        <SectionLabel>AxInventory</SectionLabel>
-        <NavLink href="/products#axinventory" title="AxInventory" desc="Inventory, POS, purchasing, GST and accounting." large />
-      </Column>
-    </div>
-  );
-}
-
-function SolutionsMenu() {
-  return (
-    <div className="grid grid-cols-1 md:grid-cols-4 min-h-[320px]">
-      <Column>
-        <div className="font-display text-[24px] text-ax-white leading-tight mb-3">From objective to outcome.</div>
-        <div className="text-[15px] text-ax-muted leading-relaxed">How ALTERX moves work forward.</div>
-      </Column>
-      <Column>
-        <SectionLabel>Process</SectionLabel>
-        <NavLink href="/solutions#gap" title="The gap" />
-        <NavLink href="/solutions#fits" title="Where it fits" />
-      </Column>
-      <Column>
-        <SectionLabel>&nbsp;</SectionLabel>
-        <NavLink href="/solutions#process" title="How it works" />
-        <NavLink href="/solutions#reliability" title="Reliability" />
-      </Column>
-      <Column isLast>
-        <SectionLabel>Access</SectionLabel>
-        <NavLink href={alterEngineDestination} title="Try Alter Engine" />
-      </Column>
-    </div>
-  );
-}
-
-function DevelopersMenu() {
-  return (
-    <div className="grid grid-cols-1 md:grid-cols-3 min-h-[320px]">
-      <Column>
-        <div className="font-display text-[24px] text-ax-white leading-tight mb-3">Build with ALTERX.</div>
-        <div className="text-[15px] text-ax-muted leading-relaxed">Bring execution into your own systems.</div>
-      </Column>
-      <Column>
-        <SectionLabel>Technical</SectionLabel>
-        <NavLink href="/developers#system" title="Developer overview" />
-        <NavLink href="/docs" title="Documentation" />
-      </Column>
-      <Column isLast>
-        <SectionLabel>Access</SectionLabel>
-        <NavLink href="/developers#apis" title="APIs / SDKs" />
-        <NavLink href="/developers#playground" title="Playground" />
-      </Column>
-    </div>
-  );
-}
-
-function ResourcesMenu() {
-  return (
-    <div className="grid grid-cols-1 md:grid-cols-3 min-h-[320px]">
-      <Column>
-        <div className="font-display text-[24px] text-ax-white leading-tight mb-3">Understand the system.</div>
-        <div className="text-[15px] text-ax-muted leading-relaxed">Guides, research and product updates.</div>
-      </Column>
-      <Column>
-        <SectionLabel>Learn</SectionLabel>
-        <NavLink href="/resources" title="Resource hub" />
-        <NavLink href="/resources#guides" title="Guides" />
-      </Column>
-      <Column isLast>
-        <SectionLabel>Read</SectionLabel>
-        <NavLink href="/resources#case-studies" title="Case studies" />
-        <NavLink href="/resources#research" title="Research and updates" />
-      </Column>
-    </div>
-  );
-}
-
-function AboutMenu() {
-  return (
-    <div className="grid grid-cols-1 md:grid-cols-4 min-h-[320px]">
-      <Column>
-        <div className="font-display text-[22px] text-ax-white leading-tight">AI should remain accountable for the work it performs.</div>
-      </Column>
-      <Column>
-        <SectionLabel>Company</SectionLabel>
-        <NavLink href="/about#story" title="Our story" />
-        <NavLink href="/about#mission" title="Mission" />
-      </Column>
-      <Column>
-        <SectionLabel>&nbsp;</SectionLabel>
-        <NavLink href="/about#company" title="Company" />
-        <NavLink href="/careers" title="Careers" />
-      </Column>
-      <Column isLast>
-        <SectionLabel>Contact</SectionLabel>
-        <NavLink href="/contact" title="Talk to us" />
-      </Column>
-    </div>
   );
 }

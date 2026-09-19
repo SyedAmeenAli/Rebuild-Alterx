@@ -1,80 +1,103 @@
-export interface NavLink {
-  label: string;
-  href: string;
-  description?: string;
-  disabled?: boolean;
-}
-
 export const alterEngineDestination = process.env.NEXT_PUBLIC_ALTER_ENGINE_URL ?? "/try-alter-engine";
 export const talkToUsDestination = "/contact";
 
+export interface ListItem {
+  label: string;
+  href: string;
+  desc?: string;
+}
+
+export interface ProductItem extends ListItem {
+  visual: "alterx" | "engine" | "inventory";
+}
+
 export interface NavMenu {
   id: string;
-  trigger: string;
+  label: string;
+  type: "mega" | "list" | "link";
   href?: string;
-  links: NavLink[];
-  secondaryLinks?: NavLink[];
-  visualType: "products" | "solutions" | "developers" | "resources" | "about";
+  items?: ListItem[];
+  footerLabel?: string;
+  footerHref?: string;
 }
+
+/**
+ * Real routes only. Every href below points at a section that
+ * actually exists in the repo (anchors verified against each page's
+ * own `id="..."` — grep before adding, don't invent one). Pricing is
+ * intentionally omitted: no pricing page or model exists yet, and the
+ * alternative is inventing one.
+ */
+export const PRODUCTS: ProductItem[] = [
+  {
+    label: "ALTERX",
+    href: "/",
+    desc: "One system for everything you run.",
+    visual: "alterx",
+  },
+  {
+    label: "Alter Engine",
+    href: "/products#alter-engine",
+    desc: "The execution core beneath ALTERX.",
+    visual: "engine",
+  },
+  {
+    label: "AxInventory",
+    href: "/products#axinventory",
+    desc: "Inventory, POS and accounting for Indian retail.",
+    visual: "inventory",
+  },
+];
 
 export const navigationData: NavMenu[] = [
   {
     id: "products",
-    trigger: "Products",
+    label: "Products",
+    type: "mega",
     href: "/products",
-    visualType: "products",
-    links: [
-      { label: "Alter Engine", href: "/products#alter-engine", description: "The execution system underneath ALTERX." },
-      { label: "AxInventory", href: "/products#axinventory", description: "Inventory, POS, purchasing, GST and accounting." },
-    ],
   },
   {
     id: "solutions",
-    trigger: "Solutions",
+    label: "Solutions",
+    type: "list",
     href: "/solutions",
-    visualType: "solutions",
-    links: [
-      { label: "The gap", href: "/solutions#gap" },
-      { label: "Where it fits", href: "/solutions#fits" },
-      { label: "How it works", href: "/solutions#process" },
-      { label: "Reliability", href: "/solutions#reliability" },
+    items: [
+      { label: "The gap", href: "/solutions#gap", desc: "Where plain software stops short of real execution." },
+      { label: "Where it fits", href: "/solutions#fits", desc: "How ALTERX sits alongside the systems you already run." },
+      { label: "How it works", href: "/solutions#process", desc: "From a plain-language objective to verified execution." },
+      { label: "Reliability", href: "/solutions#reliability", desc: "How the system holds up when execution changes." },
     ],
+    footerLabel: "Explore solutions",
+    footerHref: "/solutions",
   },
   {
-    id: "developers",
-    trigger: "Developers",
+    id: "developer",
+    label: "Developer",
+    type: "list",
     href: "/developers",
-    visualType: "developers",
-    links: [
-      { label: "Developer overview", href: "/developers#system" },
-      { label: "Documentation", href: "/docs" },
-      { label: "APIs / SDKs", href: "/developers#apis", disabled: true },
-      { label: "Playground", href: "/developers#playground", disabled: true },
+    items: [
+      { label: "Developer overview", href: "/developers#system", desc: "How execution is planned, run, verified and recovered." },
+      { label: "Documentation", href: "/docs", desc: "Reference material for building on ALTERX." },
     ],
+    footerLabel: "Read the system",
+    footerHref: "/developers",
   },
   {
-    id: "resources",
-    trigger: "Resources",
-    href: "/resources",
-    visualType: "resources",
-    links: [
-      { label: "Resource hub", href: "/resources" },
-      { label: "Case studies", href: "/resources#case-studies", disabled: true },
-      { label: "Guides", href: "/resources#guides", disabled: true },
-      { label: "Research and updates", href: "/resources#research", disabled: true },
-    ],
-  },
-  {
-    id: "about",
-    trigger: "About",
+    id: "company",
+    label: "Company",
+    type: "list",
     href: "/about",
-    visualType: "about",
-    links: [
-      { label: "Our story", href: "/about#story" },
-      { label: "Mission", href: "/about#mission" },
-      { label: "Company", href: "/about#company" },
-      { label: "Careers", href: "/careers" },
-      { label: "Contact", href: "/contact" },
+    items: [
+      { label: "About", href: "/about", desc: "Why ALTERX exists." },
+      { label: "Careers", href: "/careers", desc: "Build the systems behind the work." },
+      { label: "Contact", href: "/contact", desc: "Tell us what needs to happen." },
+      { label: "FAQ", href: "/#faq", desc: "Common questions about ALTERX." },
     ],
+  },
+  {
+    id: "news",
+    label: "News",
+    type: "link",
+    href: "/resources",
   },
 ];
