@@ -5,6 +5,7 @@ import { ResourceIndex } from "@/components/resources/ResourceIndex";
 import { ResourceIdea } from "@/components/resources/ResourceIdea";
 import { ResourcesLatest } from "@/components/resources/ResourcesLatest";
 import { EngineeringNotes } from "@/components/resources/EngineeringNotes";
+import { WhatsNext } from "@/components/resources/WhatsNext";
 import { ResourcesFaq } from "@/components/resources/ResourcesFaq";
 import { ResourcesCta } from "@/components/resources/ResourcesCta";
 
@@ -22,6 +23,7 @@ export default function ResourcesPage() {
       <ResourceIdea />
       <ResourcesLatest />
       <EngineeringNotes />
+      <WhatsNext />
       <ResourcesFaq />
       <ResourcesCta />
     </main>
