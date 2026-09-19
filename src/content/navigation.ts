@@ -91,7 +91,7 @@ export const navigationData: NavMenu[] = [
       { label: "About", href: "/about", desc: "Why ALTERX exists." },
       { label: "Careers", href: "/careers", desc: "Build the systems behind the work." },
       { label: "Contact", href: "/contact", desc: "Tell us what needs to happen." },
-      { label: "FAQ", href: "/#faq", desc: "Common questions about ALTERX." },
+      { label: "FAQ", href: "/faq", desc: "Common questions about ALTERX." },
     ],
   },
   {
