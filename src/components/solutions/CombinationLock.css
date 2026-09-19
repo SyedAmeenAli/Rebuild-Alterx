@@ -1,0 +1,88 @@
+/* Adapted from Uiverse.io, recolored to the ALTERX mint/black theme. */
+.combination-lock {
+  position: relative;
+  display: flex;
+  gap: 1.1rem;
+  user-select: none;
+  justify-content: center;
+}
+
+.combination-lock__dial {
+  width: 30px;
+  height: 104px;
+  overflow: hidden;
+  perspective: 500px;
+  border-radius: 9px / 220px;
+  outline: solid 2px #06110b;
+  outline-offset: 1px;
+  box-shadow:
+    -2px -3px 0 3px rgba(159, 255, 192, 0.08),
+    0 -3px 0 2px rgba(159, 255, 192, 0.35),
+    0 2px 0 3px rgba(159, 255, 192, 0.18),
+    0 4px 0 4px rgba(0, 0, 0, 0.6);
+}
+
+.combination-lock__nonagon {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  top: 32px;
+  transform-style: preserve-3d;
+  transform-origin: 0 21px;
+  transform: rotateX(0deg);
+  transition: transform 300ms ease;
+}
+
+.combination-lock__face {
+  position: absolute;
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 41px;
+  background-color: #123d27;
+  box-shadow:
+    0 -3px 1px 2px rgba(0, 0, 0, 0.6),
+    0 0px 1px 3px rgba(159, 255, 192, 0.25);
+  font-family: "Menlo", "Consolas", monospace;
+  font-size: 1.4em;
+  font-weight: 700;
+  color: #d8ffe7;
+}
+
+.combination-lock__radio {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  appearance: none;
+  opacity: 0;
+  z-index: 0;
+}
+
+.combination-lock__nonagon:has(.combination-lock__radio-0:checked) { transform: rotateX(0deg); }
+.combination-lock__nonagon:has(.combination-lock__radio-1:checked) { transform: rotateX(36deg); }
+.combination-lock__nonagon:has(.combination-lock__radio-2:checked) { transform: rotateX(72deg); }
+.combination-lock__nonagon:has(.combination-lock__radio-3:checked) { transform: rotateX(108deg); }
+.combination-lock__nonagon:has(.combination-lock__radio-4:checked) { transform: rotateX(144deg); }
+.combination-lock__nonagon:has(.combination-lock__radio-5:checked) { transform: rotateX(180deg); }
+.combination-lock__nonagon:has(.combination-lock__radio-6:checked) { transform: rotateX(216deg); }
+.combination-lock__nonagon:has(.combination-lock__radio-7:checked) { transform: rotateX(252deg); }
+.combination-lock__nonagon:has(.combination-lock__radio-8:checked) { transform: rotateX(288deg); }
+.combination-lock__nonagon:has(.combination-lock__radio-9:checked) { transform: rotateX(324deg); }
+
+.combination-lock__face-0 { transform: rotateX(0deg) translateZ(63px); }
+.combination-lock__face-1 { transform: rotateX(-36deg) translateZ(63px); }
+.combination-lock__face-2 { transform: rotateX(-72deg) translateZ(63px); }
+.combination-lock__face-3 { transform: rotateX(-108deg) translateZ(63px); }
+.combination-lock__face-4 { transform: rotateX(-144deg) translateZ(63px); }
+.combination-lock__face-5 { transform: rotateX(-180deg) translateZ(63px); }
+.combination-lock__face-6 { transform: rotateX(-216deg) translateZ(63px); }
+.combination-lock__face-7 { transform: rotateX(-252deg) translateZ(63px); }
+.combination-lock__face-8 { transform: rotateX(-288deg) translateZ(63px); }
+.combination-lock__face-9 { transform: rotateX(-324deg) translateZ(63px); }
+
+@media (prefers-reduced-motion: reduce) {
+  .combination-lock__nonagon {
+    transition: none;
+  }
+}

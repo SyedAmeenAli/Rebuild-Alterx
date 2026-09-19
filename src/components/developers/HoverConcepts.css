@@ -1,0 +1,92 @@
+/* Adapted from Uiverse.io, recolored to the ALTERX mint theme. */
+.hover-concepts {
+  width: 100%;
+  max-width: 460px;
+  height: 220px;
+  border-radius: 8px;
+  background: #06110b;
+  display: flex;
+  gap: 6px;
+  padding: 0.5em;
+  border: 1px solid rgba(159, 255, 192, 0.14);
+}
+
+.hover-concepts__panel {
+  height: 100%;
+  flex: 1;
+  overflow: hidden;
+  cursor: default;
+  border-radius: 6px;
+  transition: flex 0.5s ease;
+  background: #06110b;
+  border: 1px solid rgba(159, 255, 192, 0.16);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.hover-concepts__panel:hover {
+  flex: 3.2;
+  border-color: rgba(159, 255, 192, 0.5);
+}
+
+.hover-concepts__label {
+  position: absolute;
+  min-width: 10em;
+  padding: 0.5em;
+  text-align: center;
+  transform: rotate(-90deg);
+  transition: transform 0.5s ease, color 0.3s ease;
+  text-transform: uppercase;
+  color: #9fffc0;
+  letter-spacing: 0.1em;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.hover-concepts__panel:hover .hover-concepts__label {
+  transform: rotate(0);
+}
+
+.hover-concepts__copy {
+  position: absolute;
+  max-width: 15em;
+  padding: 0 1.2em;
+  text-align: center;
+  font-size: 12px;
+  line-height: 1.5;
+  color: #cfe9da;
+  opacity: 0;
+  transition: opacity 0.3s ease 0.15s;
+}
+
+.hover-concepts__panel:hover .hover-concepts__copy {
+  opacity: 1;
+}
+
+@media (hover: none) {
+  .hover-concepts {
+    flex-direction: column;
+    height: auto;
+  }
+  .hover-concepts__panel {
+    height: auto;
+    padding: 14px;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+  }
+  .hover-concepts__label {
+    position: static;
+    transform: none;
+    text-align: left;
+    min-width: 0;
+  }
+  .hover-concepts__copy {
+    position: static;
+    opacity: 1;
+    text-align: left;
+    padding: 6px 0 0;
+  }
+}

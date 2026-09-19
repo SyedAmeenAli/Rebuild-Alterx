@@ -1,0 +1,70 @@
+/* Adapted from Uiverse.io, recolored dark/mint for ALTERX. */
+.file-tree {
+  width: 100%;
+  max-width: 320px;
+  border: 1px solid rgba(159, 255, 192, 0.14);
+  border-radius: 8px;
+  padding: 20px;
+  background: #06110b;
+}
+
+.file-tree ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.file-tree ul ul {
+  margin-left: 11px;
+  padding-left: 11px;
+  border-left: 1px solid rgba(159, 255, 192, 0.14);
+}
+
+.file-tree__item {
+  position: relative;
+  margin-top: 2px;
+}
+
+.file-tree__label,
+.file-tree__file {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 8px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 13px;
+  color: #d8ffe7;
+  user-select: none;
+  height: 26px;
+}
+
+.file-tree__label:hover,
+.file-tree__file:hover {
+  background-color: rgba(159, 255, 192, 0.06);
+}
+
+.file-tree__icon {
+  width: 15px;
+  height: 15px;
+  color: #5bea99;
+  flex-shrink: 0;
+}
+
+.file-tree__icon--file {
+  color: rgba(159, 255, 192, 0.5);
+}
+
+.file-tree__toggle {
+  display: none;
+}
+
+.file-tree__children-wrapper {
+  display: grid;
+  grid-template-rows: 1fr;
+  transition: grid-template-rows 0.3s ease-in-out;
+}
+
+.file-tree__children {
+  overflow: hidden;
+}

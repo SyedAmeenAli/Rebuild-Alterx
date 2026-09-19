@@ -1,5 +1,6 @@
 import { Reveal } from "@/components/shared/Reveal";
 import GlareHover from "@/components/shared/GlareHover";
+import { EngineTerminal } from "./EngineTerminal";
 
 const PATH = [
   {
@@ -36,18 +37,23 @@ export function SystemOverview() {
   return (
     <section id="system" className="relative bg-ax-bg-soft py-28 lg:py-36">
       <div className="container-ax">
-        <Reveal>
-          <p className="text-[12px] font-medium uppercase tracking-[0.14em] text-ax-mint/70">
-            The system
-          </p>
-          <h2 className="font-display mt-5 max-w-[480px] text-balance text-[30px] leading-[1.18] tracking-[-0.015em] text-ax-white sm:text-[36px] lg:text-[40px]">
-            Simple on the surface. Structured underneath.
-          </h2>
-          <p className="mt-6 max-w-[560px] text-[16px] leading-[1.6] text-ax-text/80">
-            A controlled execution pipeline, not a raw prompt-response loop: intent, plan, bind,
-            execute, verify, recover.
-          </p>
-        </Reveal>
+        <div className="flex flex-col gap-10 lg:flex-row lg:items-end lg:justify-between">
+          <Reveal>
+            <p className="text-[12px] font-medium uppercase tracking-[0.14em] text-ax-mint/70">
+              The system
+            </p>
+            <h2 className="font-display mt-5 max-w-[480px] text-balance text-[30px] leading-[1.18] tracking-[-0.015em] text-ax-white sm:text-[36px] lg:text-[40px]">
+              Simple on the surface. Structured underneath.
+            </h2>
+            <p className="mt-6 max-w-[560px] text-[16px] leading-[1.6] text-ax-text/80">
+              A controlled execution pipeline, not a raw prompt-response loop: intent, plan, bind,
+              execute, verify, recover.
+            </p>
+          </Reveal>
+          <Reveal delay={80}>
+            <EngineTerminal />
+          </Reveal>
+        </div>
 
         <Reveal delay={120}>
           <div className="mt-14 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:mt-16 lg:grid-cols-4">

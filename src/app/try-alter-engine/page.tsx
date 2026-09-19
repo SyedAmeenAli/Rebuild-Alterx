@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Header } from "@/components/site/Header";
+import { GeneratingGate } from "@/components/shared/GeneratingGate";
 
 export const metadata: Metadata = {
   title: "Try Alter Engine — ALTERX",
@@ -47,27 +48,29 @@ export default function TryAlterEngine() {
                 Engine structure
               </h2>
 
-              <div className="flex flex-col gap-6">
-                {STEPS.map((step) => (
-                  <div key={step.n} className={`flex gap-4 ${step.state === "pending" ? "opacity-50" : ""}`}>
-                    <div
-                      className={`flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full border text-[13px] font-semibold ${
-                        step.state === "active"
-                          ? "border-ax-mint bg-ax-mint text-ax-black"
-                          : "border-ax-mint/20 bg-ax-black text-ax-text"
-                      }`}
-                    >
-                      {step.n}
+              <GeneratingGate>
+                <div className="flex flex-col gap-6">
+                  {STEPS.map((step) => (
+                    <div key={step.n} className={`flex gap-4 ${step.state === "pending" ? "opacity-50" : ""}`}>
+                      <div
+                        className={`flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full border text-[13px] font-semibold ${
+                          step.state === "active"
+                            ? "border-ax-mint bg-ax-mint text-ax-black"
+                            : "border-ax-mint/20 bg-ax-black text-ax-text"
+                        }`}
+                      >
+                        {step.n}
+                      </div>
+                      <div>
+                        <h3 className={`mb-1 font-medium ${step.state === "active" ? "text-ax-mint" : "text-ax-white"}`}>
+                          {step.label}
+                        </h3>
+                        <p className="text-[15px] text-ax-text/70">{step.copy}</p>
+                      </div>
                     </div>
-                    <div>
-                      <h3 className={`mb-1 font-medium ${step.state === "active" ? "text-ax-mint" : "text-ax-white"}`}>
-                        {step.label}
-                      </h3>
-                      <p className="text-[15px] text-ax-text/70">{step.copy}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
+                  ))}
+                </div>
+              </GeneratingGate>
             </section>
 
             <section className="flex flex-col items-start justify-between gap-6 rounded-[8px] border border-ax-mint/20 bg-ax-mint/5 p-8 md:flex-row md:items-center">

@@ -4,6 +4,7 @@ import { SolutionsSubHero } from "@/components/solutions/SolutionsSubHero";
 import { SolutionsSubNav } from "@/components/solutions/SolutionsSubNav";
 import { SolutionsCta } from "@/components/solutions/SolutionsCta";
 import GlareHover from "@/components/shared/GlareHover";
+import { CombinationLock } from "@/components/solutions/CombinationLock";
 
 const PRINCIPLES = [
   {
@@ -63,6 +64,26 @@ export default function ReliabilityPage() {
                 </div>
               </GlareHover>
             ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="relative bg-ax-bg-soft py-24 lg:py-32">
+        <div className="container-ax">
+          <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-[1fr_1fr] lg:gap-16">
+            <div>
+              <p className="text-[12px] font-medium uppercase tracking-[0.14em] text-ax-mint/70">
+                Access
+              </p>
+              <h2 className="font-display mt-5 max-w-[440px] text-balance text-[26px] leading-[1.25] tracking-[-0.01em] text-ax-white sm:text-[30px]">
+                Nothing runs with more access than it needs.
+              </h2>
+              <p className="mt-4 max-w-[440px] text-[15px] leading-[1.6] text-ax-muted">
+                Every credential, tool, and scope is granted for the work in front of it — not
+                held open by default.
+              </p>
+            </div>
+            <CombinationLock />
           </div>
         </div>
       </section>
