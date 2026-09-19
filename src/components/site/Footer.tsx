@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Logo } from '../shared/Logo';
+import { Logo, LogoMark } from '../shared/Logo';
 import { navigationData, PRODUCTS, talkToUsDestination } from '@/content/navigation';
 
 // Derived from the same navigationData/PRODUCTS the header uses, instead of a
@@ -109,10 +109,15 @@ export function Footer() {
           </nav>
         </div>
 
-        <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
-          <p className="text-xs text-ax-muted">
-            &copy; {new Date().getFullYear()} ALTERX. All rights reserved.
-          </p>
+        <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+          <div className="flex items-center gap-2.5">
+            <div className="h-4 w-4 opacity-70">
+              <LogoMark className="h-full w-auto" />
+            </div>
+            <p className="text-xs text-ax-muted">
+              &copy; {new Date().getFullYear()} ALTERX. All rights reserved.
+            </p>
+          </div>
           <p className="text-xs text-ax-muted">Hyderabad</p>
         </div>
       </div>

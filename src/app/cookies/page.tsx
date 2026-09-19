@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { Header } from "@/components/site/Header";
-import { Footer } from "@/components/site/Footer";
-import { talkToUsDestination } from "@/content/navigation";
+
+const CONTACT_LINE =
+  "Contact and grievance: alterx@alterx.co.in · +91 93905 85526 · 8-1-346/10/A/1, Sabza Colony, Brindavan Colony, Toli Chowki, Hyderabad, Telangana 500008, India";
 
 export const metadata: Metadata = {
   title: "Cookie Policy — ALTERX",
-  description: "How ALTERX uses cookies. The site currently sets no non-essential tracking cookies.",
+  description: "How ALTERX uses cookies and local storage. The marketing site sets no tracking cookies.",
 };
 
 export default function CookiesPage() {
@@ -21,31 +21,99 @@ export default function CookiesPage() {
           <h1 className="font-display mt-5 text-balance text-[32px] leading-[1.2] tracking-[-0.015em] text-ax-white sm:text-[40px]">
             Cookie Policy
           </h1>
-          <p className="mt-8 max-w-[520px] text-[16px] leading-[1.6] text-ax-muted">
-            This policy is being finalized. The site does not currently set non-essential
-            tracking cookies.
+          <p className="mt-3 text-[13px] text-ax-muted/70">
+            Last updated: 9 August 2026 · Published by ALTERX. Not legal advice; has not been
+            reviewed by outside legal counsel.
           </p>
 
-          <div id="preferences" className="mt-16 border-t border-ax-mint/10 pt-10">
-            <h2 className="font-display text-[22px] font-medium text-ax-white">
-              Cookie Preferences
-            </h2>
-            <p className="mt-4 max-w-[520px] text-[15px] leading-[1.6] text-ax-muted">
-              There&apos;s no cookie consent choice to manage yet — the site isn&apos;t using
-              tracking cookies. This will update if that changes.
+          <div className="mt-8 rounded-[6px] border border-ax-mint/15 bg-ax-mint/5 p-5">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.1em] text-ax-mint/70">
+              Plain-language summary
+            </p>
+            <p className="mt-3 text-[14px] leading-[1.6] text-ax-muted">
+              This policy describes the cookies and similar technologies ALTERX currently uses
+              on alterx.co.in. The marketing website does not set tracking or advertising
+              cookies. Local storage is used only inside the Try Alter Engine demonstration to
+              hold your own demo workspace state on your device.
             </p>
           </div>
 
-          <Link
-            href={talkToUsDestination}
-            className="mt-10 inline-flex items-center gap-2 text-[15px] font-medium text-ax-mint transition-colors hover:text-ax-emerald"
-          >
-            Talk to us
-            <span aria-hidden="true">→</span>
-          </Link>
+          <h2 className="mt-12 text-[13px] font-semibold uppercase tracking-[0.1em] text-ax-mint/70">
+            1. What this policy covers
+          </h2>
+          <p className="mt-3 text-[15px] leading-[1.6] text-ax-text/80">
+            This Policy describes cookies, local storage, and similar technologies used on
+            alterx.co.in, including the Try Alter Engine demonstration area.
+          </p>
+
+          <h2 className="mt-10 text-[13px] font-semibold uppercase tracking-[0.1em] text-ax-mint/70">
+            2. Cookies
+          </h2>
+          <p className="mt-3 text-[15px] leading-[1.6] text-ax-text/80">
+            The ALTERX marketing website does not currently set analytics, advertising, or
+            tracking cookies. If that changes, this Policy will be updated to name the
+            technology, its purpose, and how to manage it before it is deployed.
+          </p>
+
+          <h2 className="mt-10 text-[13px] font-semibold uppercase tracking-[0.1em] text-ax-mint/70">
+            3. Local storage in Try Alter Engine
+          </h2>
+          <p className="mt-3 text-[15px] leading-[1.6] text-ax-text/80">
+            The Try Alter Engine demonstration area stores a small amount of information
+            directly in your browser&apos;s local storage — for example, the demo workspace name
+            and the missions, connections, and knowledge items you create while exploring the
+            demo.
+          </p>
+          <p className="mt-3 text-[15px] leading-[1.6] text-ax-text/80">
+            This information stays on your device, is not transmitted to ALTERX servers, and
+            exists only to make the demonstration usable across a session. Clearing it
+            (available from the demo&apos;s settings, or by clearing your browser&apos;s site
+            data) removes it.
+          </p>
+
+          <h2 className="mt-10 text-[13px] font-semibold uppercase tracking-[0.1em] text-ax-mint/70">
+            4. Fonts and other embedded resources
+          </h2>
+          <p className="mt-3 text-[15px] leading-[1.6] text-ax-text/80">
+            The website loads Hanken Grotesk from Google Fonts. Loading a font from a
+            third-party host can expose your IP address and request information to that host,
+            consistent with the host&apos;s own practices.
+          </p>
+
+          <h2 id="preferences" className="mt-10 text-[13px] font-semibold uppercase tracking-[0.1em] text-ax-mint/70">
+            5. Managing storage
+          </h2>
+          <p className="mt-3 text-[15px] leading-[1.6] text-ax-text/80">
+            Browser settings can block or delete cookies and local storage, though this may
+            affect the Try Alter Engine demonstration&apos;s ability to remember your session.
+            There is no cookie consent choice to manage here — the site isn&apos;t using tracking
+            cookies. This will update if that changes.
+          </p>
+
+          <h2 className="mt-10 text-[13px] font-semibold uppercase tracking-[0.1em] text-ax-mint/70">
+            6. Changes
+          </h2>
+          <p className="mt-3 text-[15px] leading-[1.6] text-ax-text/80">
+            If ALTERX adds analytics, advertising, or other non-essential tracking technology in
+            the future, this Policy will be updated first to disclose it accurately.
+          </p>
+
+          <h2 className="mt-10 text-[13px] font-semibold uppercase tracking-[0.1em] text-ax-mint/70">
+            7. Contact
+          </h2>
+          <p className="mt-3 text-[15px] leading-[1.6] text-ax-text/80">
+            Questions about cookies or storage may be sent to{" "}
+            <a href="mailto:alterx@alterx.co.in" className="text-ax-mint underline underline-offset-2">
+              alterx@alterx.co.in
+            </a>
+            .
+          </p>
+
+          <p className="mt-12 border-t border-ax-mint/10 pt-6 text-[13px] leading-[1.6] text-ax-muted/70">
+            {CONTACT_LINE}
+          </p>
         </div>
       </section>
-      <Footer />
     </main>
   );
 }
