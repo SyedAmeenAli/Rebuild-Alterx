@@ -1,9 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { MediaFrame } from "@/components/frames/MediaFrame";
 import { Reveal } from "@/components/shared/Reveal";
-import { image } from "@/lib/media";
+import BorderGlow from "@/components/shared/BorderGlow";
 
 const ITEMS = [
   { label: "Sales & Support", copy: "Keep handoffs moving from request to resolution." },
@@ -63,28 +62,19 @@ export function WhereItFits() {
               ))}
             </div>
 
-            <MediaFrame
-              media={image("/hero/02_solutions_hero.jpg", "", `${20 + active * 12}% 40%`)}
-              aspect="aspect-[4/3] lg:aspect-auto lg:h-full"
-              className="min-h-[260px]"
-              drift
-            >
-              <div
-                className="absolute inset-0"
-                style={{ background: "linear-gradient(0deg, rgba(2,5,4,0.85) 0%, rgba(2,5,4,0.1) 55%)" }}
-              />
-              <div className="absolute inset-x-6 bottom-6 sm:inset-x-8 sm:bottom-8">
+            <BorderGlow borderRadius={8} backgroundColor="rgba(9,23,15,0.4)" className="min-h-[260px]">
+              <div key={active} className="menu-visual-switch flex h-full flex-col justify-end p-7 sm:p-9">
                 <span className="text-[13px] font-medium tracking-[0.04em] text-ax-mint">
                   {String(active + 1).padStart(2, "0")}
                 </span>
-                <p className="font-display mt-2 text-[22px] leading-[1.25] text-ax-white sm:text-[26px]">
+                <p className="font-display mt-3 text-[24px] leading-[1.25] text-ax-white sm:text-[28px]">
                   {ITEMS[active].label}
                 </p>
-                <p className="mt-2 max-w-[340px] text-[14px] leading-[1.5] text-ax-text/85">
+                <p className="mt-3 max-w-[380px] text-[15px] leading-[1.6] text-ax-muted">
                   {ITEMS[active].copy}
                 </p>
               </div>
-            </MediaFrame>
+            </BorderGlow>
           </div>
         </Reveal>
       </div>

@@ -1,6 +1,4 @@
-import { MediaFrame } from "@/components/frames/MediaFrame";
 import { Reveal } from "@/components/shared/Reveal";
-import { alterxMedia, toMedia } from "@/content/alterx-media";
 
 const STATES = ["Working", "Problem", "Identify", "Respond", "Continue"];
 
@@ -24,30 +22,28 @@ export function WhyItHoldsTogether() {
 
       <Reveal delay={100}>
         <div className="mt-14 lg:mt-16">
-          <MediaFrame media={toMedia(alterxMedia.verificationFrame)} aspect="aspect-[21/9]">
-            <div
-              className="absolute inset-0"
-              style={{ background: "linear-gradient(0deg, rgba(2,5,4,0.75) 0%, rgba(2,5,4,0.15) 55%)" }}
-            />
-            <div className="absolute bottom-6 left-6 flex flex-wrap items-center gap-2 sm:bottom-10 sm:left-10 sm:gap-3">
-              {STATES.map((s, i) => (
-                <div key={s} className="flex items-center gap-2 sm:gap-3">
-                  <span
-                    className={`rounded-full border px-3.5 py-1.5 text-[13px] font-medium backdrop-blur-sm ${
-                      i === STATES.length - 1
-                        ? "border-ax-mint bg-ax-mint text-ax-black"
-                        : "border-ax-mint/30 bg-ax-black/40 text-ax-text"
-                    }`}
-                  >
-                    {s}
-                  </span>
-                  {i < STATES.length - 1 && (
-                    <span aria-hidden="true" className="text-ax-mint/40">→</span>
-                  )}
-                </div>
-              ))}
+          <div className="container-ax">
+            <div className="rounded-[6px] border border-ax-mint/10 bg-ax-bg-soft/40 px-6 py-10 sm:px-10 sm:py-12">
+              <div className="flex flex-wrap items-center gap-2 sm:gap-3">
+                {STATES.map((s, i) => (
+                  <div key={s} className="flex items-center gap-2 sm:gap-3">
+                    <span
+                      className={`rounded-full border px-3.5 py-1.5 text-[13px] font-medium ${
+                        i === STATES.length - 1
+                          ? "border-ax-mint bg-ax-mint text-ax-black"
+                          : "border-ax-mint/30 bg-ax-black/40 text-ax-text"
+                      }`}
+                    >
+                      {s}
+                    </span>
+                    {i < STATES.length - 1 && (
+                      <span aria-hidden="true" className="text-ax-mint/40">→</span>
+                    )}
+                  </div>
+                ))}
+              </div>
             </div>
-          </MediaFrame>
+          </div>
         </div>
       </Reveal>
     </section>
