@@ -79,7 +79,7 @@ export default function TryAlterEngine() {
               </div>
               <Link
                 href="/request-access"
-                className="inline-flex h-12 flex-shrink-0 items-center justify-center rounded-[4px] bg-ax-mint px-7 text-[15px] font-medium text-ax-black transition-colors hover:bg-ax-emerald"
+                className="inline-flex h-12 w-full flex-shrink-0 items-center justify-center rounded-[4px] bg-ax-mint px-7 text-[15px] font-medium text-ax-black transition-colors hover:bg-ax-emerald md:w-auto"
               >
                 Continue to evaluation form
               </Link>
