@@ -21,10 +21,10 @@ export function LiquidLogo({ scrollRange = 60 }: { scrollRange?: number }) {
 
   // Sized to sit inside a 72px header without covering nav links or page
   // headlines — the original 170px hero size assumed an empty demo page.
-  const TEXT_H_HERO = 38;
-  const MARK_HERO = 60;
+  const TEXT_H_HERO = 30;
+  const MARK_HERO = 48;
   const MARK_DOCK = 32;
-  const MARK_INFLATE = 18;
+  const MARK_INFLATE = 14;
   const GAP_HERO = 10;
   const DOCK_X = 28;
   const DOCK_Y = 36; // fixed header vertical center (72px header / 2)
