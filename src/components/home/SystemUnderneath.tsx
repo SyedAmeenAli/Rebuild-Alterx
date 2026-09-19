@@ -2,6 +2,7 @@
 
 import { useRef, useState } from "react";
 import { Reveal } from "@/components/shared/Reveal";
+import BorderGlow from "@/components/shared/BorderGlow";
 
 const CARDS = [
   { label: "Understand", copy: "Reads what you want in normal language.", col: "lg:col-span-4", h: "lg:min-h-[140px]", video: "understand" },
@@ -67,42 +68,46 @@ export function SystemUnderneath() {
                     opacity: isReceded ? 0.55 : 1,
                   }}
                 >
-                  <video
-                    ref={(el) => {
-                      videoRefs.current[i] = el;
-                    }}
-                    src={`/media/alterx/video/engine/${c.video}.mp4`}
-                    muted
-                    loop
-                    playsInline
-                    preload="none"
-                    className="absolute inset-0 h-full w-full object-cover transition-opacity duration-300"
-                    style={{ opacity: isHovered ? 0.55 : 0 }}
-                    aria-hidden="true"
-                  />
-                  <div
-                    className="pointer-events-none absolute inset-0 transition-opacity duration-300"
-                    style={{
-                      background: "linear-gradient(180deg, rgba(2,5,4,0.55) 0%, rgba(2,5,4,0.75) 100%)",
-                      opacity: isHovered ? 1 : 0,
-                    }}
-                    aria-hidden="true"
-                  />
+                  <BorderGlow className="absolute inset-0 h-full w-full" backgroundColor="rgba(0,0,0,0)" borderRadius={6} glowRadius={22}>
+                    <video
+                      ref={(el) => {
+                        videoRefs.current[i] = el;
+                      }}
+                      src={`/media/alterx/video/engine/${c.video}.mp4`}
+                      muted
+                      loop
+                      playsInline
+                      preload="none"
+                      className="absolute inset-0 h-full w-full object-cover transition-opacity duration-300"
+                      style={{ opacity: isHovered ? 0.55 : 0 }}
+                      aria-hidden="true"
+                    />
+                    <div
+                      className="pointer-events-none absolute inset-0 transition-opacity duration-300"
+                      style={{
+                        background: "linear-gradient(180deg, rgba(2,5,4,0.55) 0%, rgba(2,5,4,0.75) 100%)",
+                        opacity: isHovered ? 1 : 0,
+                      }}
+                      aria-hidden="true"
+                    />
 
-                  <div className="relative flex items-start justify-between">
-                    <span
-                      className="font-display text-[17px] font-medium uppercase tracking-[0.02em] transition-colors duration-200"
-                      style={{ color: isHovered ? "#9FFFC0" : "#E8F7EE" }}
-                    >
-                      {c.label}
-                    </span>
-                    {isHovered && (
-                      <span className="text-[11px] font-medium uppercase tracking-[0.08em] text-ax-mint/70">
-                        Active state
-                      </span>
-                    )}
-                  </div>
-                  <span className="relative mt-4 max-w-[260px] text-[14px] leading-[1.5] text-ax-muted">{c.copy}</span>
+                    <div className="relative flex h-full flex-col justify-between p-6">
+                      <div className="flex items-start justify-between">
+                        <span
+                          className="font-display text-[17px] font-medium uppercase tracking-[0.02em] transition-colors duration-200"
+                          style={{ color: isHovered ? "#9FFFC0" : "#E8F7EE" }}
+                        >
+                          {c.label}
+                        </span>
+                        {isHovered && (
+                          <span className="text-[11px] font-medium uppercase tracking-[0.08em] text-ax-mint/70">
+                            Active state
+                          </span>
+                        )}
+                      </div>
+                      <span className="mt-4 max-w-[260px] text-[14px] leading-[1.5] text-ax-muted">{c.copy}</span>
+                    </div>
+                  </BorderGlow>
                 </div>
               );
             })}

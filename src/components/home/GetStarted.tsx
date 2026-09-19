@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Reveal } from "@/components/shared/Reveal";
 import { talkToUsDestination } from "@/content/navigation";
+import BorderGlow from "@/components/shared/BorderGlow";
 
 const ROUTES = [
   { label: "Talk to us", copy: "Tell us the work. We run it with you.", href: talkToUsDestination },
@@ -21,14 +22,15 @@ export function GetStarted() {
         <div className="mt-10 grid grid-cols-1 gap-3 sm:grid-cols-3">
           {ROUTES.map((r, i) => (
             <Reveal key={r.label} delay={i * 80}>
-              <Link
-                href={r.href}
-                className="group flex h-full flex-col justify-between rounded-[6px] border border-ax-mint/10 p-6 transition-colors hover:border-ax-mint/30"
-              >
-                <span className="font-display text-[18px] font-medium text-ax-white transition-colors group-hover:text-ax-mint">
-                  {r.label}
-                </span>
-                <span className="mt-4 text-[14px] leading-[1.5] text-ax-muted">{r.copy}</span>
+              <Link href={r.href} className="group block h-full">
+                <BorderGlow borderRadius={6} backgroundColor="rgba(0,0,0,0)" className="h-full">
+                  <div className="flex h-full flex-col justify-between p-6">
+                    <span className="font-display text-[18px] font-medium text-ax-white transition-colors group-hover:text-ax-mint">
+                      {r.label}
+                    </span>
+                    <span className="mt-4 text-[14px] leading-[1.5] text-ax-muted">{r.copy}</span>
+                  </div>
+                </BorderGlow>
               </Link>
             </Reveal>
           ))}
