@@ -76,7 +76,7 @@ export const navigationData: NavMenu[] = [
     type: "list",
     href: "/developers",
     items: [
-      { label: "Developer overview", href: "/developers#system", desc: "How execution is planned, run, verified and recovered." },
+      { label: "Developer overview", href: "/developers", desc: "How execution is planned, run, verified and recovered." },
       { label: "Documentation", href: "/docs", desc: "Reference material for building on ALTERX." },
     ],
     footerLabel: "Read the system",

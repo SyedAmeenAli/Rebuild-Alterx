@@ -27,7 +27,7 @@ export const LATEST_NEWS: NewsItem[] = [
   {
     category: "Engineering",
     title: "Execution that survives failure.",
-    href: "/developers#system",
+    href: "/developers",
     visualType: "engineering",
   },
   {
