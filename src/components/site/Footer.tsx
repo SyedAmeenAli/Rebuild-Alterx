@@ -27,16 +27,13 @@ const GROUPS = [
   },
   {
     title: 'Trust',
-    // Security, Acceptable Use and the DPA don't have a local page yet —
-    // link straight to the real ones on alterx.co.in rather than
-    // inventing placeholder pages for legal documents.
     links: [
-      { label: 'Security', href: 'https://alterx.co.in/security' },
+      { label: 'Security', href: '/security' },
       { label: 'Privacy', href: '/privacy' },
       { label: 'Terms', href: '/terms' },
       { label: 'Cookie Policy', href: '/cookies' },
-      { label: 'Acceptable Use', href: 'https://alterx.co.in/acceptable-use' },
-      { label: 'Data Processing Addendum', href: 'https://alterx.co.in/dpa' },
+      { label: 'Acceptable Use', href: '/acceptable-use' },
+      { label: 'Data Processing Addendum', href: '/dpa' },
     ],
   },
   {
@@ -53,7 +50,7 @@ const GROUPS = [
       ...(companyMenu?.items ?? [])
         .filter((i) => i.label !== 'FAQ' && i.label !== 'Contact')
         .map((i) => ({ label: i.label, href: i.href })),
-      { label: 'Work', href: 'https://alterx.co.in/work' },
+      { label: 'Work', href: '/work' },
       { label: 'Resources', href: '/resources' },
       { label: 'Contact', href: '/contact' },
     ],
