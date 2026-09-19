@@ -2,10 +2,13 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Header } from "@/components/site/Header";
 import { talkToUsDestination } from "@/content/navigation";
+import GlareHover from "@/components/shared/GlareHover";
+
+const CONCEPTS = ["Execution", "Planning", "Tool binding", "Verification", "Recovery", "Integration interfaces"];
 
 export const metadata: Metadata = {
   title: "Documentation — ALTERX",
-  description: "API documentation for ALTERX. Coming once there's a public, self-serve API to document.",
+  description: "Documentation for ALTERX isn't published yet — here's what to expect when it ships.",
 };
 
 export default function DocsPage() {
@@ -20,11 +23,26 @@ export default function DocsPage() {
           <h1 className="font-display mt-5 text-balance text-[32px] leading-[1.2] tracking-[-0.015em] text-ax-white sm:text-[40px]">
             Not published yet.
           </h1>
-          <p className="mt-8 max-w-[520px] text-[16px] leading-[1.6] text-ax-muted">
-            ALTERX v1 is managed-service — the team works with you directly rather than through a
-            self-serve API. This page will carry real endpoints and examples once that exists.
-            Nothing here is invented in the meantime.
+          <p className="mt-8 max-w-[560px] text-[16px] leading-[1.6] text-ax-muted">
+            Documentation is where the technical surface of ALTERX will live. When it ships, it
+            is expected to cover the concepts engineers need to understand the system:
           </p>
+
+          <div className="mt-6 flex flex-wrap gap-2.5">
+            {CONCEPTS.map((c) => (
+              <GlareHover key={c} height="auto" className="!h-auto !w-auto" glass>
+                <span className="block px-4 py-2 text-[13px] font-medium text-ax-text/85">{c}</span>
+              </GlareHover>
+            ))}
+          </div>
+
+          <p className="mt-8 max-w-[560px] text-[16px] leading-[1.6] text-ax-muted">
+            The first release isn&apos;t a public self-service developer platform — the team
+            works with you directly. Until documentation is published, this page stays
+            intentionally limited rather than presenting incomplete APIs, SDKs, or examples as
+            finished products.
+          </p>
+
           <Link
             href={talkToUsDestination}
             className="mt-8 inline-flex items-center gap-2 text-[15px] font-medium text-ax-mint transition-colors hover:text-ax-emerald"
