@@ -35,7 +35,7 @@ export function SolutionsHero() {
             <span aria-hidden="true" className="ml-2">→</span>
           </Link>
           <a
-            href="#gap"
+            href="#index"
             className="inline-flex items-center gap-2 text-[15px] font-medium text-ax-white/85 transition-colors hover:text-ax-mint"
           >
             See how it works
