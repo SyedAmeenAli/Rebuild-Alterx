@@ -3,8 +3,17 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { PRODUCTS } from "@/content/navigation";
+import dynamic from "next/dynamic";
 import { ProductVisual } from "@/components/shared/ProductVisual";
 import BorderGlow from "@/components/shared/BorderGlow";
+
+// Lazy-loaded: pulls in `motion` for the drag gesture, only needed once
+// someone actually opens Products and lands on AxInventory — not worth
+// adding to the header's shared bundle that ships on every page.
+const AxInventorySwipeVisual = dynamic(
+  () => import("@/components/site/AxInventorySwipeVisual").then((m) => m.AxInventorySwipeVisual),
+  { ssr: false }
+);
 
 interface MegaMenuProps {
   activeMenu: "products" | null;
@@ -87,7 +96,11 @@ export function MegaMenu({ activeMenu, onClose, onMouseEnter, onMouseLeave }: Me
           <div className="relative hidden border-l border-ax-mint/10 p-6 md:block">
             <BorderGlow borderRadius={12} backgroundColor="rgba(0,0,0,0)" className="h-full w-full">
               <div key={selected} className="menu-visual-switch h-full w-full overflow-hidden rounded-[12px]">
-                <ProductVisual visual={PRODUCTS[selected].visual} />
+                {PRODUCTS[selected].visual === "inventory" ? (
+                  <AxInventorySwipeVisual />
+                ) : (
+                  <ProductVisual visual={PRODUCTS[selected].visual} />
+                )}
               </div>
             </BorderGlow>
           </div>
