@@ -1,0 +1,124 @@
+/* Adapted from Uiverse.io by dexter-st (perforated ticket shape +
+   barcode), stripped of the holographic foil effect and recolored to
+   a plain black-on-white receipt with a mint accent, matching
+   AxInventory's real POS/billing output. */
+.receipt-card {
+  --perforation-size: 10px;
+  --cutouts-adjust: 46px;
+
+  position: relative;
+  width: 240px;
+  padding: var(--perforation-size) 0;
+  font-family: "Menlo", "Consolas", monospace;
+  overflow: hidden;
+  filter: drop-shadow(0 12px 24px rgba(0, 0, 0, 0.35));
+  animation: receipt-hover 4s ease infinite;
+}
+
+@keyframes receipt-hover {
+  50% {
+    transform: translateY(-4px);
+    filter: drop-shadow(0 18px 30px rgba(0, 0, 0, 0.3));
+  }
+}
+
+.receipt-card__bg {
+  position: absolute;
+  inset: 0;
+  background-color: #f4fff8;
+  mask:
+    radial-gradient(circle at 50% 0, #fff0 calc(var(--perforation-size) - 5px), #000 calc(var(--perforation-size) - 4px)),
+    radial-gradient(circle at 50% 100%, #fff0 calc(var(--perforation-size) - 5px), #000 calc(var(--perforation-size) - 4px)),
+    radial-gradient(circle 7px at left center, #000 98%, #0000 100%),
+    radial-gradient(circle 7px at right center, #000 98%, #0000 100%);
+  mask-repeat: repeat-x, repeat-x, no-repeat, no-repeat;
+  mask-size:
+    calc(var(--perforation-size) * 2) 100%,
+    calc(var(--perforation-size) * 2) 100%,
+    14px 14px,
+    14px 14px;
+  mask-position:
+    calc(0.5 * var(--perforation-size)) top,
+    calc(0.5 * var(--perforation-size)) bottom,
+    left var(--cutouts-adjust),
+    right var(--cutouts-adjust);
+  mask-composite: intersect, exclude, add;
+}
+
+.receipt-card__content {
+  position: relative;
+  z-index: 1;
+  padding: 20px 18px;
+  color: #06110b;
+}
+
+.receipt-card__header {
+  text-align: center;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.receipt-card__sub {
+  margin-top: 2px;
+  text-align: center;
+  font-size: 10px;
+  color: #123d27;
+}
+
+.receipt-card__divider {
+  margin: 12px 0;
+  border: none;
+  border-top: 1px dashed #123d27;
+  opacity: 0.4;
+}
+
+.receipt-card__row {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 11px;
+  line-height: 1.9;
+}
+
+.receipt-card__row span:first-child {
+  color: #123d27;
+}
+
+.receipt-card__total {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid #06110b;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.receipt-card__barcode {
+  justify-self: center;
+  width: 0;
+  height: 30px;
+  margin: 14px auto 6px;
+  box-shadow:
+    0px 0 0 1px #000, 5px 0 0 1px #000, 7px 0 0 1px #000, 11px 0 0 1px #000,
+    15px 0 0 1px #000, 16px 0 0 1px #000, 22px 0 0 1px #000, 27px 0 0 1px #000,
+    30px 0 0 1px #000, 35px 0 0 1px #000, 36px 0 0 1px #000, 39px 0 0 1px #000,
+    43px 0 0 1px #000, 47px 0 0 1px #000, 50px 0 0 1px #000, 55px 0 0 1px #000,
+    59px 0 0 1px #000, 60px 0 0 1px #000, 64px 0 0 1px #000, 69px 0 0 1px #000,
+    70px 0 0 1px #000, 74px 0 0 1px #000;
+  transform: translateX(75px);
+}
+
+.receipt-card__barcode-id {
+  text-align: center;
+  font-size: 9px;
+  letter-spacing: 0.15em;
+  color: #123d27;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .receipt-card {
+    animation: none;
+  }
+}

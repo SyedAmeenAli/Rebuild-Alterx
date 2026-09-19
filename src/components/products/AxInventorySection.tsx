@@ -1,14 +1,7 @@
 import Link from "next/link";
 import { Reveal } from "@/components/shared/Reveal";
 import { talkToUsDestination } from "@/content/navigation";
-
-const RECORD = [
-  { label: "Product", value: "Men's Overshirt" },
-  { label: "Variant", value: "Olive / M" },
-  { label: "SKU", value: "AX-OS-OLV-M" },
-  { label: "Stock", value: "24" },
-  { label: "Locations", value: "Store 01 (10), Store 02 (14)" },
-];
+import { ReceiptCard } from "./ReceiptCard";
 
 export function AxInventorySection() {
   return (
@@ -47,27 +40,8 @@ export function AxInventorySection() {
           </Reveal>
 
           <Reveal delay={120}>
-            <div className="rounded-[6px] border border-ax-mint/15 bg-ax-bg-soft/60 p-7 sm:p-9">
-              <div className="flex items-center gap-2 border-b border-ax-mint/10 pb-4">
-                <span className="h-[7px] w-[7px] rounded-full bg-ax-mint/40" />
-                <span className="h-[7px] w-[7px] rounded-full bg-ax-mint/40" />
-                <span className="h-[7px] w-[7px] rounded-full bg-ax-mint/40" />
-                <span className="ml-2 text-[12px] font-medium uppercase tracking-[0.1em] text-ax-muted">
-                  AxInventory core
-                </span>
-              </div>
-              <div className="mt-6 flex flex-col gap-4">
-                {RECORD.map((r) => (
-                  <div key={r.label} className="flex flex-col gap-1.5 border-b border-ax-mint/5 pb-4 last:border-b-0 last:pb-0">
-                    <span className="text-[12px] font-medium uppercase tracking-[0.08em] text-ax-muted">
-                      {r.label}
-                    </span>
-                    <span className="font-display text-[16px] font-medium text-ax-white">
-                      {r.value}
-                    </span>
-                  </div>
-                ))}
-              </div>
+            <div className="flex justify-center lg:justify-start">
+              <ReceiptCard />
             </div>
           </Reveal>
         </div>
