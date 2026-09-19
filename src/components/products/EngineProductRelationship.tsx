@@ -6,11 +6,10 @@ export function EngineProductRelationship() {
       <div className="container-ax">
         <div className="mx-auto flex max-w-[680px] flex-col items-center text-center">
           <Reveal>
-            <div className="flex flex-col items-center gap-0">
+            <div className="flex flex-wrap items-center justify-center gap-3">
               <span className="rounded-[6px] border border-ax-mint/25 px-5 py-2.5 text-[14px] font-medium text-ax-text/85">
                 Alter Engine
               </span>
-              <span aria-hidden="true" className="h-8 w-px bg-ax-mint/20" />
               <span className="rounded-[6px] border border-ax-mint bg-ax-mint/10 px-5 py-2.5 text-[14px] font-medium text-ax-mint">
                 AxInventory
               </span>

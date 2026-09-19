@@ -5,7 +5,7 @@ import BorderGlow from "@/components/shared/BorderGlow";
 
 const ROUTES = [
   { label: "Talk to us", copy: "Tell us the work. We run it with you.", href: talkToUsDestination },
-  { label: "See AxInventory", copy: "The product already doing retail work.", href: "/products#axinventory" },
+  { label: "See AxInventory", copy: "The product already doing retail work.", href: "/products/axinventory" },
   { label: "Read the system", copy: "How execution is built.", href: "/developers" },
 ];
 

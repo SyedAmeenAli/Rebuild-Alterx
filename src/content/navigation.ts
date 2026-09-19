@@ -37,13 +37,13 @@ export const PRODUCTS: ProductItem[] = [
   },
   {
     label: "Alter Engine",
-    href: "/products#alter-engine",
+    href: "/products/alter-engine",
     desc: "The execution core beneath ALTERX.",
     visual: "engine",
   },
   {
     label: "AxInventory",
-    href: "/products#axinventory",
+    href: "/products/axinventory",
     desc: "Inventory, POS and accounting for Indian retail.",
     visual: "inventory",
   },

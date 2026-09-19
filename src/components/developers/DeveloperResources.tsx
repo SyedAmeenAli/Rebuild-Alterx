@@ -3,7 +3,7 @@ import { Reveal } from "@/components/shared/Reveal";
 import { talkToUsDestination } from "@/content/navigation";
 
 const RESOURCES = [
-  { label: "Alter Engine", copy: "What Alter Engine is and how it fits into ALTERX.", href: "/products#alter-engine" },
+  { label: "Alter Engine", copy: "What Alter Engine is and how it fits into ALTERX.", href: "/products/alter-engine" },
   { label: "Technical notes", copy: "Writing on how the system is built.", href: "/resources" },
   { label: "Talk to us", copy: "Talk to the team about the architecture.", href: talkToUsDestination },
 ];

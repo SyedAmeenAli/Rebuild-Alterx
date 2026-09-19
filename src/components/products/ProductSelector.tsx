@@ -65,8 +65,8 @@ export function ProductSelector() {
               href={PRODUCTS[selected].href}
               className="mt-8 inline-flex items-center gap-1.5 text-[14px] font-medium text-ax-mint transition-colors hover:text-ax-emerald"
             >
-              Jump to {PRODUCTS[selected].label}
-              <span aria-hidden="true">↓</span>
+              Explore {PRODUCTS[selected].label}
+              <span aria-hidden="true">→</span>
             </Link>
           </Reveal>
         )}

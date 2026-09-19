@@ -15,13 +15,13 @@ export const LATEST_NEWS: NewsItem[] = [
   {
     category: "Product",
     title: "Inside Alter Engine.",
-    href: "/products#alter-engine",
+    href: "/products/alter-engine",
     visualType: "engine",
   },
   {
     category: "Product",
     title: "Counter, stock, and books in one place.",
-    href: "/products#axinventory",
+    href: "/products/axinventory",
     visualType: "inventory",
   },
   {
