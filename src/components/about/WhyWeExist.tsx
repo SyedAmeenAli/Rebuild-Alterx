@@ -12,14 +12,14 @@ export function WhyWeExist() {
                 Why we exist
               </p>
               <h2 className="font-display mt-5 text-balance text-[30px] leading-[1.18] tracking-[-0.015em] text-ax-white sm:text-[38px] lg:text-[44px]">
-                AI can produce an answer. Real work needs something more.
+                Getting useful work done is different from generating a useful answer.
               </h2>
             </Reveal>
             <Reveal delay={100}>
               <p className="mt-7 text-[17px] leading-[1.6] text-ax-text/80">
-                Powerful models already exist. The harder problem is making an entire process
-                keep working once real systems, context, failures and decisions are involved.
-                That is the part ALTERX is built around.
+                ALTERX exists because of that gap. We are interested in systems that can
+                understand an outcome, work through the steps required, deal with real-world
+                dependencies, and check what happened.
               </p>
             </Reveal>
           </div>

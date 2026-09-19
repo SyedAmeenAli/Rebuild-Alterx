@@ -20,6 +20,13 @@ export function Vision() {
             production. That&apos;s the direction, not a claim about what exists today.
           </p>
         </Reveal>
+        <Reveal delay={160}>
+          <p className="mt-6 max-w-[560px] text-[16px] leading-[1.6] text-ax-text/80">
+            We build for the part of software where intelligence has to meet reality: systems,
+            data, tools, constraints, failure, and the responsibility to know whether the work
+            actually got done.
+          </p>
+        </Reveal>
       </div>
     </section>
   );

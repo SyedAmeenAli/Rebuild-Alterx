@@ -19,6 +19,11 @@ export function TheCompany() {
               trustworthy enough for a business to hand it a process that matters.
             </p>
           </Reveal>
+          <Reveal delay={160}>
+            <p className="mt-6 text-[14px] font-medium uppercase tracking-[0.1em] text-ax-mint/70">
+              Outcome first. Governed by design. Proven in use.
+            </p>
+          </Reveal>
         </div>
       </div>
     </section>
