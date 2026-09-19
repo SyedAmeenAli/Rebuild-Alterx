@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Reveal } from "@/components/shared/Reveal";
 import { CardSwap } from "@/components/shared/CardSwap";
+import { ScrollFollow } from "@/components/shared/ScrollFollow";
 
 const LAYERS = [
   {
@@ -236,7 +237,7 @@ export function DevelopersSection() {
         </Reveal>
 
         <Reveal delay={100}>
-          <div className="mx-auto mr-6 mt-6">
+          <ScrollFollow className="mx-auto mr-6 mt-6">
             <CardSwap
               selected={selected}
               width={520}
@@ -246,7 +247,7 @@ export function DevelopersSection() {
                 content: <CardBody item={item} lang={lang} setLang={setLang} />,
               }))}
             />
-          </div>
+          </ScrollFollow>
         </Reveal>
       </div>
     </section>

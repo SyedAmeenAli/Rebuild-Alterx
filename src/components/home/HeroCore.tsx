@@ -50,7 +50,7 @@ export function HeroCore() {
           <p className="hero-reveal mt-7 max-w-[400px] text-[17px] leading-[1.55] text-ax-muted" style={{ animationDelay: "80ms" }}>
             Say what you need done, once.
             <br />
-            ALTERX carries it through, no dashboards to babysit.
+            It takes care of the rest, on its own.
           </p>
           <div className="hero-reveal mt-9" style={{ animationDelay: "140ms" }}>
             <Link href={talkToUsDestination} className="group inline-flex items-center gap-2 text-[15px] font-medium text-ax-white">
