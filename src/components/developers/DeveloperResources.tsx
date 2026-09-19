@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Reveal } from "@/components/shared/Reveal";
 import { talkToUsDestination } from "@/content/navigation";
+import "./HoverLinks.css";
 
 const RESOURCES = [
   { label: "Alter Engine", copy: "What Alter Engine is and how it fits into ALTERX.", href: "/products/alter-engine" },
@@ -18,19 +19,16 @@ export function DeveloperResources() {
           </p>
         </Reveal>
 
-        <div className="mt-10 grid grid-cols-1 gap-8 border-t border-ax-mint/10 pt-8 sm:grid-cols-3">
-          {RESOURCES.map((r, i) => (
-            <Reveal key={r.label} delay={i * 80}>
-              <Link href={r.href} className="group block">
-                <div className="font-display flex items-center gap-2 text-[19px] font-medium text-ax-white transition-colors group-hover:text-ax-mint">
-                  {r.label}
-                  <span aria-hidden="true" className="opacity-0 transition-opacity group-hover:opacity-100">→</span>
-                </div>
-                <p className="mt-2 text-[14px] leading-[1.6] text-ax-muted">{r.copy}</p>
+        <Reveal delay={100}>
+          <div className="hover-links mt-8">
+            {RESOURCES.map((r) => (
+              <Link key={r.label} href={r.href} className="hover-links__panel">
+                <span className="hover-links__label">{r.label}</span>
+                <span className="hover-links__copy">{r.copy}</span>
               </Link>
-            </Reveal>
-          ))}
-        </div>
+            ))}
+          </div>
+        </Reveal>
       </div>
     </section>
   );
