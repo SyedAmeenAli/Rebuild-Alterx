@@ -2,9 +2,9 @@ import { Reveal } from "@/components/shared/Reveal";
 import { CountUp } from "@/components/shared/CountUp";
 
 const METRICS = [
-  { value: 186, label: "tests in repo" },
-  { value: 42, label: "routes" },
-  { value: 97, label: "checks" },
+  { value: 14, label: "routes shipped" },
+  { value: 6, label: "engine capabilities" },
+  { value: 6, label: "execution layers" },
 ];
 
 export function InTheSystem() {

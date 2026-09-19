@@ -7,6 +7,7 @@ import { TechLoop } from '@/components/home/TechLoop';
 import { InTheSystem } from '@/components/home/InTheSystem';
 import { LatestSection } from '@/components/home/LatestSection';
 import { GetStarted } from '@/components/home/GetStarted';
+import { HomeFaq } from '@/components/home/HomeFaq';
 
 export default function Home() {
   return (
@@ -20,6 +21,7 @@ export default function Home() {
       <InTheSystem />
       <LatestSection />
       <GetStarted />
+      <HomeFaq />
     </main>
   );
 }
