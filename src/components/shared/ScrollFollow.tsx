@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, type ReactNode } from "react";
+import { useEffect, useRef, type ReactNode, type RefObject } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -10,41 +10,58 @@ if (typeof window !== "undefined") {
 
 interface ScrollFollowProps {
   children: ReactNode;
-  range?: number;
   className?: string;
+  /** Ref to the enclosing section — scroll progress is measured across
+   * this element's full viewport transit, not the (much shorter) visual
+   * box's own transit, so the movement is actually visible. */
+  sectionRef: RefObject<HTMLElement | null>;
+  from?: number;
+  to?: number;
+  mobileFrom?: number;
+  mobileTo?: number;
 }
 
 /**
- * Subtle scroll-linked vertical drift, not a sticky/parallax effect —
- * the element travels a small total distance (2x `range`) across the
- * time its own section is in the viewport, then leaves with it.
+ * Moves the WHOLE wrapped element (border, background, contents) as one
+ * object, tied to its section's scroll progress. Not sticky, not fixed,
+ * not pinned — stays in normal document flow and leaves with the section.
  */
-export function ScrollFollow({ children, range = 20, className }: ScrollFollowProps) {
+export function ScrollFollow({
+  children,
+  className,
+  sectionRef,
+  from = -15,
+  to = 30,
+  mobileFrom = -5,
+  mobileTo = 15,
+}: ScrollFollowProps) {
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const el = ref.current;
-    if (!el) return;
+    const trigger = sectionRef.current;
+    if (!el || !trigger) return;
 
     const ctx = gsap.context(() => {
       const mm = gsap.matchMedia();
       mm.add(
-        { desktop: "(min-width: 768px)", mobile: "(max-width: 767px)", reduced: "(prefers-reduced-motion: reduce)" },
+        { desktop: "(min-width: 768px)", reduced: "(prefers-reduced-motion: reduce)" },
         (context) => {
-          const conditions = context.conditions as { desktop: boolean; reduced: boolean };
-          if (conditions.reduced) return;
-          const amount = conditions.desktop ? range : range * 0.3;
+          const { desktop, reduced } = context.conditions as { desktop: boolean; reduced: boolean };
+          if (reduced) return;
+          const [start, end] = desktop ? [from, to] : [mobileFrom, mobileTo];
           gsap.fromTo(
             el,
-            { y: -amount },
+            { y: start },
             {
-              y: amount,
+              y: end,
               ease: "none",
               scrollTrigger: {
-                trigger: el,
+                trigger,
                 start: "top bottom",
                 end: "bottom top",
                 scrub: true,
+                invalidateOnRefresh: true,
               },
             }
           );
@@ -53,11 +70,13 @@ export function ScrollFollow({ children, range = 20, className }: ScrollFollowPr
       return () => mm.revert();
     }, ref);
 
+    ScrollTrigger.refresh();
+
     return () => ctx.revert();
-  }, [range]);
+  }, [sectionRef, from, to, mobileFrom, mobileTo]);
 
   return (
-    <div ref={ref} className={className}>
+    <div ref={ref} className={className} style={{ willChange: "transform" }}>
       {children}
     </div>
   );

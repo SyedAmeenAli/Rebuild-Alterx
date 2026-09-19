@@ -1,3 +1,6 @@
+"use client";
+
+import { useRef } from "react";
 import { Reveal } from "@/components/shared/Reveal";
 import { ScrollFollow } from "@/components/shared/ScrollFollow";
 
@@ -19,12 +22,14 @@ const CAPABILITIES = [
 ];
 
 export function HomeAxInventory() {
+  const sectionRef = useRef<HTMLElement>(null);
+
   return (
-    <section id="axinventory" className="relative bg-ax-black py-24 lg:py-32">
+    <section id="axinventory" ref={sectionRef} className="relative bg-ax-black py-24 lg:py-32">
       <div className="container-ax">
         <div className="grid grid-cols-1 gap-14 lg:grid-cols-2 lg:gap-16">
           <Reveal>
-            <ScrollFollow>
+            <ScrollFollow sectionRef={sectionRef}>
               <div className="rounded-[6px] border border-ax-mint/10 bg-ax-surface/40 p-6 sm:p-7">
                 <div className="flex items-center justify-between">
                   <p className="text-[13px] font-medium text-ax-text">Counter Inventory / Live State</p>

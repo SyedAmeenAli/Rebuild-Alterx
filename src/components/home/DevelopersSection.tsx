@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { Reveal } from "@/components/shared/Reveal";
 import { CardSwap } from "@/components/shared/CardSwap";
 import { ScrollFollow } from "@/components/shared/ScrollFollow";
@@ -179,6 +179,7 @@ function CardBody({ item, lang, setLang }: { item: (typeof LAYERS)[number]; lang
 export function DevelopersSection() {
   const [selected, setSelected] = useState(0);
   const [lang, setLang] = useState<Lang>("ts");
+  const sectionRef = useRef<HTMLElement>(null);
 
   const select = (i: number) => {
     if (i === selected) return;
@@ -186,7 +187,7 @@ export function DevelopersSection() {
   };
 
   return (
-    <section className="relative bg-ax-bg-soft py-24 lg:py-32">
+    <section ref={sectionRef} className="relative bg-ax-bg-soft py-24 lg:py-32">
       <div className="container-ax grid grid-cols-1 gap-14 lg:grid-cols-2 lg:gap-16">
         <Reveal>
           <div>
@@ -237,7 +238,7 @@ export function DevelopersSection() {
         </Reveal>
 
         <Reveal delay={100}>
-          <ScrollFollow className="mx-auto mr-6 mt-6">
+          <ScrollFollow sectionRef={sectionRef} className="mx-auto mr-6 mt-6">
             <CardSwap
               selected={selected}
               width={520}
