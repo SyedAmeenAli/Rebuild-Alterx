@@ -61,7 +61,7 @@ export function HeroCore() {
         </div>
 
         <div
-          className="hero-reveal relative mx-auto h-[460px] w-[460px] sm:h-[560px] sm:w-[560px]"
+          className="hero-reveal relative mx-auto aspect-square w-[460px] max-w-full sm:w-[560px]"
           style={{ animationDelay: "120ms" }}
         >
           <MetaBalls
