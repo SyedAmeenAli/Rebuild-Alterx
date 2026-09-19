@@ -3,7 +3,7 @@
 import { useState } from "react";
 
 const INQUIRY_TYPES = ["General", "Sales", "Partnerships", "Careers", "Other"] as const;
-const CONTACT_EMAIL = "hello@alterx.com";
+const CONTACT_EMAIL = "alterx@alterx.co.in";
 
 type FormState = {
   name: string;

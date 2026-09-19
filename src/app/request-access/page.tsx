@@ -95,8 +95,8 @@ export default function RequestAccess() {
               <p className="mb-6 text-[15px] leading-[1.6] text-ax-muted">
                 Your request was validated and stored locally in this browser session. No backend
                 is connected yet, so nothing was sent to ALTERX — email{' '}
-                <a href="mailto:hello@alterx.com" className="text-ax-mint underline underline-offset-2">
-                  hello@alterx.com
+                <a href="mailto:alterx@alterx.co.in" className="text-ax-mint underline underline-offset-2">
+                  alterx@alterx.co.in
                 </a>{' '}
                 directly if you'd like this reviewed.
               </p>

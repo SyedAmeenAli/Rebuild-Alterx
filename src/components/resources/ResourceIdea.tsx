@@ -65,12 +65,12 @@ export function ResourceIdea() {
               ))}
             </div>
 
-            <BorderGlow glass borderRadius={8} className="aspect-[16/10] w-full">
-              <div className="flex h-full flex-col justify-end p-8">
+            <BorderGlow glass borderRadius={8} className="min-h-[280px] w-full">
+              <div className="flex h-full min-h-[280px] flex-col justify-center p-8 sm:p-10">
                 <span className="w-fit rounded-full border border-ax-mint/40 bg-ax-black/50 px-4 py-1.5 text-[13px] font-medium text-ax-mint">
                   {CONCEPTS[active].label}
                 </span>
-                <p className="mt-4 max-w-[420px] text-[17px] leading-[1.5] text-ax-white">
+                <p className="mt-5 max-w-[420px] text-[22px] leading-[1.4] text-ax-white sm:text-[26px]">
                   {CONCEPTS[active].copy}
                 </p>
               </div>
