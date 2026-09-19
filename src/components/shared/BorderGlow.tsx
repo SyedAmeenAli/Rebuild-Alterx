@@ -101,6 +101,7 @@ interface BorderGlowProps {
   animated?: boolean;
   colors?: string[];
   fillOpacity?: number;
+  glass?: boolean;
 }
 
 /**
@@ -121,6 +122,7 @@ export default function BorderGlow({
   animated = false,
   colors = ["#5BEA99", "#32C97A", "#9FFFC0"],
   fillOpacity = 0,
+  glass = false,
 }: BorderGlowProps) {
   const cardRef = useRef<HTMLDivElement>(null);
 
@@ -232,7 +234,7 @@ export default function BorderGlow({
     <div
       ref={cardRef}
       onPointerMove={handlePointerMove}
-      className={`border-glow-card${lightSurface ? " border-glow-card--light" : ""} ${className}`}
+      className={`border-glow-card${lightSurface ? " border-glow-card--light" : ""}${glass ? " border-glow-card--glass" : ""} ${className}`}
       style={style}
     >
       <span className="edge-light" />

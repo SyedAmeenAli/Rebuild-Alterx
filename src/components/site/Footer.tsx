@@ -58,7 +58,7 @@ export function Footer() {
       <div className="container-ax relative">
         <div className="flex flex-col gap-12 pb-16 mb-12 border-b border-white/10 lg:flex-row lg:justify-between lg:gap-8">
           <div className="flex flex-col gap-3">
-            <div className="h-7 flex-shrink-0">
+            <div className="h-9 flex-shrink-0">
               <Logo className="h-full w-auto" />
             </div>
             <p className="text-[13px] font-medium uppercase tracking-[0.1em] text-ax-muted/80">

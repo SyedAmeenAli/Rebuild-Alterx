@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import { Reveal } from "@/components/shared/Reveal";
 import { talkToUsDestination } from "@/content/navigation";
@@ -6,16 +5,14 @@ import { talkToUsDestination } from "@/content/navigation";
 export function AboutCta() {
   return (
     <section className="relative overflow-hidden bg-ax-black py-24 lg:py-28">
-      <div className="absolute inset-0">
-        <Image src="/hero/15_cta.jpg" alt="" fill sizes="100vw" className="object-cover" />
-        <div
-          className="absolute inset-0"
-          style={{
-            background:
-              "linear-gradient(0deg, rgba(2,5,4,0.4) 0%, rgba(2,5,4,0.4) 45%, rgba(2,5,4,0.9) 100%)",
-          }}
-        />
-      </div>
+      <div
+        className="pointer-events-none absolute inset-x-0 top-0 h-[400px]"
+        style={{
+          background:
+            "radial-gradient(ellipse 55% 90% at 30% 0%, rgba(50,201,122,0.1) 0%, rgba(91,234,153,0.03) 45%, rgba(0,0,0,0) 75%)",
+        }}
+        aria-hidden="true"
+      />
 
       <div className="relative container-ax">
         <Reveal>

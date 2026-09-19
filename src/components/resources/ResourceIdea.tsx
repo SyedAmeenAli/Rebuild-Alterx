@@ -1,10 +1,16 @@
 "use client";
 
 import { useState } from "react";
-import Image from "next/image";
 import { Reveal } from "@/components/shared/Reveal";
+import BorderGlow from "@/components/shared/BorderGlow";
 
-const CONCEPTS = ["Intent", "Plan", "Execute", "Verify", "Recover"];
+const CONCEPTS = [
+  { label: "Intent", copy: "The request is understood before anything runs." },
+  { label: "Plan", copy: "Steps are sequenced before execution starts." },
+  { label: "Execute", copy: "The steps run against the real systems involved." },
+  { label: "Verify", copy: "The result is checked before anything is considered done." },
+  { label: "Recover", copy: "If something fails, execution continues from where it left off." },
+];
 
 export function ResourceIdea() {
   const [active, setActive] = useState(0);
@@ -34,7 +40,7 @@ export function ResourceIdea() {
             >
               {CONCEPTS.map((concept, i) => (
                 <button
-                  key={concept}
+                  key={concept.label}
                   role="tab"
                   aria-selected={active === i}
                   onMouseEnter={() => setActive(i)}
@@ -53,35 +59,22 @@ export function ResourceIdea() {
                       active === i ? "text-ax-white" : "text-ax-muted group-hover:text-ax-white/80"
                     }`}
                   >
-                    {concept}
+                    {concept.label}
                   </span>
                 </button>
               ))}
             </div>
 
-            <div className="relative aspect-[16/10] w-full overflow-hidden rounded-[8px] border border-ax-mint/10">
-              <div
-                className="absolute inset-0 transition-transform duration-700 ease-out"
-                style={{ transform: `translateX(${active * -1.5}%)` }}
-              >
-                <Image
-                  src="/media/alterx/03_alter_engine_still.jpg"
-                  alt=""
-                  fill
-                  sizes="(min-width: 1024px) 60vw, 100vw"
-                  className="scale-110 object-cover"
-                />
-              </div>
-              <div
-                className="absolute inset-0"
-                style={{ background: "linear-gradient(0deg, rgba(2,5,4,0.55) 0%, rgba(2,5,4,0.1) 55%)" }}
-              />
-              <div className="absolute bottom-6 left-6">
-                <span className="rounded-full border border-ax-mint/40 bg-ax-black/50 px-4 py-1.5 text-[13px] font-medium text-ax-mint backdrop-blur-sm">
-                  {CONCEPTS[active]}
+            <BorderGlow glass borderRadius={8} className="aspect-[16/10] w-full">
+              <div className="flex h-full flex-col justify-end p-8">
+                <span className="w-fit rounded-full border border-ax-mint/40 bg-ax-black/50 px-4 py-1.5 text-[13px] font-medium text-ax-mint">
+                  {CONCEPTS[active].label}
                 </span>
+                <p className="mt-4 max-w-[420px] text-[17px] leading-[1.5] text-ax-white">
+                  {CONCEPTS[active].copy}
+                </p>
               </div>
-            </div>
+            </BorderGlow>
           </div>
         </Reveal>
       </div>

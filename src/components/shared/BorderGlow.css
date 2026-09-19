@@ -22,6 +22,15 @@
   mix-blend-mode: normal;
 }
 
+/* Glass variant: frosted translucent fill instead of the near-opaque
+   default, for surfaces meant to read as glass over the page behind
+   them (subtle, not a heavy blur). */
+.border-glow-card--glass {
+  background: rgba(159, 255, 192, 0.05);
+  backdrop-filter: blur(16px) saturate(140%);
+  -webkit-backdrop-filter: blur(16px) saturate(140%);
+}
+
 .border-glow-card::before,
 .border-glow-card::after,
 .border-glow-card > .edge-light {

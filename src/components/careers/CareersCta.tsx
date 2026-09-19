@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import { Reveal } from "@/components/shared/Reveal";
 import { talkToUsDestination } from "@/content/navigation";
@@ -6,16 +5,14 @@ import { talkToUsDestination } from "@/content/navigation";
 export function CareersCta() {
   return (
     <section className="relative overflow-hidden bg-ax-black py-28 lg:py-36">
-      <div className="absolute inset-0">
-        <Image src="/hero/15_cta.jpg" alt="" fill sizes="100vw" className="object-cover" />
-        <div
-          className="absolute inset-0"
-          style={{
-            background:
-              "linear-gradient(200deg, rgba(2,5,4,0.55) 0%, rgba(2,5,4,0.4) 45%, rgba(2,5,4,0.92) 100%)",
-          }}
-        />
-      </div>
+      <div
+        className="pointer-events-none absolute inset-x-0 bottom-0 h-[400px]"
+        style={{
+          background:
+            "radial-gradient(ellipse 55% 90% at 20% 100%, rgba(50,201,122,0.08) 0%, rgba(91,234,153,0.02) 45%, rgba(0,0,0,0) 75%)",
+        }}
+        aria-hidden="true"
+      />
 
       <div className="relative container-ax">
         <Reveal>

@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import { Reveal } from "@/components/shared/Reveal";
 import { talkToUsDestination } from "@/content/navigation";
@@ -6,16 +5,14 @@ import { talkToUsDestination } from "@/content/navigation";
 export function ResourcesCta() {
   return (
     <section className="relative overflow-hidden bg-ax-black py-20 lg:py-24">
-      <div className="absolute inset-0">
-        <Image src="/hero/15_cta.jpg" alt="" fill sizes="100vw" className="object-cover" />
-        <div
-          className="absolute inset-0"
-          style={{
-            background:
-              "linear-gradient(180deg, rgba(2,5,4,0.75) 0%, rgba(2,5,4,0.6) 50%, rgba(2,5,4,0.85) 100%)",
-          }}
-        />
-      </div>
+      <div
+        className="pointer-events-none absolute inset-x-0 bottom-0 h-[350px]"
+        style={{
+          background:
+            "radial-gradient(ellipse 55% 90% at 80% 100%, rgba(50,201,122,0.08) 0%, rgba(91,234,153,0.02) 45%, rgba(0,0,0,0) 75%)",
+        }}
+        aria-hidden="true"
+      />
 
       <div className="relative container-ax">
         <Reveal>
@@ -30,7 +27,7 @@ export function ResourcesCta() {
             </div>
             <Link
               href={talkToUsDestination}
-              className="inline-flex flex-shrink-0 items-center gap-2 rounded-[4px] bg-ax-mint px-6 py-3 text-[15px] font-medium text-ax-black transition-colors hover:bg-ax-emerald"
+              className="inline-flex w-full flex-shrink-0 items-center justify-center gap-2 rounded-[4px] bg-ax-mint px-6 py-3 text-[15px] font-medium text-ax-black transition-colors hover:bg-ax-emerald sm:w-auto"
             >
               Talk to us
               <span aria-hidden="true">→</span>

@@ -1,0 +1,60 @@
+/* Adapted from Uiverse.io by ElSombrero0 (plusButton), recolored to
+   the ALTERX mint theme. Sits inside a <summary>, so it reacts to the
+   parent <details>'s open state via the group-open: variant on the
+   host element instead of its own hover pseudo-class for the "open"
+   look. */
+.faq-plus {
+  position: relative;
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 1.9rem;
+  height: 1.9rem;
+  border: 1px solid rgba(159, 255, 192, 0.25);
+  border-radius: 6px;
+  overflow: hidden;
+  transition: border-color 0.2s ease-in-out;
+}
+
+.faq-plus::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 0.55rem 0.55rem 0;
+  border-color: transparent rgba(159, 255, 192, 0.35) transparent transparent;
+  transition: border-width 0.2s ease-in-out;
+}
+
+.faq-plus svg {
+  width: 65%;
+  height: 65%;
+  fill: #9fffc0;
+  z-index: 1;
+  transition: transform 0.2s ease-in-out;
+}
+
+summary:hover .faq-plus,
+summary:focus-visible .faq-plus {
+  border-color: rgba(159, 255, 192, 0.5);
+}
+
+summary:hover .faq-plus::before,
+summary:focus-visible .faq-plus::before {
+  border-width: 0 1.9rem 1.9rem 0;
+}
+
+.group[open] .faq-plus::before,
+.faq-plus.is-open::before {
+  border-width: 0 1.9rem 1.9rem 0;
+}
+
+.group[open] .faq-plus svg,
+.faq-plus.is-open svg {
+  transform: rotate(135deg);
+  fill: #06110b;
+}

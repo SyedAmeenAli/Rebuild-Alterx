@@ -1,6 +1,6 @@
-import Image from "next/image";
 import Link from "next/link";
 import { Reveal } from "@/components/shared/Reveal";
+import "@/components/shared/FaqPlus.css";
 
 const FAQS = [
   { q: "What happens after I reach out?", a: "Someone on the team looks at what you're trying to do and replies from there — no queue, no auto-responder pretending otherwise." },
@@ -14,12 +14,8 @@ const FAQS = [
 
 export function ContactFaq() {
   return (
-    <section className="relative overflow-hidden bg-ax-bg-soft py-24 lg:py-32">
-      <div className="absolute inset-0 opacity-[0.1]">
-        <Image src="/hero/14_faq.jpg" alt="" fill sizes="100vw" className="object-cover" />
-      </div>
-
-      <div className="relative container-ax">
+    <section className="relative bg-ax-bg-soft py-24 lg:py-32">
+      <div className="container-ax">
         <Reveal>
           <p className="text-[12px] font-medium uppercase tracking-[0.14em] text-ax-mint/70">
             FAQ
@@ -32,11 +28,10 @@ export function ContactFaq() {
               <details key={faq.q} className="group py-5">
                 <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-[16px] font-medium text-ax-white marker:content-none focus-visible:outline-ax-mint focus-visible:outline-2 focus-visible:outline-offset-4 sm:text-[18px]">
                   {faq.q}
-                  <span
-                    aria-hidden="true"
-                    className="flex-shrink-0 text-[18px] text-ax-mint transition-transform duration-200 group-open:rotate-45"
-                  >
-                    +
+                  <span className="faq-plus" aria-hidden="true">
+                    <svg viewBox="0 0 30 30">
+                      <path d="M13.75 23.75V16.25H6.25V13.75H13.75V6.25H16.25V13.75H23.75V16.25H16.25V23.75H13.75Z" />
+                    </svg>
                   </span>
                 </summary>
                 <p className="mt-3 max-w-[600px] text-[14px] leading-[1.6] text-ax-muted">
