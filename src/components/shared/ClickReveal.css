@@ -1,0 +1,82 @@
+/* Adapted from Uiverse.io by Darlley (cursor-clicks-a-box motif),
+   rebuilt as plain shapes instead of the original's baked-in text
+   paths, recolored to the ALTERX mint theme, and scaled to sit
+   inline in a normal flex layout. */
+.click-reveal {
+  position: relative;
+  width: 100%;
+  max-width: 280px;
+  height: 190px;
+  margin: 0 auto;
+}
+
+.click-reveal__box {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 6px;
+  padding: 20px;
+  border-radius: 8px;
+  border: 1px solid rgba(159, 255, 192, 0.18);
+  background: rgba(159, 255, 192, 0.05);
+  opacity: 0;
+  animation: click-reveal-box 4.5s ease infinite;
+}
+
+.click-reveal__box-label {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #9fffc0;
+}
+
+.click-reveal__box-copy {
+  font-size: 15px;
+  line-height: 1.4;
+  color: #f4fff8;
+}
+
+@keyframes click-reveal-box {
+  0%, 55% { opacity: 0; }
+  62%, 100% { opacity: 1; }
+}
+
+.click-reveal__cursor {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 22px;
+  height: 22px;
+  opacity: 0;
+  transform: translate3d(70px, 0, 0) scale(1);
+  transform-origin: center;
+  animation: click-reveal-cursor 4.5s ease infinite;
+}
+
+.click-reveal__cursor svg {
+  width: 100%;
+  height: 100%;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.4));
+}
+
+@keyframes click-reveal-cursor {
+  0% { opacity: 0; transform: translate3d(70px, 0, 0) scale(1); }
+  22% { opacity: 1; transform: translate3d(0, 40px, 0) scale(1); }
+  55% { opacity: 1; transform: translate3d(-60px, 90px, 0) scale(1); }
+  60% { opacity: 1; transform: translate3d(-60px, 90px, 0) scale(0.88); }
+  66% { opacity: 1; transform: translate3d(-60px, 90px, 0) scale(1); }
+  100% { opacity: 1; transform: translate3d(-90px, 110px, 0) scale(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .click-reveal__box {
+    animation: none;
+    opacity: 1;
+  }
+  .click-reveal__cursor {
+    display: none;
+  }
+}

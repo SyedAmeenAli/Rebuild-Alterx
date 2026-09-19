@@ -1,0 +1,85 @@
+/* Adapted from Uiverse.io by Pradeepsaranbishnoi, recolored to the
+   ALTERX mint theme and rebuilt on relative units so it drops into a
+   normal flex layout instead of the original's absolute positioning. */
+.roadmap-dial {
+  position: relative;
+  width: 220px;
+  height: 150px;
+  margin: 0 auto;
+  flex-shrink: 0;
+}
+
+.roadmap-dial input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+  width: 1px;
+  height: 1px;
+}
+
+.roadmap-dial__stops {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 6px;
+}
+
+.roadmap-dial__stop {
+  cursor: pointer;
+  display: block;
+  height: 18px;
+  width: 18px;
+  border: 2px solid rgba(159, 255, 192, 0.3);
+  border-radius: 50%;
+  background: #06110b;
+  transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+
+.roadmap-dial input:checked + .roadmap-dial__stop {
+  border-color: #9fffc0;
+  background: #123d27;
+}
+
+.roadmap-dial__needle {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 2px;
+  height: 92px;
+  background: #32c97a;
+  transform-origin: bottom center;
+  transform: translateX(-50%) rotate(0deg);
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.roadmap-dial__needle::after {
+  content: "";
+  position: absolute;
+  top: -4px;
+  left: 50%;
+  height: 8px;
+  width: 8px;
+  border-radius: 50%;
+  background: #9fffc0;
+  transform: translateX(-50%);
+  box-shadow: 0 0 8px rgba(159, 255, 192, 0.6);
+}
+
+.roadmap-dial__pivot {
+  position: absolute;
+  bottom: -3px;
+  left: 50%;
+  height: 6px;
+  width: 6px;
+  border-radius: 50%;
+  background: #5bea99;
+  transform: translateX(-50%);
+}
+
+#rd-0:checked ~ .roadmap-dial__needle { transform: translateX(-50%) rotate(-32deg); }
+#rd-1:checked ~ .roadmap-dial__needle { transform: translateX(-50%) rotate(0deg); }
+#rd-2:checked ~ .roadmap-dial__needle { transform: translateX(-50%) rotate(32deg); }
+
+@media (prefers-reduced-motion: reduce) {
+  .roadmap-dial__needle {
+    transition: none;
+  }
+}

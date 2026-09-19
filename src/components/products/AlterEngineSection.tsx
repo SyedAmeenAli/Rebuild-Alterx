@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Reveal } from "@/components/shared/Reveal";
 import { alterEngineDestination } from "@/content/navigation";
+import { ClickReveal } from "@/components/shared/ClickReveal";
 
 export function AlterEngineSection() {
   return (
@@ -15,27 +16,32 @@ export function AlterEngineSection() {
       />
 
       <div className="relative z-[2] container-ax pb-16 pt-[150px] lg:pb-20">
-        <Reveal>
-          <p className="text-[12px] font-medium uppercase tracking-[0.14em] text-ax-mint/70">
-            Products · Alter Engine
-          </p>
-          <h1 className="font-display mt-6 max-w-[640px] text-balance text-[34px] leading-[1.1] tracking-[-0.02em] text-ax-white sm:text-[46px] lg:text-[54px]">
-            The execution system underneath ALTERX.
-          </h1>
-          <div className="mt-7 flex flex-col items-start gap-6 sm:flex-row sm:items-center sm:justify-between">
-            <p className="max-w-[480px] text-[16px] leading-[1.6] text-ax-text/80">
-              ALTER ENGINE turns an objective into executable work. It plans, runs, verifies and
-              recovers across the systems involved.
+        <div className="grid grid-cols-1 items-end gap-10 lg:grid-cols-[1.3fr_1fr] lg:gap-16">
+          <Reveal>
+            <p className="text-[12px] font-medium uppercase tracking-[0.14em] text-ax-mint/70">
+              Products · Alter Engine
             </p>
-            <Link
-              href={alterEngineDestination}
-              className="inline-flex flex-shrink-0 items-center gap-2 rounded-[4px] bg-ax-mint px-6 py-3 text-[15px] font-medium text-ax-black transition-colors hover:bg-ax-emerald"
-            >
-              Explore Alter Engine
-              <span aria-hidden="true">→</span>
-            </Link>
-          </div>
-        </Reveal>
+            <h1 className="font-display mt-6 max-w-[640px] text-balance text-[34px] leading-[1.1] tracking-[-0.02em] text-ax-white sm:text-[46px] lg:text-[54px]">
+              The execution system underneath ALTERX.
+            </h1>
+            <div className="mt-7 flex flex-col items-start gap-6 sm:flex-row sm:items-center sm:justify-between">
+              <p className="max-w-[480px] text-[16px] leading-[1.6] text-ax-text/80">
+                ALTER ENGINE turns an objective into executable work. It plans, runs, verifies
+                and recovers across the systems involved.
+              </p>
+              <Link
+                href={alterEngineDestination}
+                className="inline-flex flex-shrink-0 items-center gap-2 rounded-[4px] bg-ax-mint px-6 py-3 text-[15px] font-medium text-ax-black transition-colors hover:bg-ax-emerald"
+              >
+                Explore Alter Engine
+                <span aria-hidden="true">→</span>
+              </Link>
+            </div>
+          </Reveal>
+          <Reveal delay={120}>
+            <ClickReveal label="One prompt away" copy="Describe the objective. The engine plans and runs it from there." />
+          </Reveal>
+        </div>
       </div>
     </section>
   );

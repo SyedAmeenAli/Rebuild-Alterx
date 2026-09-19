@@ -32,7 +32,7 @@ export function ResourceIdea() {
         </Reveal>
 
         <Reveal delay={100}>
-          <div className="mt-16 grid grid-cols-1 gap-10 lg:mt-20 lg:grid-cols-[0.7fr_1.3fr] lg:gap-4">
+          <div className="mt-10 grid grid-cols-1 gap-10 lg:mt-12 lg:grid-cols-[0.7fr_1.3fr] lg:gap-4">
             <div
               role="tablist"
               aria-label="ALTERX concepts"

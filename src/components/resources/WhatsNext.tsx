@@ -1,20 +1,5 @@
 import { Reveal } from "@/components/shared/Reveal";
-import GlareHover from "@/components/shared/GlareHover";
-
-const DIRECTIONS = [
-  {
-    label: "Browser control",
-    copy: "Allowing execution to reach work that happens inside the web, not only through structured integrations.",
-  },
-  {
-    label: "Voice",
-    copy: "Making it possible to describe work through conversation and move from spoken intent into execution.",
-  },
-  {
-    label: "Embedded execution layer",
-    copy: "Extending how planning, action, verification, and recovery can work together underneath ALTERX.",
-  },
-];
+import { RoadmapDial } from "./RoadmapDial";
 
 export function WhatsNext() {
   return (
@@ -30,15 +15,8 @@ export function WhatsNext() {
         </Reveal>
 
         <Reveal delay={100}>
-          <div className="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-3">
-            {DIRECTIONS.map((d) => (
-              <GlareHover key={d.label} height="auto" className="!h-auto" glass>
-                <div className="flex h-full flex-col gap-2 p-6">
-                  <p className="font-display text-[17px] font-medium text-ax-white">{d.label}</p>
-                  <p className="text-[14px] leading-[1.6] text-ax-muted">{d.copy}</p>
-                </div>
-              </GlareHover>
-            ))}
+          <div className="mt-12 rounded-[8px] border border-ax-mint/10 bg-ax-bg-soft/40 p-8 sm:p-10">
+            <RoadmapDial />
           </div>
         </Reveal>
 
