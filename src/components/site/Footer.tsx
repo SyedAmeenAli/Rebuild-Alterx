@@ -1,45 +1,41 @@
 import Link from 'next/link';
 import { Logo } from '../shared/Logo';
-import { talkToUsDestination } from '@/content/navigation';
+import { navigationData, PRODUCTS, talkToUsDestination } from '@/content/navigation';
+
+// Derived from the same navigationData/PRODUCTS the header uses, instead of a
+// separately hand-maintained list — that drift is exactly how AxInventory
+// previously ended up filed under "Solutions" and "Reliability" under
+// "Developers" here, even though the header never made that mistake.
+const solutionsMenu = navigationData.find((m) => m.id === 'solutions');
+const developerMenu = navigationData.find((m) => m.id === 'developer');
+const companyMenu = navigationData.find((m) => m.id === 'company');
 
 const GROUPS = [
   {
     title: 'Products',
-    links: [
-      { label: 'Alter Engine', href: '/products#alter-engine' },
-      { label: 'AxInventory', href: '/products#axinventory' },
-    ],
+    links: PRODUCTS.map((p) => ({ label: p.label, href: p.href })),
   },
   {
     title: 'Solutions',
-    links: [
-      { label: 'From intent to execution', href: '/solutions#process' },
-      { label: 'Operations', href: '/solutions' },
-      { label: 'Inventory', href: '/products#axinventory' },
-    ],
+    links: (solutionsMenu?.items ?? []).map((i) => ({ label: i.label, href: i.href })),
   },
   {
     title: 'Developers',
+    links: (developerMenu?.items ?? []).map((i) => ({ label: i.label, href: i.href })),
+  },
+  {
+    title: 'Resources',
     links: [
-      { label: 'How it is built', href: '/developers#system' },
-      { label: 'Reliability', href: '/solutions#reliability' },
+      { label: 'Latest', href: '/resources#index' },
+      { label: 'Engineering Notes', href: '/resources#engineering-notes' },
+      { label: 'FAQ', href: '/resources#faq' },
     ],
   },
   {
     title: 'Company',
-    links: [
-      { label: 'About', href: '/about' },
-      { label: 'Careers', href: '/careers' },
-      { label: 'Contact', href: talkToUsDestination },
-      { label: 'Resources', href: '/resources' },
-    ],
-  },
-  {
-    title: 'Help',
-    links: [
-      { label: 'FAQs', href: '/resources#faq' },
-      { label: 'Contact', href: talkToUsDestination },
-    ],
+    links: (companyMenu?.items ?? [])
+      .filter((i) => i.label !== 'FAQ')
+      .map((i) => ({ label: i.label, href: i.href })),
   },
   {
     title: 'Legal',
@@ -71,6 +67,13 @@ export function Footer() {
             <p className="max-w-[220px] text-[13px] leading-[1.6] text-ax-muted/70">
               Outcome first. Governed by design. Proven in use.
             </p>
+            <Link
+              href={talkToUsDestination}
+              className="group mt-1 inline-flex w-fit items-center gap-1.5 text-[13px] font-medium text-ax-mint transition-colors hover:text-ax-emerald"
+            >
+              Talk to us
+              <span aria-hidden="true" className="transition-transform duration-200 group-hover:translate-x-1">→</span>
+            </Link>
           </div>
 
           <nav className="grid grid-cols-2 gap-x-8 gap-y-10 sm:grid-cols-3 lg:grid-cols-6 lg:gap-x-10">
