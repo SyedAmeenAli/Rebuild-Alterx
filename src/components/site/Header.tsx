@@ -40,12 +40,19 @@ export function Header() {
         <DesktopNavigation />
       </div>
 
-      <div className="flex-shrink-0 flex items-center justify-end gap-4 relative z-20">
+      <div className="flex-shrink-0 flex items-center justify-end gap-5 relative z-20">
+        <Link
+          href="/careers"
+          className="hidden lg:inline-block text-[14px] font-medium text-white/80 transition-colors duration-200 hover:text-white focus-visible:outline-ax-mint focus-visible:outline-2 focus-visible:outline-offset-2 rounded-sm"
+        >
+          Careers
+        </Link>
         <Link
           href={talkToUsDestination}
-          className="inline-flex items-center justify-center px-4 sm:px-5 py-2.5 text-sm font-medium rounded-[4px] bg-ax-mint text-ax-black focus-visible:outline-ax-mint focus-visible:outline-2 focus-visible:outline-offset-2 transition-all duration-200 hover:bg-ax-emerald"
+          className="group inline-flex items-center gap-1.5 rounded-[4px] border border-ax-mint/15 bg-ax-mint/[0.08] px-4 py-2 text-[14px] font-medium text-ax-mint transition-colors duration-200 hover:bg-ax-mint/[0.14] focus-visible:outline-ax-mint focus-visible:outline-2 focus-visible:outline-offset-2"
         >
           Talk to us
+          <span aria-hidden="true" className="transition-transform duration-200 group-hover:translate-x-0.5">→</span>
         </Link>
         <MobileNav />
       </div>

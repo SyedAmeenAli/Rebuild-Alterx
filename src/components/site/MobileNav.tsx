@@ -56,6 +56,13 @@ export function MobileNav() {
             </Link>
           ))}
           <Link
+            href="/careers"
+            onClick={() => setOpen(false)}
+            className="font-display border-b border-ax-mint/10 py-4 text-[28px] font-medium text-ax-white transition-colors hover:text-ax-mint"
+          >
+            Careers
+          </Link>
+          <Link
             href={talkToUsDestination}
             onClick={() => setOpen(false)}
             className="mt-8 inline-flex w-fit items-center justify-center rounded-[4px] bg-ax-mint px-6 py-3 text-[15px] font-medium text-ax-black transition-colors hover:bg-ax-emerald"
