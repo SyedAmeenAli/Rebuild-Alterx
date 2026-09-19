@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
-import { Logo } from '../shared/Logo';
+import { LiquidLogo } from '../shared/LiquidLogo';
 import { DesktopNavigation } from './DesktopNavigation';
 import { MobileNav } from './MobileNav';
 import { talkToUsDestination } from '@/content/navigation';
@@ -31,13 +31,13 @@ export function Header() {
       />
 
       <div className="container-ax relative flex h-full items-center justify-between">
-        <div className="flex-shrink-0 relative z-20 h-9 sm:h-11">
-          <Link href="/" aria-label="ALTERX Homepage" className="block h-full focus-visible:outline-ax-mint focus-visible:outline-2 focus-visible:outline-offset-4 rounded-sm">
-            <Logo className="h-full w-auto" />
-          </Link>
-        </div>
+        {/* Reserves layout space for LiquidLogo, which is position:fixed and
+            self-positions — sized for its widest (hero) state so nav never
+            gets covered at any scroll position. */}
+        <div className="flex-shrink-0 w-[70px] lg:w-[320px]" aria-hidden="true" />
+        <LiquidLogo />
 
-        <div className="hidden lg:flex flex-1 items-center justify-start relative z-10 pl-10">
+        <div className="hidden lg:flex flex-1 items-center justify-start relative z-10">
           <DesktopNavigation />
         </div>
 
