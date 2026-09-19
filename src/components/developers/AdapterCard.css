@@ -1,0 +1,88 @@
+/* Adapted from Uiverse.io by SouravBandyopadhyay, recolored to the
+   ALTERX mint/black theme and slowed down. */
+.adapter-card {
+  display: block;
+  position: relative;
+  height: 100%;
+  border-radius: 10px;
+  padding: 1.8em 1.4em;
+  text-decoration: none;
+  z-index: 0;
+  overflow: hidden;
+  background: linear-gradient(to bottom, #0d1f16, #06110b);
+  border: 1px solid rgba(159, 255, 192, 0.14);
+}
+
+.adapter-card::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: -16px;
+  right: -16px;
+  background: linear-gradient(135deg, #5bea99, #32c97a);
+  height: 32px;
+  width: 32px;
+  border-radius: 32px;
+  transform: scale(1);
+  transform-origin: 50% 50%;
+  transition: transform 0.9s ease-out;
+}
+
+.adapter-card:hover::before {
+  transform: scale(28);
+}
+
+.adapter-card__title {
+  font-family: var(--font-display, inherit);
+  color: #f4fff8;
+  font-size: 1.15em;
+  line-height: 1.2;
+  font-weight: 600;
+  margin-bottom: 0.4em;
+  transition: color 0.6s ease-out;
+}
+
+.adapter-card:hover .adapter-card__title {
+  color: #06110b;
+}
+
+.adapter-card__copy {
+  font-size: 0.86em;
+  font-weight: 400;
+  line-height: 1.55;
+  color: #9fb8ac;
+  transition: color 0.6s ease-out;
+}
+
+.adapter-card:hover .adapter-card__copy {
+  color: rgba(6, 17, 11, 0.75);
+}
+
+.adapter-card__corner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  width: 2em;
+  height: 2em;
+  overflow: hidden;
+  top: 0;
+  right: 0;
+  background: linear-gradient(135deg, #5bea99, #32c97a);
+  border-radius: 0 8px 0 32px;
+}
+
+.adapter-card__arrow {
+  margin-top: -4px;
+  margin-right: -4px;
+  color: #06110b;
+  font-weight: 700;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .adapter-card::before,
+  .adapter-card__title,
+  .adapter-card__copy {
+    transition: none;
+  }
+}

@@ -1,40 +1,27 @@
-"use client";
-
-import { useEffect, useState } from "react";
 import { Reveal } from "@/components/shared/Reveal";
+import { AdapterCard } from "./AdapterCard";
 
-const BASE_NODES = [
-  { label: "Model", top: 8, left: 50 },
-  { label: "Search", top: 27, left: 86.6 },
-  { label: "Messaging", top: 73, left: 86.6 },
-  { label: "Payments", top: 92, left: 50 },
-  { label: "Data", top: 73, left: 13.4 },
+const ADAPTERS = [
+  {
+    title: "Model",
+    copy: "Language and reasoning providers behind planning and generation.",
+    className: "sm:row-span-2",
+  },
+  { title: "Search", copy: "External search and retrieval systems for grounding results." },
+  {
+    title: "Data",
+    copy: "Databases, files and structured records a mission can read and write.",
+  },
+  { title: "Messaging", copy: "Email, chat and notification channels connected to a mission." },
+  {
+    title: "Payments",
+    copy: "Billing, invoicing and payment rails used inside a workflow.",
+    className: "sm:row-span-2",
+  },
+  { title: "Other system", copy: "Any additional system connected behind a defined interface." },
 ];
-const SWAP_POS = { top: 27, left: 13.4 };
-const SWAP_POOL = ["Other system", "Other tool", "External system"];
 
 export function Adapters() {
-  const [swapIndex, setSwapIndex] = useState(0);
-  const [connected, setConnected] = useState(true);
-  const [reduced, setReduced] = useState(false);
-
-  useEffect(() => {
-    const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    setReduced(prefersReduced);
-    if (prefersReduced) return;
-
-    const cycle = setInterval(() => {
-      setConnected(false);
-      setTimeout(() => {
-        setSwapIndex((i) => (i + 1) % SWAP_POOL.length);
-        setConnected(true);
-      }, 700);
-    }, 4200);
-    return () => clearInterval(cycle);
-  }, []);
-
-  const nodes = [...BASE_NODES, { label: SWAP_POOL[swapIndex], ...SWAP_POS }];
-
   return (
     <section className="relative bg-ax-black py-28 lg:py-36">
       <div className="container-ax">
@@ -52,68 +39,14 @@ export function Adapters() {
         </Reveal>
 
         <Reveal delay={120}>
-          <div className="mt-16 rounded-[6px] border border-ax-mint/10 bg-ax-bg-soft/40 px-6 py-14 lg:mt-20 lg:px-10 lg:py-20">
-            <div className="relative mx-auto aspect-square w-full max-w-[480px]">
-              <svg
-                viewBox="0 0 100 100"
-                className="pointer-events-none absolute inset-0 h-full w-full"
-                aria-hidden="true"
-              >
-                {BASE_NODES.map((n) => (
-                  <line
-                    key={n.label}
-                    x1={50}
-                    y1={50}
-                    x2={n.left}
-                    y2={n.top}
-                    stroke="rgba(159,255,192,0.16)"
-                    strokeWidth={0.4}
-                  />
-                ))}
-                <line
-                  x1={50}
-                  y1={50}
-                  x2={SWAP_POS.left}
-                  y2={SWAP_POS.top}
-                  stroke="rgba(159,255,192,0.16)"
-                  strokeWidth={0.4}
-                  style={{
-                    opacity: reduced || connected ? 1 : 0,
-                    transition: "opacity 300ms ease",
-                  }}
-                />
-              </svg>
-
-              <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-[6px] border border-ax-mint bg-ax-mint/10 px-5 py-3 text-center font-display text-[15px] font-medium text-ax-mint sm:text-[16px]">
-                Alter Engine
-              </div>
-
-              {BASE_NODES.map((n) => (
-                <span
-                  key={n.label}
-                  className="absolute -translate-x-1/2 -translate-y-1/2 whitespace-nowrap rounded-full border border-ax-mint/20 bg-ax-black px-3 py-1.5 text-center text-[11px] font-medium text-ax-text/80 sm:px-4 sm:text-[13px]"
-                  style={{ top: `${n.top}%`, left: `${n.left}%` }}
-                >
-                  {n.label}
-                </span>
-              ))}
-
-              <span
-                className="absolute -translate-x-1/2 -translate-y-1/2 whitespace-nowrap rounded-full border border-ax-mint/20 bg-ax-black px-3 py-1.5 text-center text-[11px] font-medium text-ax-text/80 transition-all duration-300 sm:px-4 sm:text-[13px]"
-                style={{
-                  top: `${SWAP_POS.top}%`,
-                  left: `${SWAP_POS.left}%`,
-                  opacity: reduced || connected ? 1 : 0,
-                }}
-              >
-                {SWAP_POOL[swapIndex]}
-              </span>
-            </div>
-
-            <p className="mx-auto mt-10 max-w-[420px] text-center text-[13px] leading-[1.6] text-ax-muted lg:mt-14">
-              The center stays stable. The outer systems can change.
-            </p>
+          <div className="mt-16 grid grid-cols-2 gap-4 sm:grid-cols-3 sm:grid-rows-2 lg:mt-20">
+            {ADAPTERS.map((a) => (
+              <AdapterCard key={a.title} title={a.title} copy={a.copy} className={a.className} />
+            ))}
           </div>
+          <p className="mx-auto mt-10 max-w-[420px] text-center text-[13px] leading-[1.6] text-ax-muted lg:mt-14">
+            The center stays stable. The outer systems can change.
+          </p>
         </Reveal>
       </div>
     </section>
