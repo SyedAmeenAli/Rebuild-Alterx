@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Reveal } from "@/components/shared/Reveal";
 import { talkToUsDestination } from "@/content/navigation";
 import { ReceiptCard } from "./ReceiptCard";
+import { ScanLoader } from "./ScanLoader";
 
 export function AxInventorySection() {
   return (
@@ -39,9 +40,10 @@ export function AxInventorySection() {
             </Link>
           </Reveal>
 
-          <Reveal delay={120}>
-            <div className="flex justify-center lg:justify-start">
+          <Reveal delay={120} className="min-w-0">
+            <div className="flex min-w-0 flex-wrap items-center justify-center gap-8 lg:justify-start">
               <ReceiptCard />
+              <ScanLoader />
             </div>
           </Reveal>
         </div>
