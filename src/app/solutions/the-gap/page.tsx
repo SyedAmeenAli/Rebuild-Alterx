@@ -38,7 +38,7 @@ export default function TheGapPage() {
           </p>
           <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2">
             {FAILURES.map((f) => (
-              <GlareHover key={f.label} height="auto" className="!h-auto">
+              <GlareHover key={f.label} height="auto" className="!h-auto" glass>
                 <div className="p-6">
                   <p className="font-display text-[18px] font-medium text-ax-white">{f.label}</p>
                   <p className="mt-2 text-[14px] leading-[1.6] text-ax-muted">{f.copy}</p>

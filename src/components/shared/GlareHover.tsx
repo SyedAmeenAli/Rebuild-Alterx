@@ -19,6 +19,7 @@ interface GlareHoverProps {
   playOnce?: boolean;
   className?: string;
   style?: CSSProperties;
+  glass?: boolean;
 }
 
 export default function GlareHover({
@@ -36,6 +37,7 @@ export default function GlareHover({
   playOnce = false,
   className = "",
   style = {},
+  glass = false,
 }: GlareHoverProps) {
   const hex = glareColor.replace("#", "");
   let rgba = glareColor;
@@ -65,7 +67,7 @@ export default function GlareHover({
 
   return (
     <div
-      className={`glare-hover${playOnce ? " glare-hover--play-once" : ""}${className ? ` ${className}` : ""}`}
+      className={`glare-hover${playOnce ? " glare-hover--play-once" : ""}${glass ? " glare-hover--glass" : ""}${className ? ` ${className}` : ""}`}
       style={{ ...vars, ...style }}
     >
       {children}
