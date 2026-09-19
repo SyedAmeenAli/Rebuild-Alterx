@@ -22,6 +22,8 @@ export function MobileNav() {
 
   const close = () => setOpen(false);
 
+  let rowIndex = 0;
+
   return (
     <div className="lg:hidden">
       <button
@@ -44,19 +46,38 @@ export function MobileNav() {
       </button>
 
       <div
-        className={`fixed inset-0 z-10 overflow-y-auto bg-ax-bg/98 backdrop-blur-md transition-opacity duration-300 ${
-          open ? "opacity-100" : "pointer-events-none opacity-0"
+        className={`fixed inset-0 z-10 overflow-y-auto bg-ax-bg/98 backdrop-blur-md transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+          open ? "translate-x-0" : "pointer-events-none translate-x-full"
         }`}
       >
+        <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden" aria-hidden="true">
+          <div
+            className={`absolute inset-0 transition-transform ease-[cubic-bezier(0.16,1,0.3,1)] ${
+              open ? "translate-x-0 duration-500" : "translate-x-full duration-200"
+            }`}
+            style={{ background: "#123D27", transitionDelay: open ? "0ms" : "0ms" }}
+          />
+          <div
+            className={`absolute inset-0 transition-transform ease-[cubic-bezier(0.16,1,0.3,1)] ${
+              open ? "translate-x-0 duration-500" : "translate-x-full duration-200"
+            }`}
+            style={{ background: "#06110B", transitionDelay: open ? "70ms" : "0ms" }}
+          />
+        </div>
+
         <nav className="flex min-h-full flex-col justify-center gap-1 px-8 py-28">
           {navigationData.map((menu) => {
             if (menu.type === "link") {
+              const i = rowIndex++;
               return (
                 <Link
                   key={menu.id}
                   href={menu.href ?? "#"}
                   onClick={close}
-                  className="font-display border-b border-ax-mint/10 py-4 text-[26px] font-medium text-ax-white transition-colors hover:text-ax-mint"
+                  className={`font-display border-b border-ax-mint/10 py-4 text-[26px] font-medium text-ax-white transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:text-ax-mint ${
+                    open ? "translate-y-0 rotate-0 opacity-100" : "translate-y-6 rotate-2 opacity-0"
+                  }`}
+                  style={{ transitionDelay: open ? `${180 + i * 55}ms` : "0ms" }}
                 >
                   {menu.label}
                 </Link>
@@ -65,6 +86,7 @@ export function MobileNav() {
 
             const isExpanded = expanded === menu.id;
             const items = menu.id === "products" ? PRODUCTS : menu.items ?? [];
+            const i = rowIndex++;
 
             return (
               <div key={menu.id} className="border-b border-ax-mint/10">
@@ -72,7 +94,10 @@ export function MobileNav() {
                   type="button"
                   onClick={() => setExpanded(isExpanded ? null : menu.id)}
                   aria-expanded={isExpanded}
-                  className="font-display flex w-full items-center justify-between py-4 text-[26px] font-medium text-ax-white transition-colors hover:text-ax-mint"
+                  className={`font-display flex w-full items-center justify-between py-4 text-[26px] font-medium text-ax-white transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:text-ax-mint ${
+                    open ? "translate-y-0 rotate-0 opacity-100" : "translate-y-6 rotate-2 opacity-0"
+                  }`}
+                  style={{ transitionDelay: open ? `${180 + i * 55}ms` : "0ms" }}
                 >
                   {menu.label}
                   <svg
@@ -109,8 +134,15 @@ export function MobileNav() {
           <Link
             href={talkToUsDestination}
             onClick={close}
-            className="mt-8 inline-flex w-fit items-center gap-1.5 rounded-[6px] border px-6 py-3 text-[15px] font-medium"
-            style={{ backgroundColor: "#123D27", borderColor: "rgba(91,234,153,0.20)", color: "#D8FFE7" }}
+            className={`mt-8 inline-flex w-fit items-center gap-1.5 rounded-[6px] border px-6 py-3 text-[15px] font-medium transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+              open ? "translate-y-0 rotate-0 opacity-100" : "translate-y-6 rotate-2 opacity-0"
+            }`}
+            style={{
+              backgroundColor: "#123D27",
+              borderColor: "rgba(91,234,153,0.20)",
+              color: "#D8FFE7",
+              transitionDelay: open ? `${180 + rowIndex * 55}ms` : "0ms",
+            }}
           >
             Talk to us
             <span aria-hidden="true">→</span>
