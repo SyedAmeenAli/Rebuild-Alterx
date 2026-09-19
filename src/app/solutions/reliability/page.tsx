@@ -5,17 +5,32 @@ import { SolutionsSubNav } from "@/components/solutions/SolutionsSubNav";
 import { SolutionsCta } from "@/components/solutions/SolutionsCta";
 import GlareHover from "@/components/shared/GlareHover";
 
-const STATES = [
-  { label: "Working", copy: "The process is running normally." },
-  { label: "Problem", copy: "Something doesn't match what was expected." },
-  { label: "Identify", copy: "The failure is classified before anything else happens." },
-  { label: "Respond", copy: "A response is chosen — retry, escalate or stop." },
-  { label: "Continue", copy: "Execution picks back up from where it left off." },
+const PRINCIPLES = [
+  {
+    label: "Verify before done",
+    copy: "Reliable execution starts with not treating every successful-looking response as a completed job. Results are verified before work is considered finished.",
+  },
+  {
+    label: "Handle failure explicitly",
+    copy: "Failures are expected, not exceptional. The system records where execution stopped, classifies the problem, and follows an available recovery path instead of silently ending.",
+  },
+  {
+    label: "Least-privilege access",
+    copy: "Security starts with controlling access to tools, credentials, and data. Execution uses only the permissions required for the work in front of it.",
+  },
+  {
+    label: "Data isolation",
+    copy: "Tenant data stays separated, so one customer's information is never exposed to another.",
+  },
+  {
+    label: "Reliability is systemic",
+    copy: "Testing, observability, verification, and recovery work together. Reliability is a property of the whole system, not a single feature bolted on.",
+  },
 ];
 
 export const metadata: Metadata = {
   title: "Reliability — Solutions — ALTERX",
-  description: "How the system holds up when execution changes.",
+  description: "How the system holds up when execution changes — verification, recovery, access control and isolation.",
 };
 
 export default function ReliabilityPage() {
@@ -31,22 +46,20 @@ export default function ReliabilityPage() {
 
       <section className="relative bg-ax-black pb-24 lg:pb-32">
         <div className="container-ax">
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-5">
-            {STATES.map((s, i) => (
+          <p className="text-[12px] font-medium uppercase tracking-[0.14em] text-ax-mint/70">
+            Principles
+          </p>
+          <div className="mt-8 grid grid-cols-1 gap-4 lg:grid-cols-2">
+            {PRINCIPLES.map((p, i) => (
               <GlareHover
-                key={s.label}
+                key={p.label}
                 height="auto"
-                className="!h-auto"
-                background={i === STATES.length - 1 ? "#123D27" : "#06110B"}
+                className={`!h-auto${i === PRINCIPLES.length - 1 ? " lg:col-span-2" : ""}`}
+                glass
               >
-                <div className="flex h-full flex-col gap-2 p-5">
-                  <p
-                    className="font-display text-[16px] font-medium"
-                    style={{ color: i === STATES.length - 1 ? "#9FFFC0" : "#F4FFF8" }}
-                  >
-                    {s.label}
-                  </p>
-                  <p className="text-[13px] leading-[1.55] text-ax-muted">{s.copy}</p>
+                <div className="flex h-full flex-col gap-2 p-6">
+                  <p className="font-display text-[17px] font-medium text-ax-white">{p.label}</p>
+                  <p className="max-w-[560px] text-[14px] leading-[1.6] text-ax-muted">{p.copy}</p>
                 </div>
               </GlareHover>
             ))}
