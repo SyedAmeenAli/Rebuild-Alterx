@@ -7,7 +7,6 @@ import { navigationData, PRODUCTS, talkToUsDestination } from '@/content/navigat
 // previously ended up filed under "Solutions" and "Reliability" under
 // "Developers" here, even though the header never made that mistake.
 const solutionsMenu = navigationData.find((m) => m.id === 'solutions');
-const developerMenu = navigationData.find((m) => m.id === 'developer');
 const companyMenu = navigationData.find((m) => m.id === 'company');
 
 const GROUPS = [
@@ -20,8 +19,25 @@ const GROUPS = [
     links: (solutionsMenu?.items ?? []).map((i) => ({ label: i.label, href: i.href })),
   },
   {
-    title: 'Developers',
-    links: (developerMenu?.items ?? []).map((i) => ({ label: i.label, href: i.href })),
+    title: 'Build',
+    links: [
+      { label: 'Developers', href: '/developers' },
+      { label: 'Request developer access', href: '/request-access' },
+    ],
+  },
+  {
+    title: 'Trust',
+    // Security, Acceptable Use and the DPA don't have a local page yet —
+    // link straight to the real ones on alterx.co.in rather than
+    // inventing placeholder pages for legal documents.
+    links: [
+      { label: 'Security', href: 'https://alterx.co.in/security' },
+      { label: 'Privacy', href: '/privacy' },
+      { label: 'Terms', href: '/terms' },
+      { label: 'Cookie Policy', href: '/cookies' },
+      { label: 'Acceptable Use', href: 'https://alterx.co.in/acceptable-use' },
+      { label: 'Data Processing Addendum', href: 'https://alterx.co.in/dpa' },
+    ],
   },
   {
     title: 'Resources',
@@ -33,16 +49,13 @@ const GROUPS = [
   },
   {
     title: 'Company',
-    links: (companyMenu?.items ?? [])
-      .filter((i) => i.label !== 'FAQ')
-      .map((i) => ({ label: i.label, href: i.href })),
-  },
-  {
-    title: 'Legal',
     links: [
-      { label: 'Privacy', href: '/privacy' },
-      { label: 'Terms', href: '/terms' },
-      { label: 'Cookies', href: '/cookies' },
+      ...(companyMenu?.items ?? [])
+        .filter((i) => i.label !== 'FAQ' && i.label !== 'Contact')
+        .map((i) => ({ label: i.label, href: i.href })),
+      { label: 'Work', href: 'https://alterx.co.in/work' },
+      { label: 'Resources', href: '/resources' },
+      { label: 'Contact', href: '/contact' },
     ],
   },
 ];
