@@ -60,15 +60,13 @@ export function SystemUnderneath() {
                   onFocus={() => handleEnter(i)}
                   onBlur={() => handleLeave(i)}
                   tabIndex={0}
-                  className={`group relative flex min-h-[150px] flex-col justify-between overflow-hidden rounded-[6px] border p-6 transition-all duration-[240ms] ease-[cubic-bezier(0.22,1,0.36,1)] ${c.col} ${c.h}`}
+                  className={`group relative flex min-h-[150px] transition-all duration-[240ms] ease-[cubic-bezier(0.22,1,0.36,1)] ${c.col} ${c.h}`}
                   style={{
-                    borderColor: isHovered ? "#32C97A" : "rgba(159,255,192,0.1)",
-                    backgroundColor: "rgba(9,23,15,0.4)",
                     transform: isHovered ? "translateY(-3px)" : isReceded ? "scale(0.985)" : "none",
                     opacity: isReceded ? 0.55 : 1,
                   }}
                 >
-                  <BorderGlow className="absolute inset-0 h-full w-full" backgroundColor="rgba(0,0,0,0)" borderRadius={6} glowRadius={22}>
+                  <BorderGlow className="h-full w-full overflow-hidden" backgroundColor="rgba(9,23,15,0.4)" borderRadius={6} glowRadius={22}>
                     <video
                       ref={(el) => {
                         videoRefs.current[i] = el;
