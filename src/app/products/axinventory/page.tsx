@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Header } from "@/components/site/Header";
 import { AxInventorySection } from "@/components/products/AxInventorySection";
 import { AxInventoryCapabilities } from "@/components/products/AxInventoryCapabilities";
-import { AxInventoryFoundation } from "@/components/products/AxInventoryFoundation";
 import { AxInventoryPos } from "@/components/products/AxInventoryPos";
 import { AxInventoryCta } from "@/components/products/AxInventoryCta";
 
@@ -17,7 +16,6 @@ export default function AxInventoryPage() {
       <Header />
       <AxInventorySection />
       <AxInventoryCapabilities />
-      <AxInventoryFoundation />
       <AxInventoryPos />
       <AxInventoryCta />
     </main>
