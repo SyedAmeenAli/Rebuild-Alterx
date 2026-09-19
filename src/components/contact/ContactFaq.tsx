@@ -1,13 +1,15 @@
 import Image from "next/image";
+import Link from "next/link";
 import { Reveal } from "@/components/shared/Reveal";
 
 const FAQS = [
-  { q: "What is ALTERX?", a: "ALTERX turns a business objective into planned, executed and verified work." },
-  { q: "What is Alter Engine?", a: "The execution system underneath ALTERX — it plans, binds, compiles, executes, verifies and recovers work." },
-  { q: "What is AxInventory?", a: "A real product built on Alter Engine — inventory, point of sale, purchasing, GST and accounting for Indian retail." },
-  { q: "How does ALTERX handle failures?", a: "Failures are classified and a response is chosen through explicit policy rather than blindly retrying." },
-  { q: "Is ALTERX a public API platform?", a: "Not currently. There is no self-serve public API or SDK." },
-  { q: "Can I work with ALTERX as a developer?", a: "ALTERX v1 is managed-service — the team works with you directly rather than through a self-service platform. Get in touch and we'll figure out the right way to work together." },
+  { q: "What happens after I reach out?", a: "Someone on the team looks at what you're trying to do and replies from there — no queue, no auto-responder pretending otherwise." },
+  { q: "What should I include?", a: "The problem or outcome you're working toward, and the systems it touches today. That's what the message field above is for." },
+  {
+    q: "Can I work with ALTERX as a developer?",
+    a: "v1 is managed-service — the team works with you directly rather than through a self-service platform. Get in touch and we'll figure out the right way to work together.",
+  },
+  { q: "Is there a public API?", a: "Not currently. See how execution is actually built —", link: { href: "/developers", label: "Developers" } },
 ];
 
 export function ContactFaq() {
@@ -37,7 +39,17 @@ export function ContactFaq() {
                     +
                   </span>
                 </summary>
-                <p className="mt-3 max-w-[600px] text-[14px] leading-[1.6] text-ax-muted">{faq.a}</p>
+                <p className="mt-3 max-w-[600px] text-[14px] leading-[1.6] text-ax-muted">
+                  {faq.a}
+                  {faq.link && (
+                    <>
+                      {" "}
+                      <Link href={faq.link.href} className="text-ax-mint underline underline-offset-2">
+                        {faq.link.label}
+                      </Link>
+                    </>
+                  )}
+                </p>
               </details>
             ))}
           </div>
