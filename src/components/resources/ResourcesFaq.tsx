@@ -3,27 +3,19 @@ import { Reveal } from "@/components/shared/Reveal";
 
 const FAQS = [
   {
-    q: "What is ALTERX?",
-    a: "ALTERX turns a business objective into planned, executed and verified work, instead of leaving the user to operate a workflow builder or agent framework directly.",
+    q: "What's here that isn't on the homepage?",
+    a: "The homepage shows a short preview. This page is the fuller list, plus engineering notes as they get written.",
   },
   {
-    q: "What is Alter Engine?",
-    a: "The execution system underneath ALTERX. It plans, binds, compiles, executes, verifies and recovers work across the systems involved.",
+    q: "How often is this updated?",
+    a: "When there's something worth publishing, not on a schedule.",
   },
   {
-    q: "What is AxInventory?",
-    a: "A real product built on top of Alter Engine — inventory, point of sale, purchasing, GST and accounting for Indian retail businesses.",
+    q: "Is there a newsletter or RSS feed?",
+    a: "Not currently.",
   },
   {
-    q: "How does ALTERX handle failures?",
-    a: "Failures are classified and a response is chosen through explicit policy, rather than blindly retrying everything. See the Developers page for the full picture.",
-  },
-  {
-    q: "Is there a public API or SDK?",
-    a: "Not currently. ALTERX v1 is managed-service — the team works with you directly rather than shipping a self-service developer platform.",
-  },
-  {
-    q: "Can I talk to the team?",
+    q: "Can I talk to the team about something here?",
     a: "Yes — the contact page is the fastest way to reach us.",
   },
 ];

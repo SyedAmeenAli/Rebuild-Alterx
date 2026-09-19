@@ -3,6 +3,7 @@ import { Header } from "@/components/site/Header";
 import { ResourcesHero } from "@/components/resources/ResourcesHero";
 import { ResourceIndex } from "@/components/resources/ResourceIndex";
 import { ResourceIdea } from "@/components/resources/ResourceIdea";
+import { ResourcesLatest } from "@/components/resources/ResourcesLatest";
 import { EngineeringNotes } from "@/components/resources/EngineeringNotes";
 import { ResourcesFaq } from "@/components/resources/ResourcesFaq";
 import { ResourcesCta } from "@/components/resources/ResourcesCta";
@@ -19,6 +20,7 @@ export default function ResourcesPage() {
       <ResourcesHero />
       <ResourceIndex />
       <ResourceIdea />
+      <ResourcesLatest />
       <EngineeringNotes />
       <ResourcesFaq />
       <ResourcesCta />
